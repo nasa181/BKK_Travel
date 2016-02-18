@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+  <h2>Crawler.FiLm - <span id="stat">Ready to Run</span></h2>
+  <iframe id="sra" style="display:none;" src = ''></iframe>
+  <pre id="res"> </pre>
+  <script src="jquery.min.js"></script>
+  <script>
+    var baseUrl = 'https://www.wongnai.com/restaurants?regions=42&page.size=200&page.number=';
+    var page = 1;
+    $(document).ready(function(){
+      $("#sra").attr("src",baseUrl+page).unload(function(){
+        $("#stat").text("Processing Page "+page);
+        if($("#sra").contents() !== null) {
+          page++;
+        $("#sra").attr("src",baseUrl+page);
+      }
+      });
+
+    });
+  </script>
+</body>
+</html>

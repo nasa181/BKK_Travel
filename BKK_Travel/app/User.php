@@ -11,8 +11,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
     protected $fillable = [
-        'name', 'email', 'password',
+        'Fname','Lname', 'email', 'password','gender','birthday','type',
     ];
 
     /**
@@ -23,4 +24,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function review(){
+        $this->hasOne('Review');
+    }
+
 }

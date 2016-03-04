@@ -13,4 +13,7 @@ class web_controller extends Controller
     function start_page(){
         return view('welcome');
     }
+    function page_travel(){
+        return view('travel');
+    }
 }

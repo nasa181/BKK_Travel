@@ -13,11 +13,12 @@ class CreateTravelTable extends Migration
     public function up()
     {
         Schema::create('attraction', function (Blueprint $table) {
-            $table->string('item_id');
+            $table->string('attraction_id');
             $table->string('attraction_type');
             $table->string('condition');
             $table->string('type');
-            $table->foreign('item_id')->references('id')->on('item');
+            $table->foreign('attraction_id')->references('item_id')->on('item');
+            $table->timestamps();
         });
     }
 

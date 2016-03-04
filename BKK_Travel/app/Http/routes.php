@@ -12,7 +12,7 @@
 */
 
 Route::get('/','web_controller@start_page');
-
+Route::get('/page_travel','web_controller@page_travel');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

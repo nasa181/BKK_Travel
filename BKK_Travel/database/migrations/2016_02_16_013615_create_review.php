@@ -14,9 +14,10 @@ class CreateReview extends Migration
     {
         //
         Schema::create('review', function (Blueprint $table) {
+            $table->string('review_id');
             $table->string('content');
-            $table->string('date');
-
+            $table->foreign('review_id')->references('user_id')->on('users');
+            $table->timestamps();
         });
     }
 

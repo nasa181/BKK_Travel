@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEvent extends Migration
+class CreatePhotoGallery extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateEvent extends Migration
      */
     public function up()
     {
-        Schema::create('event', function (Blueprint $table) {
-            $table->string('event_id');
-            $table->string('event_time');
-            $table->string('type');
-            $table->foreign('event_id')->references('item_id')->on('item');
+        Schema::create('photo_gallery', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('photo_id');
+            $table->string('photo_url');
+            $table->primary('photo_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateEvent extends Migration
      */
     public function down()
     {
-        Schema::drop('event');
+        Schema::drop('photo_gallery');
     }
 }

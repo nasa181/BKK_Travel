@@ -10,6 +10,17 @@
         <div class="col-sm-4"><img src="cooltext165455489048438.png" class="img-rounded center-block" id="img2" width=75%></div>
         <div class="col-sm-4"></div>
     </div>
+
+    @foreach($item as $it)
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="well"><img src="{{$it->photo_url}}" class="img-rounded"><span><h2>{{$it->title}}</h2></span></div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    @endforeach
+
     <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4"><img src="cooltext165462709275958.png" class="img-rounded center-block" id="img3" width=75%></div>

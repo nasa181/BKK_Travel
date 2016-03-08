@@ -14,9 +14,8 @@ class CreateRestaurant extends Migration
     {
         Schema::create('restaurant', function (Blueprint $table) {
             $table->string('restaurant_id');
-            $table->string('open_hour');
-            $table->string('menu');
-            $table->string('type');
+            $table->string('price_range');
+            $table->string('food_type');
             $table->foreign('restaurant_id')->references('item_id')->on('item');
             $table->timestamps();
         });

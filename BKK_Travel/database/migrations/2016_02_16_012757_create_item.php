@@ -14,17 +14,12 @@ class Place extends Migration
     {
         //
         Schema::create('item', function (Blueprint $table) {
-            $table->string('item_id',20);
-            $table->string('creator');
-            $table->string('title');
-            $table->string('location_id');
-            $table->string('openClose_time');
+            $table->double('item_id');
             $table->string('description');
-            $table->integer('price');
-            $table->boolean('children_convenience');
+            $table->string('title');
+            $table->string('tel');
             $table->boolean('isApproved');
-            $table->primary('id');
-            $table->foreign('creator')->references('user_id')->on('user');
+            $table->primary('item_id');
             $table->timestamps();
         });
     }

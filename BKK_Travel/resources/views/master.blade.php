@@ -47,6 +47,11 @@
                 display: inline-block;
             }
 
+            .yellow_text{
+                color: #ffff00;
+                font-size: 36px;
+            }
+
             .title {
                 font-size: 96px;
             }

@@ -14,9 +14,10 @@ class CreateTravelTable extends Migration
     {
         Schema::create('attraction', function (Blueprint $table) {
             $table->string('attraction_id');
-            $table->string('attraction_type');
-            $table->string('condition');
-            $table->string('type');
+            $table->string('activity');
+            $table->string('entrance_fee');
+            $table->string('oc_time');
+            $table->string('parking');
             $table->foreign('attraction_id')->references('item_id')->on('item');
             $table->timestamps();
         });

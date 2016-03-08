@@ -14,7 +14,9 @@ class CreateEvent extends Migration
     {
         Schema::create('event', function (Blueprint $table) {
             $table->string('event_id');
-            $table->string('event_time');
+            $table->string('start_date');
+            $table->string('end_date');
+            $table->string('entrance_fee');
             $table->string('type');
             $table->foreign('event_id')->references('item_id')->on('item');
             $table->timestamps();

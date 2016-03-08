@@ -16,7 +16,7 @@ class CreatePhotoGallery extends Migration
             $table->increments('id');
             $table->string('photo_id');
             $table->string('photo_url');
-            $table->primary('photo_id');
+            $table->foreign('photo_id')->references('item_id')->on('item');
             $table->timestamps();
         });
     }

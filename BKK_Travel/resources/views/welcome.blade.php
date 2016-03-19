@@ -15,7 +15,9 @@
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
+                <a href="/page_restaurant/info/{{$it->item_id}}">
                 <div class="well"><img src="{{$it->photo_url}}" class="img-rounded"><span><h2>{{$it->title}}</h2></span></div>
+                </a>
             </div>
             <div class="col-sm-4"></div>
         </div>

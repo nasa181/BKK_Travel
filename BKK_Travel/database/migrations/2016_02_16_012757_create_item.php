@@ -14,7 +14,7 @@ class Place extends Migration
     {
         //
         Schema::create('item', function (Blueprint $table) {
-            $table->double('item_id');
+            $table->increments('item_id');
             $table->string('description');
             $table->string('title');
             $table->string('tel');

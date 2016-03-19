@@ -13,12 +13,14 @@ class CreateEvent extends Migration
     public function up()
     {
         Schema::create('event', function (Blueprint $table) {
-            $table->string('event_id');
+            $table->increments('event_id');
             $table->string('start_date');
             $table->string('end_date');
             $table->string('entrance_fee');
             $table->string('type');
-            $table->foreign('event_id')->references('item_id')->on('item');
+            $table->double('link_item_id');
+            $table->foreign('link_item_id')->reference('item_id')->on('item');
+            $table->primary('event_id');
             $table->timestamps();
         });
     }

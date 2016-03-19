@@ -13,10 +13,11 @@ class CreatePhotoGallery extends Migration
     public function up()
     {
         Schema::create('photo_gallery', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('photo_id');
+            $table->increments('photo_id');
             $table->string('photo_url');
-            $table->foreign('photo_id')->references('item_id')->on('item');
+            $table->double('link_item_id');
+            $table->foreign('link_item_id')->reference('item_id')->on('item');
+            $table->primary('photo_id');
             $table->timestamps();
         });
     }

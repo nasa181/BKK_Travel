@@ -13,10 +13,13 @@ class CreateRestaurant extends Migration
     public function up()
     {
         Schema::create('restaurant', function (Blueprint $table) {
-            $table->string('restaurant_id');
+            $table->increments('restaurant_id');
             $table->string('price_range');
             $table->string('food_type');
-            $table->foreign('restaurant_id')->references('item_id')->on('item');
+            $table->string('oc_time');
+            $table->double('link_item_id');
+            $table->foreign('link_item_id')->reference('item_id')->on('item');
+            $table->primary('restaurant_id');
             $table->timestamps();
         });
     }

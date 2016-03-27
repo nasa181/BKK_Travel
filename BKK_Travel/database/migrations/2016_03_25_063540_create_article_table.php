@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReview extends Migration
+class CreateArticleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,11 @@ class CreateReview extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('review', function (Blueprint $table) {
-            $table->increments('review_id');
+        Schema::create('article', function (Blueprint $table) {
+            $table->increments('article_id');
             $table->string('title');
-            $table->string('content');
             $table->string('title_picture');
-            $table->unsignedInteger('link_user_id');
-            $table->foreign('link_user_id')->references('user_id')->on('users');
-            $table->timestamps();
+            $table->string('content',1000);
         });
     }
 
@@ -31,7 +27,6 @@ class CreateReview extends Migration
      */
     public function down()
     {
-        //
-        Schema::drop('review');
+        Schema::drop('article');
     }
 }

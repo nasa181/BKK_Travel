@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('type',10);
             $table->string('gender',10);
             $table->string('birthday');
-            $table->primary('member_id');
+            $table->string('nationality',50);
+//            $table->primary('user_id');
             $table->rememberToken();
             $table->timestamps();
         });

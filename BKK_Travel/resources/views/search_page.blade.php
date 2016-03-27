@@ -1,6 +1,6 @@
 @extends('master')
 @section('center_page')
-    @foreach($item as $it)
-        <h1>{{$it->item_id}}</h1>
-    @endforeach
+        <div class="row well">
+            <span>{{$item->title}}</span>
+        </div>
 @stop

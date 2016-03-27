@@ -14,15 +14,18 @@ class CreateLocation extends Migration
     {
         Schema::create('location', function (Blueprint $table) {
             $table->increments('location_id');
-            $table->integer('phone_number');
             $table->string('long');
             $table->string('lat');
+            $table->string('hint',500);
+            $table->string('build',500);
             $table->string('street_address');
             $table->string('district');
             $table->string('sub_district');
             $table->string('province');
             $table->string('postal_code');
-            $table->primary('location_id');
+            $table->unsignedInteger('link_item_id');
+            $table->foreign('link_item_id')->references('item_id')->on('item');
+//            $table->primary('location_id');
             $table->timestamps();
         });
     }

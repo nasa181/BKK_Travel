@@ -17,9 +17,13 @@ class CreateRestaurant extends Migration
             $table->string('price_range');
             $table->string('food_type');
             $table->string('oc_time');
-            $table->double('link_item_id');
-            $table->foreign('link_item_id')->reference('item_id')->on('item');
-            $table->primary('restaurant_id');
+            $table->string('credit_card');
+            $table->string('child_appropriate');
+            $table->string('reservable');
+            $table->string('parking');
+            $table->unsignedInteger('link_item_id');
+            $table->foreign('link_item_id')->references('item_id')->on('item');
+//            $table->primary('restaurant_id');
             $table->timestamps();
         });
     }

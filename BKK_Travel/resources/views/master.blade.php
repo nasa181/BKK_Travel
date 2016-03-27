@@ -75,66 +75,21 @@
             .title {
                 font-size: 96px;
             }
-            .floating-box {
-                float: left;
-                width: 150px;
-                height: 75px;
-                margin: 10px;
-                word-break: keep-all;
-                display: block;
-                background-color: white;
-                position: relative;
-                padding: 10px;
-                /*border: 3px solid #73AD21;*/
+            /* Remove the navbar's default rounded borders and increase the bottom margin */
+            .navbar {
+                margin-bottom: 50px;
+                border-radius: 0;
             }
 
-            .blackbox {
-                background-color: black;
-                opacity: 0.7;
-                background-size: 100%;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
-            header {
-                width: 100%;
-                background: #1d1f20;
-                height: 50px;
-                line-height: 50px;
+            /* Remove the jumbotron's default bottom margin */
+            .jumbotron {
+                margin-bottom: 0;
             }
 
-            .hamburger {
-                background: none;
-                position: absolute;
-                top: 0;
-                /*right: 0;*/
-                line-height: 45px;
-                padding: 0px 15px 0px 15px;
-                color: #fff;
-                border: 0;
-                font-size: 1.4em;
-                font-weight: bold;
-                cursor: pointer;
-                outline: none;
-                z-index: 10000000000000;
-            }
-
-            .cross {
-                background: none;
-                position: absolute;
-                top: 0px;
-                /*right: 0;*/
-                padding: 0px 15px 0px 15px;
-                color: #fff;
-                border: 0;
-                font-size: 3em;
-                line-height: 65px;
-                font-weight: bold;
-                cursor: pointer;
-                outline: none;
-                z-index: 10000000000000;
+            /* Add a gray background color and some padding to the footer */
+            footer {
+                background-color: #f2f2f2;
+                padding: 25px;
             }
 
 
@@ -142,39 +97,44 @@
 
     </head>
     <body>
-        <header>
-            <img src="989385_1003072359738303_974269120_o.jpg" class="img-rounded" id="img2" width=150px height=50px>
-            <button class="hamburger">&#9776;</button>
-            <button class="cross">&#735;</button>
-        </header>
-        <div class="menu">
-            <ul>
-                <a href="/page_travel"><li>Attraction</li></a>
-                <a href="#"><li>Restaurant</li></a>
-                <a href="#"><li>Event</li></a>
-                <a href="#"><li>LINK FOUR</li></a>
-                <a href="#"><li>LINK FIVE</li></a>
-            </ul>
-        </div>
-        <div class="row">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-4"></div>
-            <div class="col-xs-5 btn-group center-block">
-                <button type="button" class="btn btn-link btn-xs" style="font-size: 14px; right: 0;">Login</button>
-                <button type="button" class="btn btn-link btn-xs" style="font-size: 14px; right: 0;">Register</button>
+        <div class="jumbotron" style="margin: 0 0 0 0;padding-top: 0;padding-bottom: 0">
+            <div class="container text-center">
+                <a href="/"><img src="/BKKTravelLogo.png" width="70%" height="20%"></a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-3"></div>
-            <form method="post" action="/search">
-                {!! csrf_field() !!}
-                <div class="col-xs-6 inline-block">
-                    <input type="text" class="form-control center-block" style="opacity: 0.7" id="search" placeholder="Search" onkeydown="search()">
-
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
-            </form>
-            <div class="col-xs-3"></div>
-        </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <form class="navbar-form navbar-right" role="search" action="/search">
+                        {!! csrf_field() !!}
+                        <div class="form-group input-group">
+                            <input type="text" class="form-control" name="in_search" placeholder="Search..">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="#"><span class="glyphicon"></span> Sign Up</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Deals</a></li>
+                        <li><a href="#">Stores</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         @yield('center_page')
         <script>
             $("input").keypress(function(event) {

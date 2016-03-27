@@ -14,10 +14,10 @@ class CreatePhotoGallery extends Migration
     {
         Schema::create('photo_gallery', function (Blueprint $table) {
             $table->increments('photo_id');
-            $table->string('photo_url');
-            $table->double('link_item_id');
-            $table->foreign('link_item_id')->reference('item_id')->on('item');
-            $table->primary('photo_id');
+            $table->string('photo_url',1000);
+            $table->unsignedInteger('link_item_id');
+            $table->foreign('link_item_id')->references('item_id')->on('item');
+//            $table->primary('photo_id');
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Place extends Migration
+class CreateItem extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,11 @@ class Place extends Migration
         //
         Schema::create('item', function (Blueprint $table) {
             $table->increments('item_id');
-            $table->string('description');
+            $table->string('description',1000);
             $table->string('title');
             $table->string('tel');
             $table->boolean('isApproved');
-            $table->primary('item_id');
+//            $table->primary('item_id');
             $table->timestamps();
         });
     }

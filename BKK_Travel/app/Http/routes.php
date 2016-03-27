@@ -12,7 +12,7 @@
 */
 
 Route::get('/','web_controller@start_page');
-Route::get('/page_travel','web_controller@page_travel');
+Route::get('/page_travel/list_of_travel/{page}','web_controller@page_travel');
 Route::get('/page_restaurant/info/{id}','web_controller@res_info');
 Route::post('/search','web_controller@search');
 /*

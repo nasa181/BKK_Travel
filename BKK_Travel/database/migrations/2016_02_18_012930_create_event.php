@@ -18,9 +18,11 @@ class CreateEvent extends Migration
             $table->string('end_date');
             $table->string('entrance_fee');
             $table->string('type');
-            $table->double('link_item_id');
-            $table->foreign('link_item_id')->reference('item_id')->on('item');
-            $table->primary('event_id');
+            $table->string('parking');
+            $table->string('website_url',1000);
+            $table->unsignedInteger('link_item_id');
+            $table->foreign('link_item_id')->references('item_id')->on('item');
+//            $table->primary('event_id');
             $table->timestamps();
         });
     }

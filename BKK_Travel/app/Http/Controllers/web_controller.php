@@ -63,7 +63,13 @@ class web_controller extends Controller
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
-        return view('info_attraction',['attr'=>$attr,'item'=>$item,'photo'=>$photo]);
+        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo]);
+    }
+    function event_info($id){
+        $event = DB::table('event')->where('link_item_id',$id)->first();
+        $item = DB::table('item')->where('item_id',$id)->first();
+        $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
+        return view('info_event',['event'=>$event,'item'=>$item,'photo'=>$photo]);
     }
     function search(Request $request){
         $search = $request->in_search;

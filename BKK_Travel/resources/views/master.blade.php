@@ -100,6 +100,9 @@
                 width: 50%;
                 margin: auto;
             }
+            #map {
+                height: 100%;
+            }
 
 
         </style>

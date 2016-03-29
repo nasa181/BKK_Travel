@@ -76,5 +76,8 @@ class web_controller extends Controller
         $item = DB::table('item')->where('item_id',$search)->first();
         return view('search_page',['item'=> $item]);
     }
+    function register_page(){
+        return view('registor');
+    }
 
 }

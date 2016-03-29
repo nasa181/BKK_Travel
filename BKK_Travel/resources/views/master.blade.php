@@ -16,6 +16,21 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <!--  jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+        <!-- Isolated Version of Bootstrap, not needed if your site already used Bootstrap -->
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+        <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        
+
+
+
+
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.cross').hide();
@@ -38,6 +53,7 @@
         </script>
 
         <style>
+
             html, body {
                 height: 100%;
             }
@@ -49,19 +65,7 @@
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato';
-                /*background-image: url("Los-Angeles-beach-at-night.jpg");*/
-                /*background-attachment: fixed;*/
-                /*background-position: 15% 10%;*/
-                background-color: #000000;
-                /*opacity: 0.5;*/
             }
-
-            /*.container {*/
-                /*text-align: center;*/
-                /*display: table-cell;*/
-                /*vertical-align: middle;*/
-            /*}*/
-
             .content {
                 text-align: center;
                 display: inline-block;
@@ -91,15 +95,91 @@
                 background-color: #f2f2f2;
                 padding: 25px;
             }
+            .carousel-inner > .item > img,
+            .carousel-inner > .item > a > img {
+                width: 50%;
+                margin: auto;
+            }
 
 
         </style>
 
     </head>
     <body>
-        <div class="jumbotron" style="margin: 0 0 0 0;padding-top: 0;padding-bottom: 0">
-            <div class="container text-center">
-                <a href="/"><img src="/BKKTravelLogo.png" width="70%" height="20%"></a>
+    <!-- jQuery -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Form Helpers -->
+    <script src="js/bootstrap-formhelpers.min.js"></script>
+
+
+
+    {{--style="margin: 0 0 0 0;padding-top: 0;padding-bottom: 0"--}}
+        <div class="jumbotron" >
+            {{--<div class="container text-center">--}}
+                {{--<a href="/"><img src="/BKKTravelLogo.png" width="70%" height="20%"></a>--}}
+            {{--</div>--}}
+            <div class="container" >
+                <br>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 400px">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+
+                        <div class="item active">
+                            <img src="/BKKTravelLogo.png" alt="Chania" width="60" height="300px">
+                            <div class="carousel-caption">
+                                <h3>Chania</h3>
+                                <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="/BKKTravelLogo.png" alt="Chania" width="60" height="300px">
+                            <div class="carousel-caption">
+                                <h3>Chania</h3>
+                                <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="/BKKTravelLogo.png" alt="Flower" width="60" height="300px">
+                            <div class="carousel-caption">
+                                <h3>Flowers</h3>
+                                <p>Beatiful flowers in Kolymbari, Crete.</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="/BKKTravelLogo.png" alt="Flower" width="60" height="300px">
+                            <div class="carousel-caption">
+                                <h3>Flowers</h3>
+                                <p>Beatiful flowers in Kolymbari, Crete.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" width="50%">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
             </div>
         </div>
         <nav class="navbar navbar-inverse">
@@ -122,8 +202,8 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <li><a href="#"><span class="glyphicon"></span> Sign Up</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
                     </ul>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
@@ -135,6 +215,36 @@
                 </div>
             </div>
         </nav>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="loginModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: cornflowerblue">
+                        <button type="button" class="close" data-dismiss="modal" style="color: #ffffff">&times;</button>
+                        <h2 class="modal-title" style="color: #ffffff">Login</h2>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>Email</p>
+                        <input type="text" class="form-control" name="in_email" placeholder="Email..">
+                        <p>Password</p>
+                        <input type="password" class="form-control" name="in_password" placeholder="Password..">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" data-dismiss="modal">Login</button>
+                        <a href="/register_page"><button type="button" class="btn btn-default" data-dismiss="modal">Sign Up</button></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
         @yield('center_page')
         <script>
             $("input").keypress(function(event) {

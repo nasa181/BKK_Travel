@@ -13,7 +13,7 @@
             });
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPBgt-GzI-ag24la51OvD_hCrEVTjst8s&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW2gRwu9MwYWcH0zE5py-PuxbQQJuOZQQ&callback=initMap"
             async defer></script>
     <ul class="pager">
         <li class="previous"><a href="../page_travel/list_of_travel/($page-1)">Previous</a></li>

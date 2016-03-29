@@ -17,7 +17,9 @@ Route::get('/page_restaurant/info/{id}','web_controller@res_info');
 Route::get('/page_travel/info/{id}','web_controller@attr_info');
 Route::get('/page_event/info/{id}','web_controller@event_info');
 Route::get('/register_page','web_controller@register_page');
+Route::get('/page_all/create_review','web_controller@createReview');
 Route::post('/search','web_controller@search');
+Route::post('/page_travel/post_review','web_controller@postReview');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

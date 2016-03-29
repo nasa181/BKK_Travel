@@ -8,6 +8,7 @@ use App\Item;
 use App\Location;
 use App\PhotoGallery;
 use App\Restaurant;
+use App\Review;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -56,13 +57,14 @@ class web_controller extends Controller
         $res = DB::table('restaurant')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
-
-        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo]);
+        $review = DB::table('review')->take(5)->get();
+        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review]);
     }
     function attr_info($id){
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
+        $review = DB::table('review')->take(5)->get();
         return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo]);
     }
     function event_info($id){
@@ -78,6 +80,9 @@ class web_controller extends Controller
     }
     function register_page(){
         return view('registor');
+    }
+    function createReview(){
+        return view('Review');
     }
     function postReview(Request $request){
         $file = fopen($request->file('image')->getRealPath(), "rb");

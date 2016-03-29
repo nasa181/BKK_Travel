@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        DB::statement("ALTER TABLE `users` ADD `image` MEDIUMBLOB");
     }
 
     /**

@@ -79,5 +79,13 @@ class web_controller extends Controller
     function register_page(){
         return view('registor');
     }
+    function postReview(Request $request){
+        $file = fopen($request->file('image')->getRealPath(), "rb");
+        $contents = fread($file, filesize($request->file('image')->getRealPath()));
+        fclose($file);
+        $imgByte = base64_encode($contents);
+        $user->image = $imgByte;
+        $user->save();
+    }
 
 }

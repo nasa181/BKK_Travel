@@ -28,8 +28,8 @@
       <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/web_controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59227467" vertical-offset="1086" max-vertical-offset="1830">
-              <caret line="100" column="60" selection-start-line="100" selection-start-column="60" selection-end-line="100" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.055793993" vertical-offset="1086" max-vertical-offset="1830">
+              <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
               <folding>
                 <element signature="e#40#59#0#PHP" expanded="true" />
               </folding>
@@ -857,8 +857,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/web_controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59227467" vertical-offset="1086" max-vertical-offset="1830">
-          <caret line="100" column="60" selection-start-line="100" selection-start-column="60" selection-end-line="100" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.055793993" vertical-offset="1086" max-vertical-offset="1830">
+          <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
           </folding>

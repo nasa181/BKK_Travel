@@ -85,12 +85,15 @@ class web_controller extends Controller
         return view('Review');
     }
     function postReview(Request $request){
+        $title = $request->title;
+        $description = $request->description;
         $file = fopen($request->file('image')->getRealPath(), "rb");
-        $contents = fread($file, filesize($request->file('image')->getRealPath()));
+        $contents = fread($file, filesize($request->file('photo')->getRealPath()));
         fclose($file);
         $imgByte = base64_encode($contents);
         $user->image = $imgByte;
         $user->save();
+        return view('/');
     }
 
 }

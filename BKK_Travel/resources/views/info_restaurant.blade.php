@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-4 col-xs-12"></div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="/{{$rev->title_picture}}" class="img-rounded" width=96px height=96px style="float: left">
+                    <img src="{{$rev->title_picture}}" class="img-rounded" width=96px height=96px style="float: left">
                     <div class="text-info" style="margin: 0 0 0 104px"><span>{{$rev->title}}</span></div>
                     <div class="text-info" style="margin: 0 0 0 104px"><span>{{$rev->content}}</span></div>
                 </div>

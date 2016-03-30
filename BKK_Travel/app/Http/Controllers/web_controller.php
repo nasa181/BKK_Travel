@@ -87,32 +87,28 @@ class web_controller extends Controller
     function createReview($id){
         return view('Review',['id'=>$id]);
     }
-    function postReview(Request $request){
 
-        $destinationPath = '/'; // upload path
+    function postReview(Request $request){
+        $file = $request->file('photo');//get input file
         $extension = Input::file('photo')->getClientOriginalExtension(); // getting image extension
         $fileName = time().'.'.$extension; // renameing image
-        Input::file('photo')->move($destinationPath, $fileName)->save($path); // uploading file to given path
-
-        //$path = public_path('/' . $fileName);
-        //Image::make($image->getRealPath())->resize(200, 200)->save($path);
+        $path = $request->file('photo')->move('img/',$fileName);// move input file to "public/img/<file_name>"
+        $path = '/'.$path; // for adding '/' in front of the file path(for searching to the root of file)
+//=============== get string input =========================
         $title = $request->title;
         $description = $request->description;
-        //$file = fopen($request->file('photo')->getRealPath(), "rb");
-        //$contents = fread($file, filesize($file));
-        //fclose($file);
-        //$imgByte = base64_encode($contents);
 
+//=============== save file to database ====================
         $review = new Review();
         $review->title = $title;
         $review->content = $description;
-        $review->title_picture = $fileName;
+        $review->title_picture = $path;
         $review->link_item_id = $request->hidden_value;
         $review->link_user_id = $request->hidden_value;
         $review->save();
         $photo = new PhotoGallery();
         $photo->link_item_id = $request->hidden_value;
-        $photo->photo_url = $fileName;
+        $photo->photo_url = $path;
         $photo->save();
         return redirect('/');
     }

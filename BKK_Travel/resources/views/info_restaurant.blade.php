@@ -14,7 +14,7 @@
         <div class="col-sm-12"><span>{{$item->tel}}</span></div>
         <div class="col-sm-12"><span>{{$res->oc_time}}</span></div>
     </div>
-    <a href="/page_all/create_review"><button class="btn btn-success">Review</button></a>
+    <a href="/page_all/create_review/{{$res->link_item_id}}"><button class="btn btn-success">Review</button></a>
     @foreach($review as $rev)
         <div class="row">
             <img src="{{$rev->photo_url}}" class="img-rounded" width=96px height=96px style="float: left">

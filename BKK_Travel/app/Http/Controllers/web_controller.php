@@ -9,12 +9,15 @@ use App\Location;
 use App\PhotoGallery;
 use App\Restaurant;
 use App\Review;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManager;
+
 
 class web_controller extends Controller
 {
@@ -81,19 +84,37 @@ class web_controller extends Controller
     function register_page(){
         return view('registor');
     }
-    function createReview(){
-        return view('Review');
+    function createReview($id){
+        return view('Review',['id'=>$id]);
     }
     function postReview(Request $request){
+
+        //$destinationPath = 'uploads'; // upload path
+        $extension = Input::file('photo')->getClientOriginalExtension(); // getting image extension
+        $fileName = time().'.'.$extension; // renameing image
+        //Input::file('photo')->move($destinationPath, $fileName); // uploading file to given path
+
+        $path = public_path('/' . $fileName);
+        Image::make($image->getRealPath())->resize(200, 200)->save($path);
         $title = $request->title;
         $description = $request->description;
-        $file = fopen($request->file('image')->getRealPath(), "rb");
-        $contents = fread($file, filesize($request->file('photo')->getRealPath()));
-        fclose($file);
-        $imgByte = base64_encode($contents);
-        $user->image = $imgByte;
-        $user->save();
-        return view('/');
+        //$file = fopen($request->file('photo')->getRealPath(), "rb");
+        //$contents = fread($file, filesize($file));
+        //fclose($file);
+        //$imgByte = base64_encode($contents);
+
+        $review = new Review();
+        $review->title = $title;
+        $review->content = $description;
+        $review->title_picture = $fileName;
+        $review->link_item_id = $request->hidden_value;
+        $review->link_user_id = $request->hidden_value;
+        $review->save();
+        $photo = new PhotoGallery();
+        $photo->link_item_id = $request->hidden_value;
+        $photo->photo_url = $fileName;
+        $photo->save();
+        return redirect('/');
     }
 
 }

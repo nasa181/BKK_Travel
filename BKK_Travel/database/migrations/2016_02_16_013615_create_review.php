@@ -20,6 +20,8 @@ class CreateReview extends Migration
             $table->string('title_picture');
             $table->unsignedInteger('link_user_id');
             $table->foreign('link_user_id')->references('user_id')->on('users');
+            $table->unsignedInteger('link_item_id');
+            $table->foreign('link_item_id')->references('item_id')->on('item');
             $table->timestamps();
         });
     }

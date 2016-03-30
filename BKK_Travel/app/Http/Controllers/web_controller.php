@@ -89,13 +89,13 @@ class web_controller extends Controller
     }
     function postReview(Request $request){
 
-        //$destinationPath = 'uploads'; // upload path
+        $destinationPath = '/'; // upload path
         $extension = Input::file('photo')->getClientOriginalExtension(); // getting image extension
         $fileName = time().'.'.$extension; // renameing image
-        //Input::file('photo')->move($destinationPath, $fileName); // uploading file to given path
+        Input::file('photo')->move($destinationPath, $fileName)->save($path); // uploading file to given path
 
-        $path = public_path('/' . $fileName);
-        Image::make($image->getRealPath())->resize(200, 200)->save($path);
+        //$path = public_path('/' . $fileName);
+        //Image::make($image->getRealPath())->resize(200, 200)->save($path);
         $title = $request->title;
         $description = $request->description;
         //$file = fopen($request->file('photo')->getRealPath(), "rb");

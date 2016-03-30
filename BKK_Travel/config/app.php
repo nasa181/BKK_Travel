@@ -148,6 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 //        'Illuminate\Html\HtmlServiceProvider',
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -204,6 +205,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 //        'Form'      => 'Illuminate\Html\FormFacade',
 //        'Html'      => 'Illuminate\Html\HtmlFacade',
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

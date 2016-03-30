@@ -1,6 +1,6 @@
 @extends('master')
 @section('center_page')
-    <div class="col-md-4 col-xs-12" style="border: 1px">
+    <div class="col-md-4 col-xs-12">
         <img src="/cooltext165456723410492.png" class="img-rounded center-block" onclick="page_travel()" id="img1" width=75%>
         @foreach($attraction as $attr)
             <div class="row">

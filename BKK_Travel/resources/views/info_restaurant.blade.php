@@ -16,15 +16,11 @@
     </div>
     <div id="map"></div>
     <script>
+        var map;
         function initMap() {
-            var mapDiv = document.getElementById('map');
-            var map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: -34.397, lng: 150.644},
                 zoom: 8
-            });
-
-            map.addListener('click', function(e) {
-                firebase.push({lat: e.latLng.lat(), lng: e.latLng.lng()});
             });
         }
     </script>

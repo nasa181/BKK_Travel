@@ -15,7 +15,7 @@ class CreateItem extends Migration
         //
         Schema::create('item', function (Blueprint $table) {
             $table->increments('item_id');
-            $table->string('description',1000);
+            $table->string('description',2000);
             $table->string('title');
             $table->string('tel');
             $table->boolean('isApproved');

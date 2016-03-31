@@ -10,10 +10,12 @@ use App\PhotoGallery;
 use App\Restaurant;
 use App\Review;
 use Faker\Provider\Image;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\ImageManager;
@@ -22,6 +24,32 @@ use Intervention\Image\ImageManager;
 class web_controller extends Controller
 {
     //
+    function register(Request $request){
+        $email = $request->in_new_email;
+        $password = $request->in_new_password;
+
+//        if($pass != $confirm_pass) return redirect('createNewUser');
+
+        if(Auth::attempt(array('email' => $email))) return redirect();
+        $user = new User();
+        $user->email = $email;
+        $user->password = $password;
+        $user->Fname = $request->in_Fname;
+        $user->Lname = $request->in_Lname;
+        $user->birthday = $request->in_birthday;
+        $user->gender = $request->sex;
+        $user->nationality = $request->country;
+        $user->type = $request->in_type;
+        $user->save();
+    }
+    function login(Request $request){
+        $email = $request->in_email;
+        $password = $request->in_password;
+        if(Auth::attempt(['email' => $email, 'password' => $password])){
+            return redirect();
+        }
+        return redirect()->with('not_success',true);
+    }
     function start_page(){
         $event = DB::table('item')
             ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
@@ -89,6 +117,12 @@ class web_controller extends Controller
     }
 
     function postReview(Request $request){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        else{
+            return redirect();
+        }
         $file = $request->file('photo');//get input file
         $extension = Input::file('photo')->getClientOriginalExtension(); // getting image extension
         $fileName = time().'.'.$extension; // renameing image
@@ -104,13 +138,29 @@ class web_controller extends Controller
         $review->content = $description;
         $review->title_picture = $path;
         $review->link_item_id = $request->hidden_value;
-        $review->link_user_id = $request->hidden_value;
+        $review->link_user_id = $user->user_id;
         $review->save();
         $photo = new PhotoGallery();
         $photo->link_item_id = $request->hidden_value;
         $photo->photo_url = $path;
         $photo->save();
         return redirect('/');
+    }
+    function viewProfile(){
+        if (Auth::check()) {
+            $user = Auth::user();
+            return view('profile',['user',$user]);
+        }
+        else{
+            return redirect();
+        }
+    }
+    function addAttraction(Request $request){
+        $item = new Item();
+        $attraction = new Attraction();
+        $location = new Location();
+        $photo = new PhotoGallery();
+
     }
 
 }

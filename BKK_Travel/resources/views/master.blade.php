@@ -205,7 +205,7 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
                     </ul>
                     <ul class="nav navbar-nav">
@@ -230,7 +230,7 @@
                         <button type="button" class="close" data-dismiss="modal" style="color: #ffffff">&times;</button>
                         <h2 class="modal-title" style="color: #ffffff">Login</h2>
                     </div>
-
+                    <form method="post" action="/login">
                     <div class="modal-body">
                         <p>Email</p>
                         <input type="text" class="form-control" name="in_email" placeholder="Email..">
@@ -240,6 +240,7 @@
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-default" data-dismiss="modal">Login</button>
+                    </form>
                         <a href="/register_page"><button type="button" class="btn btn-default" data-dismiss="modal">Sign Up</button></a>
                     </div>
                 </div>

@@ -19,6 +19,7 @@ Route::get('/page_event/info/{id}','web_controller@event_info');
 Route::get('/register_page','web_controller@register_page');
 Route::get('/page_all/create_review/{id}','web_controller@createReview');
 Route::get('/view_profile','web_controller@viewProfile');
+Route::get('/page_restaurant/list_of_restaurant/{page}','web_controller@page_restaurant');
 Route::post('/search','web_controller@search');
 Route::post('/page_travel/post_review','web_controller@postReview');
 Route::post('/register/input','web_controller@register');

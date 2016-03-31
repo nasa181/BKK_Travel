@@ -101,7 +101,7 @@
                 margin: auto;
             }
             #map {
-                height: 100%;
+                height: 30%;
             }
 
 

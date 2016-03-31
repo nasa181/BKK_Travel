@@ -84,6 +84,19 @@ class web_controller extends Controller
             ->get();
         return view('attraction',['attraction'=>$attraction,'page'=>$page]);
     }
+    function page_restaurant($page){
+        $num_of_page = (DB::table('item')->count())/25;
+        if($page < 0)$page = 0;
+        if($page > $num_of_page) $page = $num_of_page;
+        $restaurant = DB::table('item')
+            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->join('restaurant','item.item_id','=','restaurant.link_item_id')
+            ->join('location','item.item_id','=','location.link_item_id')
+            ->skip(25*$page)
+            ->take(25)
+            ->get();
+        return view('restaurant',['restaurant'=>$restaurant,'page'=>$page]);
+    }
     function res_info($id){
         $res = DB::table('restaurant')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();

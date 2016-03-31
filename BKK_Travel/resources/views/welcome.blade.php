@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-md-4 col-xs-12">
-        <img src="/cooltext165455489048438.png" class="img-rounded center-block" id="img2" width=75%>
+        <img src="/cooltext165455489048438.png" class="img-rounded center-block" onclick="page_restaurant()" id="img2" width=75%>
         @foreach($restaurant as $res)
             <div class="row">
                 <img src="{{$res->photo_url}}" class="img-rounded" width=96px height=96px style="float: left">
@@ -34,6 +34,9 @@
     <script>
         function page_travel(){
             location.href='../page_travel/list_of_travel/0';
+        }
+        function page_restaurant(){
+            location.href='../page_restaurant/list_of_restaurant/0';
         }
     </script>
 @stop

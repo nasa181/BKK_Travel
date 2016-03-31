@@ -17,22 +17,17 @@
     <div id="map"></div>
     <script>
         function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: {lat: -25.363882, lng: 131.044922 }
-        });
-
-        map.addListener('click', function(e) {
-                placeMarkerAndPanTo(e.latLng, map);
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+                zoom: 8,
+                center: new google.maps.LatLng(-34.397, 150.644)
             });
-        }
 
-        function placeMarkerAndPanTo(latLng, map) {
-            var marker = new google.maps.Marker({
-                position: latLng,
-                map: map
+            // We add a DOM event here to show an alert if the DIV containing the
+            // map is clicked.
+            google.maps.event.addDomListener(mapDiv, 'click', function() {
+                window.alert('Map was clicked!');
             });
-            map.panTo(latLng);
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW2gRwu9MwYWcH0zE5py-PuxbQQJuOZQQ&callback=initMap"

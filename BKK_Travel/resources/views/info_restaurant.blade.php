@@ -18,9 +18,9 @@
     <script>
         function initMap() {
             var mapDiv = document.getElementById('map');
-            var map = new google.maps.Map(mapDiv, {
-                zoom: 8,
-                center: {lat: 0, lng: 0}
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 8
             });
 
             map.addListener('click', function(e) {

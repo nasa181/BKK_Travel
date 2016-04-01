@@ -15,18 +15,20 @@
         <div class="col-sm-12"><span>{{$res->oc_time}}</span></div>
     </div>
 
-    <div id="map"></div>
+    <div id="map1"></div>
     <script>
 
         var map;
         function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('map1'), {
                 center: {lat: -34.397, lng: 150.644},
                 zoom: 8
             });
         }
     </script>
-
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW2gRwu9MwYWcH0zE5py-PuxbQQJuOZQQ&callback=initMap">
+    </script>
 
     <a href="/page_all/create_review/{{$res->link_item_id}}"><button class="btn btn-success">Review</button></a>
     @foreach($review as $rev)

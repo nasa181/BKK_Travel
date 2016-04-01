@@ -26,9 +26,7 @@
             });
         }
     </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW2gRwu9MwYWcH0zE5py-PuxbQQJuOZQQ&callback=initMap">
-    </script>
+
 
     <a href="/page_all/create_review/{{$res->link_item_id}}"><button class="btn btn-success">Review</button></a>
     @foreach($review as $rev)

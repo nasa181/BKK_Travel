@@ -102,6 +102,7 @@
             }
             #map {
                 height: 30%;
+                width: 30%;
             }
 
 
@@ -109,14 +110,14 @@
 
     </head>
     <body>
-    <!-- jQuery -->
-    <script src="js/jquery-1.10.2.min.js"></script>
+    {{--<!-- jQuery -->--}}
+    {{--<script src="js/jquery-1.10.2.min.js"></script>--}}
 
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
+    {{--<!-- Bootstrap -->--}}
+    {{--<script src="js/bootstrap.min.js"></script>--}}
 
-    <!-- Bootstrap Form Helpers -->
-    <script src="js/bootstrap-formhelpers.min.js"></script>
+    {{--<!-- Bootstrap Form Helpers -->--}}
+    {{--<script src="js/bootstrap-formhelpers.min.js"></script>--}}
 
 
 

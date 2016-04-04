@@ -101,15 +101,17 @@ class web_controller extends Controller
         $res = DB::table('restaurant')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
-        $review = DB::table('review')->take(5)->get();
-        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review]);
+        $review = DB::table('review')->where('link_item_id',$id)->take(5)->get();
+        $location = DB::table('location')->where('link_item_id',$id)->first();
+        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
     }
     function attr_info($id){
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
-        $review = DB::table('review')->take(5)->get();
-        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo]);
+        $review = DB::table('review')->where('link_item_id',$id)->take(5)->get();
+        $location = DB::table('location')->where('link_item_id',$id)->first();
+        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
     }
     function event_info($id){
         $event = DB::table('event')->where('link_item_id',$id)->first();
@@ -123,13 +125,25 @@ class web_controller extends Controller
         return view('search_page',['item'=> $item]);
     }
     function register_page(){
-        return view('registor');
+        if (Auth::check()) {
+            $user = Auth::user();
+            return redirect(['user'=>$user]);
+        }
+        else{
+            return view('registor');
+        }
+
     }
     function createReview($id){
-        return view('Review',['id'=>$id]);
+        if (Auth::check()) {
+            return view('review',['id'=>$id]);
+        }
+        else{
+            return redirect();
+        }
     }
 
-    function postReview(Request $request){
+    function postReviewTravel(Request $request){
         if (Auth::check()) {
             $user = Auth::user();
         }
@@ -168,12 +182,123 @@ class web_controller extends Controller
             return redirect();
         }
     }
+
+
+
+
+//======================================    adding new item   ====================================================
     function addAttraction(Request $request){
+        $id_tmp = (DB::table('item')->count())+1;
         $item = new Item();
         $attraction = new Attraction();
         $location = new Location();
         $photo = new PhotoGallery();
+        $item->item_id = $id_tmp;
+        $item->title = $request->in_new_title;
+        $item->description = $request->in_new_description;
+        $item->tel = $request->in_new_tel;
+        $attraction->attraction_type = $request->in_new_type;
+        $attraction->activity = $request->in_new_activity;
+        $attraction->entrance_fee = $request->in_new_entrancefee;
+        $attraction->oc_time = $request->in_new_oc_time;
+        $attraction->parking = $request->in_new_parking;
+        $attraction->website_url = $request->in_new_web_url;
+        $attraction->link_item_id = $id_tmp;
+        $location->hint = $request->in_new_hint;
+        $location->build = $request->in_new_build;
+        $location->street_address = $request->in_new_street_address;
+        $location->sub_district = $request->in_new_sub_dis;
+        $location->district = $request->in_new_district;
+        $location->province = $request->in_new_province;
+        $location->post_code = $request->in_new_post_code;
+        $location->lat = $request->in_new_lat;
+        $location->lng = $request->in_new_lng;
+        $location->link_item_id = $id_tmp;
+        $item->save();
+        $location->save();
+        $attraction->save();
+
 
     }
+    function addRestaurant(Request $request){
+        $id_tmp = (DB::table('item')->count())+1;
+        $item = new Item();
+        $restaurant = new Restaurant();
+        $location = new Location();
+        $photo = new PhotoGallery();
+        $item->item_id = $id_tmp;
+        $item->title = $request->in_new_title;
+        $item->description = $request->in_new_description;
+        $item->tel = $request->in_new_tel;
+        $restaurant->price_range = $request->in_new_price_range;
+        $restaurant->food_type = $request->in_new_food_type;
+        $restaurant->oc_time = $request->in_new_oc_time;
+        $restaurant->credit_card = $request->in_new_credit_card;
+        $restaurant->child_appropriate = $request->in_new_child_appropriate;
+        $restaurant->reservable = $request->in_new_reservable;
+        $restaurant->parking = $request->in_new_parking;
+        $restaurant->link_item_id = $id_tmp;
+        $location->hint = $request->in_new_hint;
+        $location->build = $request->in_new_build;
+        $location->street_address = $request->in_new_street_address;
+        $location->sub_district = $request->in_new_sub_dis;
+        $location->district = $request->in_new_district;
+        $location->province = $request->in_new_province;
+        $location->post_code = $request->in_new_post_code;
+        $location->lat = $request->in_new_lat;
+        $location->lng = $request->in_new_lng;
+        $location->link_item_id = $id_tmp;
+        $item->save();
+        $location->save();
+        $restaurant->save():
+
+    }
+    function addEvent(Request $request){
+        $id_tmp = (DB::table('item')->count())+1;
+        $item = new Item();
+        $event = new Event();
+        $location = new Location();
+        $photo = new PhotoGallery();
+        $item->item_id = $id_tmp;
+        $item->title = $request->in_new_title;
+        $item->description = $request->in_new_description;
+        $item->tel = $request->in_new_tel;
+        $event->start_date = $request->in_new_start_date;
+        $event->end_date = $request->in_new_end_date;
+        $event->entrance_fee = $request->in_new_entrance_fee;
+        $event->type = $request->in_new_type;
+        $event->parking = $request->in_new_parking;
+        $event->website_url = $request->in_new_website_url;
+        $event->link_item_id = $id_tmp;
+        $location->hint = $request->in_new_hint;
+        $location->build = $request->in_new_build;
+        $location->street_address = $request->in_new_street_address;
+        $location->sub_district = $request->in_new_sub_dis;
+        $location->district = $request->in_new_district;
+        $location->province = $request->in_new_province;
+        $location->post_code = $request->in_new_post_code;
+        $location->lat = $request->in_new_lat;
+        $location->lng = $request->in_new_lng;
+        $location->link_item_id = $id_tmp;
+        $item->save();
+        $location->save();
+        $event->save();
+
+    }
+
+
+
+
+//======================   go to adding new item page   ===================================
+    function createNewAttraction(){
+        return view('add_new_attraction');
+    }
+    function createNewRestaurant(){
+        return view('add_new_restaurant');
+    }
+    function createNewEvent(){
+        return view('add_new_event');
+    }
+
 
 }

@@ -159,7 +159,7 @@ class web_controller extends Controller
     function register_page(){
         if (Auth::check()) {
             $user = Auth::user();
-            return redirect(['user'=>$user]);
+            return redirect('/',['user'=>$user]);
         }
         else{
             return view('registor');
@@ -318,7 +318,7 @@ class web_controller extends Controller
         $attraction->save();
         $photo->save();
 
-        return redirect(['user'=>$user]);
+        return redirect('/',['user'=>$user]);
 
     }
     function addRestaurant(Request $request){
@@ -371,7 +371,7 @@ class web_controller extends Controller
         $restaurant->save();
         $photo->save();
 
-        return redirect(['user'=>$user]);
+        return redirect('/',['user'=>$user]);
     }
     function addEvent(Request $request){
         if (Auth::check()) {
@@ -421,8 +421,7 @@ class web_controller extends Controller
         $location->save();
         $event->save();
         $photo->save();
-
-        return redirect(['user'=>$user]);
+        return redirect('/',['user'=>$user]);
 
     }
 

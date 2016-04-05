@@ -17,7 +17,7 @@ Route::get('/','web_controller@start_page');
 //=========== view summary of all item ===========
 Route::get('/page_travel/list_of_travel/{page}','web_controller@page_travel');
 Route::get('/page_restaurant/list_of_restaurant/{page}','web_controller@page_restaurant');
-Route::get('/page_restaurant/list_of_event/{page}','web_controller@page_event');
+Route::get('/page_event/list_of_event/{page}','web_controller@page_event');
 
 
 //========== view info of each item ==========

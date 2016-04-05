@@ -62,20 +62,13 @@
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato';
+                background-color: #70ae64;
             }
             .content {
                 text-align: center;
                 display: inline-block;
             }
 
-            .yellow_text{
-                color: #ffff00;
-                font-size: 36px;
-            }
-
-            .title {
-                font-size: 96px;
-            }
             /* Remove the navbar's default rounded borders and increase the bottom margin */
             .navbar {
                 margin-bottom: 50px;
@@ -97,6 +90,13 @@
                 width: 50%;
                 margin: auto;
             }
+            .serif {
+                font-family: "Times New Roman", Times, serif;
+                color: #ffffff;
+
+            }
+
+
 
 
 
@@ -104,22 +104,9 @@
 
     </head>
     <body>
-    {{--<!-- jQuery -->--}}
-    {{--<script src="js/jquery-1.10.2.min.js"></script>--}}
 
-    {{--<!-- Bootstrap -->--}}
-    {{--<script src="js/bootstrap.min.js"></script>--}}
-
-    {{--<!-- Bootstrap Form Helpers -->--}}
-    {{--<script src="js/bootstrap-formhelpers.min.js"></script>--}}
-
-
-
-    {{--style="margin: 0 0 0 0;padding-top: 0;padding-bottom: 0"--}}
         <div class="jumbotron" >
-            {{--<div class="container text-center">--}}
-                {{--<a href="/"><img src="/BKKTravelLogo.png" width="70%" height="20%"></a>--}}
-            {{--</div>--}}
+
             <div class="container" >
                 <br>
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 400px">

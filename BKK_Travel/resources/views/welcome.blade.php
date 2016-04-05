@@ -2,7 +2,7 @@
 @section('center_page')
     <div class="row">
         <div class="col-md-4 col-xs-12">
-            <img src="/cooltext165456723410492.png" class="img-rounded center-block" onclick="page_travel()" id="img1" width=75%>
+            <a href="/page_travel/list_of_travel/0"><h1 class="serif">TRAVEL</h1></a>
             @foreach($attraction as $attr)
                 <div class="row">
                     <div class="top">
@@ -16,7 +16,7 @@
         </div>
 
         <div class="col-md-4 col-xs-12">
-            <img src="/cooltext165455489048438.png" class="img-rounded center-block" onclick="page_restaurant()" id="img2" width=75%>
+            <a href="/page_restaurant/list_of_restaurant/0"><h1 class="serif">RESTAURANT</h1></a>
             @foreach($restaurant as $res)
                 <div class="row">
                     <img src="{{$res->photo_url}}" class="img-rounded" width=96px height=96px style="float: left">
@@ -29,16 +29,9 @@
         </div>
 
         <div class="col-md-4 col-xs-12">
-            <img src="/cooltext165462709275958.png" class="img-rounded center-block" id="img3" width=75%>
+            <h1 class="serif">EVENT</h1>
         </div>
     </div>
 
-    <script>
-        function page_travel(){
-            location.href='../page_travel/list_of_travel/0';
-        }
-        function page_restaurant(){
-            location.href='../page_restaurant/list_of_restaurant/0';
-        }
-    </script>
+
 @stop

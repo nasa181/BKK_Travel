@@ -16,7 +16,7 @@ class CreateArticleTable extends Migration
             $table->increments('article_id');
             $table->string('title');
             $table->string('title_picture');
-            $table->string('content',1000);
+            $table->string('content',5000);
         });
     }
 

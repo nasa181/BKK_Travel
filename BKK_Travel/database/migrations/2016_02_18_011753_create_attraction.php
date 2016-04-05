@@ -13,7 +13,7 @@ class CreateAttraction extends Migration
     public function up()
     {
         Schema::create('attraction', function (Blueprint $table) {
-            $table->increments('attraction_id');
+//            $table->increments('attraction_id');
             $table->string('attraction_type');
             $table->string('activity');
             $table->string('entrance_fee');
@@ -22,7 +22,7 @@ class CreateAttraction extends Migration
             $table->string('website_url');
             $table->unsignedInteger('link_item_id');
             $table->foreign('link_item_id')->references('item_id')->on('item');
-//            $table->primary('attraction_id');
+            $table->primary('link_item_id');
             $table->timestamps();
         });
     }

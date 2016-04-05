@@ -13,7 +13,7 @@ class CreateLocation extends Migration
     public function up()
     {
         Schema::create('location', function (Blueprint $table) {
-            $table->increments('location_id');
+//            $table->increments('location_id');
             $table->string('long');
             $table->string('lat');
             $table->string('hint',500);
@@ -25,7 +25,7 @@ class CreateLocation extends Migration
             $table->string('postal_code');
             $table->unsignedInteger('link_item_id');
             $table->foreign('link_item_id')->references('item_id')->on('item');
-//            $table->primary('location_id');
+            $table->primary('link_item_id');
             $table->timestamps();
         });
     }

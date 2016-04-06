@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -25,8 +25,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-
-
+        <!-- font -->
+        <link href='https://fonts.googleapis.com/css?family=Kanit:500,700&subset=thai,latin' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -50,20 +51,65 @@
         </script>
 
         <style>
-
-            html, body {
-                height: 100%;
-            }
-
+            /*-----------------Global-setting----------*/
             body {
                 margin: 0;
                 padding: 0;
                 width: 100%;
                 display: table;
                 font-weight: 100;
-                font-family: 'Lato';
-                background-color: #70ae64;
+                font-family: 'Kanit', sans-serif;
+                color: white;
+                background-color: #796c6c;
             }
+            /*---------------info_attr-page----------*/
+            .shadow-text{
+                text-shadow: 1px 1px black ;
+            }
+            .title-name{
+                font-family: 'Kanit',sans-serif;
+                color: white;
+                white-space: nowrap;
+            }
+            @media only screen  {
+            .image-size{
+                height: 230px;
+            }
+            .head-title{
+                font-size: 150%;
+            }
+            }
+            @media only screen and (min-width : 992px) {
+            .image-size{
+                height: 380px;
+            }
+            .head-title{
+                font-size: 200%;
+            }
+            }
+            .info-background {
+                -webkit-filter: blur(5px);
+                -moz-filter: blur(5px);
+                -o-filter: blur(5px);
+                -ms-filter: blur(5px);
+                filter: blur(5px);
+            }
+            /*----------------------------------------*/
+            html, body {
+                height: 100%;
+            }
+            .head_item_description {
+                font-family: 'Kanit', sans-serif;
+                color: white;
+            }
+            .item_description span,.item_description a{
+                font-family: 'Kanit', sans-serif;
+                color: white;
+            }
+            .item_description-box {
+                margin: 10px
+            }
+
             .content {
                 text-align: center;
                 display: inline-block;
@@ -92,7 +138,7 @@
             }
             .serif {
                 font-family: "Times New Roman", Times, serif;
-                color: #ffffff;
+                color: white;
 
             }
 
@@ -105,7 +151,7 @@
     </head>
     <body>
 
-        <div class="jumbotron" >
+{{--        <div class="jumbotron" >
 
             <div class="container" >
                 <br>
@@ -166,8 +212,9 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <nav class="navbar navbar-inverse">
+        </div>--}}
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="margin:0">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -192,10 +239,10 @@
                     </ul>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">Deals</a></li>
-                        <li><a href="#">Stores</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Attraction</a></li>
+                        <li><a href="#">Restaurant</a></li>
+                        <li><a href="#">Event</a></li>
+                        <li><a href="#"></a></li>
                     </ul>
                 </div>
             </div>
@@ -232,6 +279,7 @@
 
 
         @yield('center_page')
+
         <script>
             $("input").keypress(function(event) {
                 if (event.which == 13) {

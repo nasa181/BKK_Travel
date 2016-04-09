@@ -225,7 +225,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <form class="navbar-form navbar-right" role="search" action="/search">
-                        {!! csrf_field() !!}
+                        {{--{!! csrf_field() !!}--}}
                         <div class="form-group input-group">
                             <input type="text" class="form-control" name="in_search" placeholder="Search..">
                             <span class="input-group-btn">
@@ -234,8 +234,13 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
+                        @if($user)
+                            <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Account</a></li>
+                            <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
+                        @else
+                            <li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
+                        @endif
                     </ul>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>

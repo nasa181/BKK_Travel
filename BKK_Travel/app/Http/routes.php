@@ -32,6 +32,7 @@ Route::get('/view_profile','web_controller@viewProfile');
 Route::post('/login','web_controller@login');
 Route::get('/register_page','web_controller@register_page');
 Route::post('/register/input','web_controller@register');
+Route::get('/logout','web_controller@logout');
 
 
 

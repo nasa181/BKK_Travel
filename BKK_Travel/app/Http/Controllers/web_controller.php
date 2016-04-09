@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManager;
 
 
@@ -26,6 +27,12 @@ class web_controller extends Controller
     //
 
     function start_page(){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        else{
+            $user = null;
+        }
         $event = DB::table('item')
             ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('event','item.item_id','=','event.link_item_id')
@@ -44,7 +51,7 @@ class web_controller extends Controller
             ->join('location','item.item_id','=','location.link_item_id')
             ->take(5)
             ->get();
-        return view('welcome',['restaurant'=> $restaurant,'attraction' => $attraction,'event'=> $event]);
+        return view('welcome',['restaurant'=> $restaurant,'attraction' => $attraction,'event'=> $event,'user'=>$user]);
     }
 
 
@@ -63,6 +70,12 @@ class web_controller extends Controller
 
 //====================================== list of item ==============================================
     function page_travel($page){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        else{
+            $user = null;
+        }
         $num_of_page = (DB::table('item')->count())/25;
         if($page < 0)$page = 0;
         if($page > $num_of_page) $page = $num_of_page;
@@ -73,9 +86,15 @@ class web_controller extends Controller
             ->skip(25*$page)
             ->take(25)
             ->get();
-        return view('attraction',['attraction'=>$attraction,'page'=>$page]);
+        return view('attraction',['attraction'=>$attraction,'page'=>$page,'user'=>$user]);
     }
     function page_restaurant($page){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        else{
+            $user = null;
+        }
         $num_of_page = (DB::table('item')->count())/25;
         if($page < 0)$page = 0;
         if($page > $num_of_page) $page = $num_of_page;
@@ -86,7 +105,7 @@ class web_controller extends Controller
             ->skip(25*$page)
             ->take(25)
             ->get();
-        return view('restaurant',['restaurant'=>$restaurant,'page'=>$page]);
+        return view('restaurant',['restaurant'=>$restaurant,'page'=>$page,'user'=>$user]);
     }
 
 
@@ -108,26 +127,44 @@ class web_controller extends Controller
 
 //================================================ information =========================================================
     function res_info($id){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        else{
+            $user = null;
+        }
         $res = DB::table('restaurant')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
         $review = DB::table('review')->where('link_item_id',$id)->take(5)->get();
         $location = DB::table('location')->where('link_item_id',$id)->first();
-        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
+        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
     }
     function attr_info($id){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        else{
+            $user = null;
+        }
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
         $review = DB::table('review')->where('link_item_id',$id)->take(5)->get();
         $location = DB::table('location')->where('link_item_id',$id)->first();
-        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
+        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
     }
     function event_info($id){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        else{
+            $user = null;
+        }
         $event = DB::table('event')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
-        return view('info_event',['event'=>$event,'item'=>$item,'photo'=>$photo]);
+        return view('info_event',['event'=>$event,'item'=>$item,'photo'=>$photo,'user'=>$user]);
     }
 
 
@@ -141,9 +178,15 @@ class web_controller extends Controller
 
 
     function search(Request $request){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        else{
+            $user = null;
+        }
         $search = $request->in_search;
         $item = DB::table('item')->where('item_id',$search)->first();
-        return view('search_page',['item'=> $item]);
+        return view('search_page',['item'=> $item,'user'=>$user]);
     }
 
 
@@ -172,7 +215,7 @@ class web_controller extends Controller
 
 //        if($pass != $confirm_pass) return redirect('createNewUser');
 
-        if(Auth::attempt(array('email' => $email))) return redirect();
+        if(Auth::attempt(array('email' => $email))) return redirect()->intended();
         $user = new User();
         $user->email = $email;
         $user->password = $password;
@@ -183,13 +226,14 @@ class web_controller extends Controller
         $user->nationality = $request->country;
         $user->type = $request->in_type;
         $user->save();
-        return redirect();
+        return redirect()->intended();
     }
     function login(Request $request){
         $email = $request->in_email;
         $password = $request->in_password;
         if(Auth::attempt(['email' => $email, 'password' => $password])){
-            return redirect();
+//            return redirect()->intended('dashboard');
+            return redirect('/');
         }
         return redirect()->with('not_success',true);
     }
@@ -199,8 +243,13 @@ class web_controller extends Controller
             return view('profile',['user',$user]);
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
+    }
+    function logout(){
+        Auth::logout();
+        Session::flush();
+        return redirect('/');
     }
 
 
@@ -221,7 +270,7 @@ class web_controller extends Controller
             return view('review',['id'=>$id,'user'=>$user]);
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
     }
 
@@ -230,7 +279,7 @@ class web_controller extends Controller
             $user = Auth::user();
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
         $file = $request->file('photo');//get input file
         $extension = Input::file('photo')->getClientOriginalExtension(); // getting image extension
@@ -274,7 +323,7 @@ class web_controller extends Controller
             $user = Auth::user();
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
         $id_tmp = (DB::table('item')->count())+1;
         $item = new Item();
@@ -326,7 +375,7 @@ class web_controller extends Controller
             $user = Auth::user();
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
         $id_tmp = (DB::table('item')->count())+1;
         $item = new Item();
@@ -378,7 +427,7 @@ class web_controller extends Controller
             $user = Auth::user();
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
         $id_tmp = (DB::table('item')->count())+1;
         $item = new Item();
@@ -444,7 +493,7 @@ class web_controller extends Controller
             return view('add_new_attraction',['user'=>$user]);
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
 
     }
@@ -454,7 +503,7 @@ class web_controller extends Controller
             return view('add_new_restaurant',['user'=>$user]);
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
 
     }
@@ -464,7 +513,7 @@ class web_controller extends Controller
             return view('add_new_event',['user'=>$user]);
         }
         else{
-            return redirect();
+            return redirect()->intended();
         }
 
     }

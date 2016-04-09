@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManager;
 
@@ -215,7 +216,7 @@ class web_controller extends Controller
 
 //        if($pass != $confirm_pass) return redirect('createNewUser');
 
-        if(Auth::attempt(array('email' => $email))) return redirect()->intended();
+        if(Auth::attempt(array('email' => $email))) return Redirect::back();
         $user = new User();
         $user->email = $email;
         $user->password = $password;
@@ -226,7 +227,7 @@ class web_controller extends Controller
         $user->nationality = $request->country;
         $user->type = $request->in_type;
         $user->save();
-        return redirect()->intended();
+        return Redirect::back();
     }
     function login(Request $request){
         $email = $request->in_email;
@@ -243,7 +244,7 @@ class web_controller extends Controller
             return view('profile',['user',$user]);
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
     }
     function logout(){
@@ -270,7 +271,7 @@ class web_controller extends Controller
             return view('review',['id'=>$id,'user'=>$user]);
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
     }
 
@@ -279,7 +280,7 @@ class web_controller extends Controller
             $user = Auth::user();
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
         $file = $request->file('photo');//get input file
         $extension = Input::file('photo')->getClientOriginalExtension(); // getting image extension
@@ -323,7 +324,7 @@ class web_controller extends Controller
             $user = Auth::user();
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
         $id_tmp = (DB::table('item')->count())+1;
         $item = new Item();
@@ -375,7 +376,7 @@ class web_controller extends Controller
             $user = Auth::user();
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
         $id_tmp = (DB::table('item')->count())+1;
         $item = new Item();
@@ -427,7 +428,7 @@ class web_controller extends Controller
             $user = Auth::user();
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
         $id_tmp = (DB::table('item')->count())+1;
         $item = new Item();
@@ -493,7 +494,7 @@ class web_controller extends Controller
             return view('add_new_attraction',['user'=>$user]);
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
 
     }
@@ -503,7 +504,7 @@ class web_controller extends Controller
             return view('add_new_restaurant',['user'=>$user]);
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
 
     }
@@ -513,7 +514,7 @@ class web_controller extends Controller
             return view('add_new_event',['user'=>$user]);
         }
         else{
-            return redirect()->intended();
+            return Redirect::back();
         }
 
     }

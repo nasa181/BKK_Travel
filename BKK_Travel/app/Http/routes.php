@@ -64,3 +64,6 @@ Route::post('/page_travel/post_review','web_controller@postReviewTravel');
 Route::group(['middleware' => ['web']], function () {
     //
 });
+Route::get('/test',function(){
+    echo "555";
+});

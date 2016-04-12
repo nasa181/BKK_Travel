@@ -1,7 +1,7 @@
 @extends('master')
 @section('center_page')
     <div class="col-sm-4"></div>
-    <div class="col-sm-4 well" style="margin: 10px 20px 10px 20px;color:black">
+    <div class="col-sm-4 well" style="margin: 30px 20px 10px 20px;color:black">
         <form method="post" action="/register/input">
             <div class="row form-group">
                 <div style="margin: 10px 20px 10px 20px"><label>Email</label><input type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>

@@ -15,7 +15,7 @@ class User extends Authenticatable
     protected $fillable = [
         'Fname','Lname', 'email', 'password','gender','birthday','type',
     ];
-    protected $primary = 'user_id';
+    protected $primaryKey = 'email';
 
     /**
      * The attributes excluded from the model's JSON form.

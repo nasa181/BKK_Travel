@@ -1,5 +1,12 @@
 @extends('master')
 @section('center_page')
+    <?php
+    use Illuminate\Support\Facades\Auth;if (Auth::check()) {
+            print_r($user);
+        } else {
+            echo 'login plz';
+        }
+    ?>
     <div class="container-fluid" style="margin:40px 10px">
     {{--article-section--}}
     <div class="row" >
@@ -59,6 +66,7 @@
                     <a class="head_item_description " href="/page_travel/list_of_travel/0"><h1>ATTRACTION</h1></a>
                 </div>
             </div>
+
             @foreach($attraction as $attr)
             <div class="row item_description " style="margin:10px 0px;background: green;height: 120px;background: url({{$attr->photo_url}}) center ;background-size:cover ">
                 {{--<div class="col-md-4 col-xs-4 " style="">

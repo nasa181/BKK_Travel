@@ -28,11 +28,9 @@ class web_controller extends Controller
     //
 
     function start_page(){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
-        }
-        else{
-            $user = null;
         }
         $event = DB::table('item')
             ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
@@ -71,11 +69,9 @@ class web_controller extends Controller
 
 //====================================== list of item ==============================================
     function page_travel($page){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
-        }
-        else{
-            $user = null;
         }
         $num_of_page = (DB::table('item')->count())/25;
         if($page < 0)$page = 0;
@@ -90,11 +86,9 @@ class web_controller extends Controller
         return view('attraction',['attraction'=>$attraction,'page'=>$page,'user'=>$user]);
     }
     function page_restaurant($page){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
-        }
-        else{
-            $user = null;
         }
         $num_of_page = (DB::table('item')->count())/25;
         if($page < 0)$page = 0;
@@ -128,12 +122,11 @@ class web_controller extends Controller
 
 //================================================ information =========================================================
     function res_info($id){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
         }
-        else{
-            $user = null;
-        }
+
         $res = DB::table('restaurant')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
@@ -142,11 +135,9 @@ class web_controller extends Controller
         return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
     }
     function attr_info($id){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
-        }
-        else{
-            $user = null;
         }
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
@@ -156,11 +147,9 @@ class web_controller extends Controller
         return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
     }
     function event_info($id){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
-        }
-        else{
-            $user = null;
         }
         $event = DB::table('event')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
@@ -179,11 +168,9 @@ class web_controller extends Controller
 
 
     function search(Request $request){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
-        }
-        else{
-            $user = null;
         }
         $search = $request->in_search;
         $item = DB::table('item')->where('item_id',$search)->first();
@@ -232,13 +219,15 @@ class web_controller extends Controller
     function login(Request $request){
         $email = $request->in_email;
         $password = $request->in_password;
-        if(Auth::attempt(['email' => $email, 'password' => $password])){
-//            return redirect()->intended('dashboard');
+        if (Auth::attempt(['email' => $email, 'password' => $password])){
+           $user = Auth::user();
             return redirect('/');
         }
-        return redirect()->with('not_success',true);
+        //return redirect('fail');
+        return Redirect::back('/');
     }
     function viewProfile(){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
             return view('profile',['user',$user]);
@@ -266,6 +255,7 @@ class web_controller extends Controller
 
 
     function createReview($id){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
             return view('review',['id'=>$id,'user'=>$user]);
@@ -276,6 +266,7 @@ class web_controller extends Controller
     }
 
     function postReviewTravel(Request $request){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
         }
@@ -320,6 +311,7 @@ class web_controller extends Controller
 
 //======================================    adding new item   ====================================================
     function addAttraction(Request $request){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
         }
@@ -372,6 +364,7 @@ class web_controller extends Controller
 
     }
     function addRestaurant(Request $request){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
         }
@@ -424,6 +417,7 @@ class web_controller extends Controller
         return redirect('/',['user'=>$user]);
     }
     function addEvent(Request $request){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
         }
@@ -489,6 +483,7 @@ class web_controller extends Controller
 
 //======================================   go to adding new item page   ==============================================
     function createNewAttraction(){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
             return view('add_new_attraction',['user'=>$user]);
@@ -499,6 +494,7 @@ class web_controller extends Controller
 
     }
     function createNewRestaurant(){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
             return view('add_new_restaurant',['user'=>$user]);
@@ -509,6 +505,7 @@ class web_controller extends Controller
 
     }
     function createNewEvent(){
+        $user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
             return view('add_new_event',['user'=>$user]);

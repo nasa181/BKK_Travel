@@ -225,7 +225,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <form class="navbar-form navbar-right" role="search" action="/search">
-                        {!! csrf_field() !!}
+                        {{--{!! csrf_field() !!}--}}
                         <div class="form-group input-group">
                             <input type="text" class="form-control" name="in_search" placeholder="Search..">
                             <span class="input-group-btn">
@@ -234,8 +234,13 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
+                        @if($user)
+                            <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+                            <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
+                        @else
+                            <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
+                        @endif
                     </ul>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
@@ -259,18 +264,17 @@
                         <button type="button" class="close" data-dismiss="modal" style="color: #ffffff">&times;</button>
                         <h2 class="modal-title" style="color: #ffffff">Login</h2>
                     </div>
-                    <form method="post" action="/login">
                     <div class="modal-body">
-                        <p>Email</p>
-                        <input type="text" class="form-control" name="in_email" placeholder="Email..">
-                        <p>Password</p>
-                        <input type="password" class="form-control" name="in_password" placeholder="Password..">
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default" data-dismiss="modal">Login</button>
-                    </form>
-                        <a href="/register_page"><button type="button" class="btn btn-default" data-dismiss="modal">Sign Up</button></a>
+                        <form method="post" action="/login">
+                            <p>Email</p>
+                            <input type="text" class="form-control" name="in_email" placeholder="Email..">
+                            <p>Password</p>
+                            <input type="password" class="form-control" name="in_password" placeholder="Password..">
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default">Login</button>
+                            </div>
+                        </form>
+                        {{--<a href="/register_page"><button type="button" class="btn btn-default" data-dismiss="modal">Sign Up</button></a>--}}
                     </div>
                 </div>
 

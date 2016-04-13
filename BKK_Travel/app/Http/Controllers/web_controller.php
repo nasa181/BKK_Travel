@@ -135,7 +135,7 @@ class web_controller extends Controller
         return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
     }
     function attr_info($id){
-        $user = Session::get('user');
+        $user = Auth::user();
         if (Auth::check()) {
             $user = Auth::user();
         }
@@ -188,12 +188,13 @@ class web_controller extends Controller
 
 //====================================================== user ==========================================================
     function register_page(){
+        $user = Auth::user();
         if (Auth::check()) {
             $user = Auth::user();
             return redirect('/',['user'=>$user]);
         }
         else{
-            return view('registor');
+            return view('registor',['user'=>$user]);
         }
 
     }
@@ -220,8 +221,8 @@ class web_controller extends Controller
         $email = $request->in_email;
         $password = $request->in_password;
         if (Auth::attempt(['email' => $email, 'password' => $password])){
-           $user = Auth::user();
-            return redirect('/');
+            Session::put('user',Auth::user());
+            return Redirect::to('/page_travel/info/3467');
         }
         //return redirect('fail');
         return Redirect::back('/');

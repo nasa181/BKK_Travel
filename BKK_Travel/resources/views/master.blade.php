@@ -234,7 +234,7 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        @if($user)
+                        @if(!is_null($user))
                             <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
                             <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
                         @else

@@ -167,11 +167,10 @@ class web_controller extends Controller
 
     }
     function register(Request $request){
+        dd($request);
         $email = $request->in_new_email;
         $password = $request->in_new_password;
-
 //        if($pass != $confirm_pass) return redirect('createNewUser');
-
         if(Auth::attempt(array('email' => $email))) return redirect();
         $user = new User();
         $user->email = $email;
@@ -184,6 +183,19 @@ class web_controller extends Controller
         $user->type = $request->in_type;
         $user->save();
         return redirect();
+    }
+    function add_example_user($email){
+        $user = new User();
+        $user->email = $email;
+        $user->password =  '12345678';
+        $user->Fname = 'testFname';
+        $user->Lname = 'testLname';
+        $user->birthday ='01/01/1995' ;
+        $user->gender = 'male';
+        $user->nationality = 'Thai';
+        $user->type = 'member';
+        $user->save();
+        return redirect()->back();
     }
     function login(Request $request){
         $email = $request->in_email;

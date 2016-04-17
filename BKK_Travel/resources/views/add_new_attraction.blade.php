@@ -1,7 +1,7 @@
 @extends('master')
 @section('center_page')
     <div class=" row col-md-offset-2 col-md-8 well " style="background: #337ab7;border-radius: 5px;border: dashed whitesmoke;">
-        <form method="post" action="/page_travel/add_new_attraction" >
+        <form method="post" action="/page_travel/add_new_attraction" enctype="multipart/form-data" >
                 <div class="row  col-md-offset-1 col-md-10  form-group text-center">
                     <div class="head-title">Create your attraction</div>
                 </div>

@@ -18,12 +18,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManager;
 
 
 class web_controller extends Controller
 {
-    //
 
     function start_page(){
         $event = DB::table('item')
@@ -44,12 +44,14 @@ class web_controller extends Controller
             ->join('location','item.item_id','=','location.link_item_id')
             ->take(5)
             ->get();
+        $count_review = DB::table('review')->count();
+        $count_review = $count_review - 6;
         $review = DB::table('review')
-            ->take(1)
+            ->skip($count_review)
+            ->take(6)
             ->get();
         return view('welcome',['restaurant'=> $restaurant,'attraction' => $attraction,'event'=> $event,'review'=>$review]);
     }
-
 
 
 //====================================== list of item ==============================================
@@ -79,16 +81,8 @@ class web_controller extends Controller
             ->skip(20*($page-1))
             ->take(20)
             ->get();
-/*        $restaurant = DB::table('item')
-            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
-            ->join('restaurant','item.item_id','=','restaurant.link_item_id')
-            ->join('location','item.item_id','=','location.link_item_id')
-            ->skip(25*$page)
-            ->take(25)
-            ->get();*/
         return view('restaurant',['restaurant'=>$restaurant,'page'=>$page,'last_page'=>$num_of_page]);
     }
-
 
 
 //================================================ information =========================================================
@@ -118,16 +112,11 @@ class web_controller extends Controller
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
         return view('info_event',['event'=>$event,'item'=>$item,'photo'=>$photo]);
     }
-
-
-
-
     function search(Request $request){
         $search = $request->in_search;
         $item = DB::table('item')->where('item_id',$search)->first();
         return view('search_page',['item'=> $item]);
     }
-
 
 
 
@@ -146,9 +135,7 @@ class web_controller extends Controller
     function register(Request $request){
         $email = $request->in_new_email;
         $password = $request->in_new_password;
-
 //        if($pass != $confirm_pass) return redirect('createNewUser');
-
         if(Auth::attempt(array('email' => $email))) return redirect();
         $user = new User();
         $user->email = $email;
@@ -175,13 +162,12 @@ class web_controller extends Controller
     function viewProfile(){
         if (Auth::check()) {
             $user = Auth::user();
-            return view('profile',['user',$user]);
+            return view('profile',['user'=>$user]);
         }
         else{
             return redirect();
         }
     }
-
     /*function createReview($id){
         if (Auth::check()) {
             $user = Auth::user();
@@ -191,39 +177,42 @@ class web_controller extends Controller
             return redirect();
         }
     }*/
-    function createReview(){
-        return view('review');
+    function createReview($item_id){
+        $title = DB::table('item')->where('item_id',$item_id)->first()->title;
+        $review_id = (DB::table('review')->count() )+1;
+        return view('review',['item_id'=>$item_id,'title'=>$title,'review_id'=>$review_id]);
     }
-
     function postReviewTravel(Request $request){
-        if (Auth::check()) {
+ /*       if (Auth::check()) {
             $user = Auth::user();
         }
         else{
             return redirect();
-        }
-        $file = $request->file('photo');//get input file
-        $extension = Input::file('photo')->getClientOriginalExtension(); // getting image extension
-        $fileName = time().'.'.$extension; // renameing image
-        $path = $request->file('photo')->move('img/',$fileName);// move input file to "public/img/<file_name>"
-        $path = '/'.$path; // for adding '/' in front of the file path(for searching to the root of file)
-//=============== get string input =========================
-        $title = $request->title;
-        $description = $request->description;
-
-//=============== save file to database ====================
+        }*/
         $review = new Review();
-        $review->title = $title;
-        $review->content = $description;
-        $review->title_picture = $path;
-        $review->link_item_id = $request->hidden_value;
-        $review->link_user_id = $user->user_id;
-        $review->save();
         $photo = new PhotoGallery();
-        $photo->link_item_id = $request->hidden_value;
-        $photo->photo_url = $path;
+        //-----------------------upload image-----------------------//
+        $file = Input::file('profile_picture');
+        if($file !=null) {
+            $destinationPath = 'img/';
+            $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+            Input::file('profile_picture')->move($destinationPath, $filename);
+
+            $photo->link_item_id = $request->hidden_value;
+            $photo->photo_url = '/' . $destinationPath . $filename;
+            $review->title_picture = '/' . $destinationPath . $filename;
+            $photo->save();
+        }
+        //----------------------------------------------------------//
+        $review->title = $request->title;
+        $review->content = $request->description;
+        $review->link_item_id = $request->hidden_value;
+        //$review->link_user_id = $user->user_id;
+        $review->save();
         $photo->save();
-        return redirect('/',['user'=>$user]);
+        $isAttracionReview = DB::table('item')->where('item_id',$request->hidden_value)->join('attraction','item.item_id','=','attraction.link_item_id')->count();
+        if($isAttracionReview==1) return redirect('/page_travel/info/'.$request->hidden_value);  //,['user'=>$user]
+        else return redirect('/page_restaurant/info/'. $request->hidden_value);
     }
 
 
@@ -243,7 +232,7 @@ class web_controller extends Controller
         $attraction = new Attraction();
         $location = new Location();
         $photo = new PhotoGallery();
-//================= get uploaded picture ====================
+        /*---------------------upload_picture-----------------------*/
         $file = Input::file('profile_picture');
         if($file !=null) {
             $destinationPath = 'img/';
@@ -253,7 +242,7 @@ class web_controller extends Controller
             $photo->photo_url = '/' . $destinationPath . $filename;
             $photo->save();
         }
-
+        /*---------------------------------------------------------*/
         $item->item_id = $id_tmp;
         $item->title = $request->in_new_title;
         $item->description = $request->in_new_description;
@@ -297,7 +286,7 @@ class web_controller extends Controller
         $restaurant = new Restaurant();
         $location = new Location();
         $photo = new PhotoGallery();
-//================= get uploaded picture ====================
+        /*---------------------upload_picture-----------------------*/
         $file = Input::file('profile_picture');
         if($file !=null) {
             $destinationPath = 'img/';
@@ -307,6 +296,7 @@ class web_controller extends Controller
             $photo->photo_url = '/' . $destinationPath . $filename;
             $photo->save();
         }
+        /*---------------------------------------------------------*/
         $item->item_id = $id_tmp;
         $item->title = $request->in_new_title;
         $item->description = $request->in_new_description;
@@ -349,14 +339,14 @@ class web_controller extends Controller
         $event = new Event();
         $location = new Location();
         $photo = new PhotoGallery();
-//================= get uploaded picture ====================
+        /*---------------------upload_picture----------------------*/
         $extension = Input::file('profile_picture')->getClientOriginalExtension(); // getting image extension
         $fileName = time().'.'.$extension; // renameing image
         $path = $request->file('profile_picture')->move('img/',$fileName);// move input file to "public/img/<file_name>"
         $path = '/'.$path; // for adding '/' in front of the file path(for searching to the root of file)
         $photo->link_item_id = $id_tmp;
         $photo->photo_url = $path;
-
+        /*---------------------------------------------------------*/
         $item->item_id = $id_tmp;
         $item->title = $request->in_new_title;
         $item->description = $request->in_new_description;
@@ -391,7 +381,6 @@ class web_controller extends Controller
 
 
 
-
 //======================================   go to adding new item page   ==============================================
     function createNewAttraction(){
         //if (Auth::check()) {
@@ -402,7 +391,6 @@ class web_controller extends Controller
         else{
             return redirect();
         }
-
     }
     function createNewRestaurant(){
         //if (Auth::check()) {
@@ -413,7 +401,6 @@ class web_controller extends Controller
         else{
             return redirect();
         }
-
     }
     function createNewEvent(){
         if (Auth::check()) {
@@ -423,8 +410,6 @@ class web_controller extends Controller
         else{
             return redirect();
         }
-
     }
-
 
 }

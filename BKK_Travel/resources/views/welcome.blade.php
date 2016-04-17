@@ -140,7 +140,7 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1>REVIEW</h1>
+                    <h1>LATEST REVIEW</h1>
                 </div>
             </div>
             <?php
@@ -149,14 +149,14 @@
                 $colora = ['rgba(247,129,129,'.$op.')','rgba(245,218,129,'.$op.')','rgba(243,247,129,'.$op.')','rgba(159,247,129,'.$op.')','rgba(129,129,247,'.$op.')','rgba(190,129,247,'.$op.')'];
                 $idx =0;
             ?>
-            @for ($i=0;$i<6;$i++)
+            @foreach($review as $rev)
                 <?php
-                    $text1 = mb_substr($review[0]->content,0,350);
+                    $text1 = mb_substr($rev->content,0,350);
                 ?>
                 <div class="" style="color: white;margin: 15px 0px;">
                     <div class="col-md-6 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
                         <div class="col-md-12">
-                            <h3 class="" style=""><span>{{$review[0]->title}}</span></h3>
+                            <h3 class="" style=""><span>{{$rev->title}}</span></h3>
                         </div>
                         <div class="col-md-8">
                             <div>
@@ -177,9 +177,9 @@
                 </div>
                 <?php
                     $idx++;
-                    if ($idx > 6) $idx=0;
+                    if ($idx > 5) $idx=0;
                 ?>
-            @endfor
+            @endforeach
         </div>
     </div>
 

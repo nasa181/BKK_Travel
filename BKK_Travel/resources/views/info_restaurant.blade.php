@@ -112,7 +112,6 @@
         $idx =0;
         ?>
         @foreach($review as $rev)
-            @for ($i=0;$i<5;$i++)
                 <?php
                 if (strlen($rev->content)< 350){
                     $text1 =$rev->content;
@@ -162,16 +161,22 @@
                         </div>
                         <div class="col-md-12"> <hr> </div>
                         <div class="col-md-12">
-                            <img src="{{$rev->title_picture}}" style="height: 120px">
+                            <?php
+                            if ($rev->title_picture!=null){
+                                echo '<img src="'. $rev->title_picture .'" style="height: 120px">';
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
                 <?php
                 $idx++;
-                if ($idx > 6) $idx=0;
+                if ($idx > 5) $idx=0;
                 ?>
-            @endfor
         @endforeach
+                <div class="row col-xs-12 ">
+                    <a href="/page_all/create_review/{{$item->item_id}}"><button class="btn btn-success">Add new review</button></a>
+                </div>
         </div>
     </div>
     <script>

@@ -45,7 +45,7 @@ Route::post('/page_travel/add_new_event','web_controller@addEvent');
 
 
 //========== review ==========
-Route::get('/page_all/create_review','web_controller@createReview');
+Route::get('/page_all/create_review/{item_id}','web_controller@createReview');
 Route::post('/search','web_controller@search');
 Route::post('/page_travel/post_review','web_controller@postReviewTravel');
 

@@ -21,7 +21,7 @@
             ?>
             @foreach($restaurant1 as $res)
             <?php
-            if ($res->photo_url == "") $background = "green" ;
+            if ($res->photo_url == "" || $res->photo_url == null) $background = "green" ;
             else  $background = "url('" . url($res->photo_url) . "')";
             ?>
                 <div  class="row item_description" style="margin:10px 0px;height: 120px;overflow:hidden;background: {{$background}}  center ;background-size:cover; ">
@@ -47,7 +47,7 @@
         <div class="col-md-6">
             @foreach($restaurant2 as $res)
                 <?php
-                    if ($res->photo_url == "") $background = "green" ;
+                    if ($res->photo_url == "" || $res->photo_url == null) $background = "green" ;
                     else  $background = "url('" . url($res->photo_url) . "')";
                 ?>
                 <div  class="row item_description" style="margin:10px 0px;height: 120px;overflow:hidden;background: {{$background}} center ;background-size:cover;">

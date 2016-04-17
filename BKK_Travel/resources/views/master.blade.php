@@ -1,33 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
-
+        <title>BKKTravel-Beta</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
         <!--  jQuery -->
         {{--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>--}}
-
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
         <!-- Bootstrap Date-Picker Plugin -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
         <!-- font -->
         <link href='https://fonts.googleapis.com/css?family=Kanit:500,700&subset=thai,latin' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.cross').hide();
@@ -46,11 +37,9 @@
                     });
                 });
             });
-
         </script>
-
         <style>
-            /*-----------------Global-setting----------*/
+            /*-----------------Global-----------------*/
             body {
                 margin: 0;
                 padding: 0;
@@ -70,7 +59,7 @@
             textarea{
                 resize: vertical;
             }
-            /*---------------item_page----------*/
+            /*-----------------Item_page-----------------*/
             .shadow-text{
                 text-shadow: 1px 1px black ;
             }
@@ -80,45 +69,44 @@
                 white-space: nowrap;
             }
             @media only screen  {
-            .image-size{
-                height: 230px;
-            }
-            .image-size-half{
-                height: 115px;
-            }
-            .head-title{
-                font-size: 180%;
-                text-align: center;
-            }
-            .solidborder{
+                .image-size{
+                    height: 230px;
+                }
+                .image-size-half{
+                    height: 115px;
+                }
+                .head-title{
+                    font-size: 180%;
+                    text-align: center;
+                }
+                .solidborder{
 
-            }
-            .padding{
-                padding: 5px;
-            }
-
+                }
+                .padding{
+                    padding: 5px;
+                }
             }
             @media only screen and (min-width : 992px) {
-            .solidborder{
-                border: solid white 3px;
-            }
-            .padding{
-                padding: 40px 20px;
-            }
-            .outest-border{
-                margin: 10px 30px;
-            }
-            .image-size{
-                height: 380px;
-            }
-            .image-size-half{
-                height: 190px;
-            }
-            .head-title{
-                font-size: 340%;
-                text-align: left;
+                .solidborder{
+                    border: solid white 3px;
+                }
+                .padding{
+                    padding: 40px 20px;
+                }
+                .outest-border{
+                    margin: 10px 30px;
+                }
+                .image-size{
+                    height: 380px;
+                }
+                .image-size-half{
+                    height: 190px;
+                }
+                .head-title{
+                    font-size: 340%;
+                    text-align: left;
 
-            }
+                }
             }
             .info-background {
                 -webkit-filter: blur(5px);
@@ -127,11 +115,11 @@
                 -ms-filter: blur(5px);
                 filter: blur(5px);
             }
-            /*--------------register_page-------------*/
+            /*-----------------register_page-----------------*/
             .datepicker.dropdown-menu {
                 background-color:#5e5e5e;
             }
-            /*----------item_description-box----------*/
+            /*-----------------item_description_box-----------------*/
             .head_item_description {
                 font-family: 'Kanit', sans-serif;
                 color: white;
@@ -139,13 +127,12 @@
             .item_description span,.item_description a{
                 font-family: 'Kanit', sans-serif;
                 color: white;
-
             }
             .item_description-box {
                 margin: 10px;
                 background: black;
             }
-            /*-----------review-box-------------------*/
+            /*-----------------review_box-----------------*/
             #panel{
                 display: none;
             }
@@ -159,29 +146,23 @@
                     text-align: left;
                 }
             }
-            /*----------------------------------------*/
-
+            /*----------------------------------*/
             html, body {
                 height: 100%;
             }
-
-
             .content {
                 text-align: center;
                 display: inline-block;
             }
-
             /* Remove the navbar's default rounded borders and increase the bottom margin */
             .navbar {
                 margin-bottom: 50px;
                 border-radius: 0;
             }
-
             /* Remove the jumbotron's default bottom margin */
             .jumbotron {
                 margin-bottom: 0;
             }
-
             /* Add a gray background color and some padding to the footer */
             footer {
                 background-color: #f2f2f2;
@@ -198,13 +179,9 @@
 
             }
 
-
-
-
-
         </style>
-
     </head>
+
     <body>
     <div class="container-fluid outest-border">
         <div style="margin-top: 70px">
@@ -252,7 +229,6 @@
         <!-- Modal -->
         <div class="modal fade" id="loginModal" role="dialog">
             <div class="modal-dialog">
-
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: cornflowerblue">
@@ -272,7 +248,6 @@
                         {{--<a href="/register_page"><button type="button" class="btn btn-default" data-dismiss="modal">Sign Up</button></a>--}}
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -280,16 +255,16 @@
         @yield('center_page')
         <div class="row col-xs-12" style="margin-top:15px"></div>
     </div>
-        <script>
-            $("input").keypress(function(event) {
-                if (event.which == 13) {
-                    event.preventDefault();
-                    $("form").submit();
-                }
-            });
 
-        </script>
+    <script>
+        $("input").keypress(function(event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                $("form").submit();
+            }
+        });
 
+    </script>
 
     </body>
 </html>

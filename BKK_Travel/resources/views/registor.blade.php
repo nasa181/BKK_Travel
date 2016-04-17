@@ -1,31 +1,33 @@
 @extends('master')
 @section('center_page')
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4 well" style="margin: 30px 20px 10px 20px;color:black">
+    <div class=" row col-md-offset-3 col-md-6 well" style="background: #337ab7;border-radius: 5px;border: dashed whitesmoke;">
+        <div class="row col-xs-12 text-center">
+            <div class="head-title"> Create new user</div>
+        </div>
         <form method="post" action="/register/input">
-            <div class="row form-group">
-                <div style="margin: 10px 20px 10px 20px"><label>Email</label><input type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
+            <div class="row form-group ">
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
             </div>
             <div class="row form-group">
-                <div style="margin: 10px 20px 10px 20px"><label>Password</label><input type="text" class="form-control" name="in_new_password" placeholder="Password.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Password</label><input type="text" class="form-control" name="in_new_password" placeholder="Password.."></div>
             </div>
             <div class="row form-group">
-                <div style="margin: 10px 20px 10px 20px"><label>Confirm Password</label><input type="text" class="form-control" name="in_new_repassword" placeholder="Confirm Password.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Confirm Password</label><input type="text" class="form-control" name="in_new_repassword" placeholder="Confirm Password.."></div>
             </div>
             <div class="row form-group">
-                <div style="margin: 10px 20px 10px 20px"><label>First Name</label><input type="text" class="form-control" name="in_Fname" placeholder="First Name.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>First Name</label><input type="text" class="form-control" name="in_Fname" placeholder="First Name.."></div>
             </div>
             <div class="row form-group">
-                <div style="margin: 10px 20px 10px 20px"><label>Last Name</label><input type="text" class="form-control" name="in_Lname" placeholder="Last Name.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Last Name</label><input type="text" class="form-control" name="in_Lname" placeholder="Last Name.."></div>
             </div>
             <div class="row form-group"> <!-- Date input -->
-                <div style="margin: 10px 20px 10px 20px">
+                <div class="col-md-offset-1 col-md-10 col-xs-12 ">
                     <label>Birth date</label><br>
-                    <input id="date" name="in_birthday" placeholder="DD/MM/YYY" type="text"/>
+                    <input class="datepicker" style="border-radius: 5px;" id="date" name="in_birthday" placeholder="DD/MM/YYYY" type="text"/>
                 </div>
             </div>
             <div class="row form-group">
-                <div style="margin: 10px 20px 10px 20px">
+                <div class="col-md-offset-1 col-md-10 col-xs-12">
                     <div class="radio-inline">
                         <label><input type="radio" name="sex" value="male">Male</label>
                     </div>
@@ -35,9 +37,9 @@
                 </div>
             </div>
             <div class="row form-group">
-                <div style="margin: 0 20px 0 20px"><label>Country</label></div>
-
-                <select style="margin: 10px 20px 10px 20px" name="country">
+                <div class="col-md-offset-1 col-md-10">
+                <label>Country</label>
+                <select  style="color: #5e5e5e;border-radius: 5px" name="country">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
                     <option value="Algeria">Algeria</option>
@@ -278,12 +280,14 @@
                     <option value="Zambia">Zambia</option>
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
+                </div>
             </div>
             <input type="hidden" name="in_type" value="Member">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <div class="text-center row col-xs-12">
+                <button type="submit" class="btn btn-success ">Submit</button>
+            </div>
         </form>
     </div>
-    <div class="col-sm-4"></div>
     <script>
         var date_input=$('#date'); //our date input has the name "date"
         var container=$('.bootstrap-iso').length>0 ? $('.bootstrap-iso').parent() : "body";
@@ -293,6 +297,11 @@
             todayHighlight: true,
             autoclose: true
         };
+        function jsonpCallback(data) {
+            $("select[name='country']").val(data.address.country);
+        }
         date_input.datepicker(options); //initial 10/26/2015 8:20:59 PM ze plugin
     </script>
+    {{--<script src="http://api.wipmania.com/jsonp?callback=jsonpCallback"--}}
+            {{--type="text/javascript"></script>--}}
 @stop

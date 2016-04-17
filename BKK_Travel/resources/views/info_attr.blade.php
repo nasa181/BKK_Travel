@@ -1,82 +1,172 @@
 @extends('master')
 @section('center_page')
-    <div class="container-fluid" style="margin: 70px 5px;background: none;">
-    <div class="row" style="">
-        <div class="col-md-6 col-xs-12" style="background: none">
-            <div class="image-size" style=";border-radius:10px;background:url({{$photo->photo_url}}) center ; margin:0px 0px; background-size: cover;">
-                <span class="head-title shadow-text title-name" style="position: absolute;bottom: 15px;left:50%;transform:translateX(-50%);">{{$item->title}}</span>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12" style="padding: 10px 10px;position: relative" >
-            <div style="border-radius:10px; -webkit-filter: blur(9px) contrast(1.3) saturate(2)  grayscale(0.65);opacity:1;background-image:url({{$photo->photo_url}});background-attachment: fixed;background-repeat: no-repeat;background-size: cover">
-                <div class="" style="height:380px;">
-                </div>
-            </div>
-            <div class="shadow-text">
-            <div style="position: absolute;top:50%;transform: translateY(-50%);" >
-                <div class="row" style="margin: 20px 0px;" >
-                    <div class="col-xs-12" style=""><span>" {{$item->description}} "</span></div>
-                </div>
-                <div class="row" style="margin: 20px 0px;">
-                    <div class="col-xs-12"><span>Entrance Fee : {{$attr->entrance_fee}}</span></div>
-                </div>
-                <div class="row" style="margin: 20px 0px;">
-                    <div class="col-xs-12"><span>{{$attr->oc_time}}</span></div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="">
-        <div class="col-xs-12" style="">
-            <div id="googleMap" class="image-size" style="width:auto;margin: 10px 0px"></div>
-            <script>
-                var map;
-                var myCenter;
-                if({{$location->lat}}){
-                    myCenter=new google.maps.LatLng({{$location->lat}},{{$location->long}});
-                }
-                else
-                    myCenter = new google.maps.LatLng(13.746291,100.535004);
-
-                function initialize()
-                {
-                    var mapProp = {
-                        center:myCenter,
-                        zoom:15,
-                        mapTypeId:google.maps.MapTypeId.ROADMAP
-                    };
-
-                    map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                    if({{$location->lat}}) {
-                        var marker = new google.maps.Marker({
-                            position: myCenter,
-                            map: map,
-                        });
-                    }
-
-                }
-
-                google.maps.event.addDomListener(window, 'load', initialize);
-            </script>
-        </div>
-    </div>
-    <div class="row">
+    <div class="row padding solidborder" style="background: none;border-radius: 10px;">
         <div class="col-xs-12">
-            <a href="/page_all/create_review/{{$item->item_id}}"><button class="btn btn-success">Review</button></a>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="head-title" style="margin-bottom: 20px">{{$item->title}}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="margin-bottom: 20px;">
+                    <div class="image-size"  style="border-radius:20px;background:url({{$photo->photo_url}})center; background-size: cover;">
+                    </div>
+                </div>
+                <div class="col-md-6"  style="margin-bottom: 20px;" >
+                    <div class="" style="padding: 40px 20px;border: dashed #D4EF4C;border-radius: 20px;/*background: rgba(212,239,76,0.3)*/">
+                        <div class="shadow-text">
+                            <div class="row" style="">
+                                <div class="col-xs-12" style="margin-bottom: 5px"><span>Attraction type :  {{$attr->attraction_type}} </span></div>
+                            </div>
+                            <div class="row" style="">
+                                <div class="col-xs-12" style=""><span>Description : </span></div>
+                            </div>
+                            <div class="row" style="">
+                                <div class="col-xs-12" style="margin-bottom: 5px"><span>" {{$item->description}} " </span></div>
+                            </div>
+                            <div class="row" style="">
+                                <div class="col-xs-12" style="margin-bottom: 5px"><span>Entrance Fee : {{$attr->entrance_fee}}</span></div>
+                            </div>
+                            <div class="row" style="">
+                                <div class="col-xs-12" style="margin-bottom: 5px"><span>Activity : {{$attr->activity}} </span></div>
+                            </div>
+                            <div class="row" style="">
+                                <div class="col-xs-12" style="margin-bottom: 5px"><span>Business time : {{$attr->oc_time}}</span></div>
+                            </div>
+                            <div class="row" style="">
+                                <div class="col-xs-12" style="margin-bottom: 5px"><span>Parking : {{$attr->parking}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row " >
+                <div class="col-md-6" style="margin-bottom: 20px;"  >
+                    <div class="" style="padding: 40px 20px;border: dashed #FF6C6C;border-radius: 20px;/*background: rgba(205,108,108,0.3)*/">
+                        <div class="shadow-text">
+                            <div class="row" style="margin-bottom: 5px">
+                                <div class="col-xs-12" ><span>Address : {{$location->build}}  {{$location->street_address}}  {{$location->district}}
+                                        {{$location->sub_district}} {{$location->province}} {{$location->postal_code}}</span></div>
+                            </div>
+                            <div class="row" style="">
+                                <div class="col-xs-12" style="margin-bottom: 5px"><span>Tel : {{$item->tel}}</span></div>
+                            </div>
+                            <div class="row" style="">
+                                <div class="col-xs-12" style="margin-bottom: 5px"><span>Website : {{$attr->website_url}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin-bottom: 20px;">
+                    <div id="googleMap" class="image-size" style="border-radius:20px;width:auto;"></div>
+                    <script>
+                        var map;
+                        var myCenter;
+                        if({{$location->lat}}){
+                            myCenter=new google.maps.LatLng({{$location->lat}},{{$location->long}});
+                        }
+                        else
+                            myCenter = new google.maps.LatLng(13.746291,100.535004);
+
+                        function initialize()
+                        {
+                            var mapProp = {
+                                center:myCenter,
+                                zoom:15,
+                                mapTypeId:google.maps.MapTypeId.ROADMAP
+                            };
+
+                            map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                            if({{$location->lat}}) {
+                                var marker = new google.maps.Marker({
+                                    position: myCenter,
+                                    map: map,
+                                });
+                            }
+
+                        }
+
+                        google.maps.event.addDomListener(window, 'load', initialize);
+                    </script>
+                </div>
+            </div>
+            <div class="row">
+                <div class="" style="border: solid 1px;border-radius: 20px;margin: 20px 0"></div>
+            </div>
+            <div class="row col-md-12">
+                <h1 style="margin-bottom: 15px">Review</h1>
+            </div>
+        <?php
+            $color = ['#F78181','#F5DA81','#F3F781','#9FF781','#8181F7','#BE81F7'];
+            $op = 0.2;
+            $colora = ['rgba(247,129,129,'.$op.')','rgba(245,218,129,'.$op.')','rgba(243,247,129,'.$op.')','rgba(159,247,129,'.$op.')','rgba(129,129,247,'.$op.')','rgba(190,129,247,'.$op.')'];
+            $idx =0;
+        ?>
+        @foreach($review as $rev)
+            @for ($i=0;$i<5;$i++)
+            <?php
+                if (strlen($rev->content)< 350){
+                    $text1 =$rev->content;
+                    $text2 ="";
+                    $readmore ="";
+                }
+                else if (mb_strpos($rev->content,"<br>") && mb_strpos($rev->content,"<br>")<350){
+                    $text1 = mb_substr($rev->content,0,mb_strpos($rev->content,"<br>"));
+                    $text2 = mb_substr($rev->content,mb_strpos($rev->content,"<br>")+4,10000);
+                    $readmore ="Read more..";
+                }
+                else {
+                    $space_pos = mb_strpos(mb_substr($rev->content,350,10000)," ");
+                    $text1 = mb_substr($rev->content,0,$space_pos+350);
+                    $text2 = mb_substr($rev->content,$space_pos+350,10000);
+                    $readmore ="Read more..";
+                }
+            ?>
+            <div class="row" style="color: white;margin: 15px 0px;">
+                <div class="col-md-12 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
+                    <div class="col-md-12">
+                        <h3 class="" style=""><span>{{$rev->title}}</span></h3>
+                    </div>
+                    <div class="col-md-9">
+                        <div>
+                            <div>{!!$text1!!}</div>
+                            <div class="left-right"><a  id="flip" onclick="show(this)">{{$readmore}}</a></div>
+                            <div id="panel">{!!$text2!!}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="margin: 10px 0px;">
+                        <span>ความสวยงาม : 5/5</span><br>
+                        <span>ความสะอาด : 5/5</span><br>
+                        <span>ความคุ้มค่า : 5/5</span><br>
+                        <span>ความประทับใจ: 5/5</span><br>
+                        <h4>คะแนนเฉลี่ย : 5/5</h4>
+                    </div>
+                    <div class="col-md-6 left-right" style="margin-top: 10px">
+                        <span>Reviewed by : ท่านผู้นั้น</span>
+                    </div>
+                    <div class="col-md-6" style="margin-top: 10px;text-align: right">
+                        <span>Like : 50 </span><span>Dislike : 50 </span><br>
+                    </div>
+                    <div class="col-md-12"> <hr> </div>
+                    <div class="col-md-12">
+                        <img src="{{$rev->title_picture}}" style="height: 120px">
+                    </div>
+                </div>
+            </div>
+            <?php
+                $idx++;
+                if ($idx > 6) $idx=0;
+            ?>
+            @endfor
+        @endforeach
         </div>
     </div>
-    @foreach($review as $rev)
-            <div class="row">
-                <div class="col-md-4 col-xs-12"></div>
-                <div class="col-md-4 col-xs-12">
-                    <img src="{{$rev->title_picture}}" class="img-rounded" width=96px height=96px style="float: left">
-                    <div class="text-info" style="margin: 0 0 0 104px"><span>{{$rev->title}}</span></div>
-                    <div class="text-info" style="margin: 0 0 0 104px"><span>{{$rev->content}}</span></div>
-                </div>
-                <div class="col-md-4 col-xs-12"></div>
-            </div>
-        @endforeach
-
-        </div>
-    @stop
+    <script>
+        $(document).ready(function(){
+        });
+        function show(e){
+            $(e).parent().next().slideDown("fast");
+            $(e).remove();
+        };
+    </script>
+@stop

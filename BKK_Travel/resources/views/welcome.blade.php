@@ -1,13 +1,14 @@
 @extends('master')
 @section('center_page')
     <?php
-    use Illuminate\Support\Facades\Auth;if (Auth::check()) {
+    use Illuminate\Support\Facades\Auth;
+        if (Auth::check()) {
             print_r($user);
         } else {
-            echo 'login plz';
+            echo "<h5>you're using as guest , please login.</h5>";
+            echo '<div class="row"> <div class="col-xs-12"><hr></div></div>';
         }
     ?>
-    <div class="container-fluid" style="margin:40px 10px">
     {{--article-section--}}
     <div class="row" >
         <div class="col-xs-12" style="background: none">
@@ -58,21 +59,22 @@
             </div>
         </div>
     </div>
-    <div class="row" style="">
+
+    <div class="row">
+        <div class="col-xs-12"> <hr></div>
+    </div>
+
+    <div class="row">
         {{--attraction-section--}}
         <div class="col-md-4 col-xs-12" style="background: none">
             <div class="row">
                 <div class=" col-md-12 col-xs-12">
-                    <a class="head_item_description " href="/page_travel/list_of_travel/0"><h1>ATTRACTION</h1></a>
+                    <a class="head_item_description " href="/page_travel/list_of_travel/1"><h1>ATTRACTION</h1></a>
                 </div>
             </div>
 
             @foreach($attraction as $attr)
             <div class="row item_description " style="margin:10px 0px;background: green;height: 120px;background: url({{$attr->photo_url}}) center ;background-size:cover ">
-                {{--<div class="col-md-4 col-xs-4 " style="">
-                    <div></div>
-                    <img src="{{$attr->photo_url}}" class="img-rounded" style=" width:auto;height: auto">
-                </div>--}}
                 <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
                     <div class="row">
                         <div class="col-xs-12">
@@ -94,7 +96,7 @@
         <div class="col-md-4 col-xs-12" style="background: none">
             <div class="row">
                 <div class=" col-md-12 col-xs-12 ">
-                    <a class="head_item_description " href="/page_restaurant/list_of_restaurant/0"><h1>RESTAURANT</h1></a>
+                    <a class="head_item_description " href="/page_restaurant/list_of_restaurant/1"><h1>RESTAURANT</h1></a>
                 </div>
             </div>
 
@@ -124,13 +126,61 @@
         <div class="col-md-4 col-xs-12" style="background: none">
             <div class="row">
                 <div class=" col-md-12 col-xs-12 ">
-                    <a class="head_item_description " href=""><h1>EVENT</h1></a>
+                    <a class="head_item_description " href="#"><h1>EVENT</h1></a>
                 </div>
             </div>
-
         </div>
-
     </div>
 
+    <div class="row">
+        <div class="col-xs-12"> <hr></div>
     </div>
+    {{--review-section--}}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>REVIEW</h1>
+                </div>
+            </div>
+            <?php
+                $color = ['#F78181','#F5DA81','#F3F781','#9FF781','#8181F7','#BE81F7'];
+                $op = 0.2;
+                $colora = ['rgba(247,129,129,'.$op.')','rgba(245,218,129,'.$op.')','rgba(243,247,129,'.$op.')','rgba(159,247,129,'.$op.')','rgba(129,129,247,'.$op.')','rgba(190,129,247,'.$op.')'];
+                $idx =0;
+            ?>
+            @for ($i=0;$i<6;$i++)
+                <?php
+                    $text1 = mb_substr($review[0]->content,0,350);
+                ?>
+                <div class="" style="color: white;margin: 15px 0px;">
+                    <div class="col-md-6 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
+                        <div class="col-md-12">
+                            <h3 class="" style=""><span>{{$review[0]->title}}</span></h3>
+                        </div>
+                        <div class="col-md-8">
+                            <div>
+                                <div>" {!!$text1!!} "</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="margin: 30px 0px;">
+                            <h4>คะแนนเฉลี่ย : 5/5</h4>
+                        </div>
+                        <div class="col-md-12 left-right" style="margin-top: 10px">
+                            <span>Reviewed by : ท่านผู้นั้น</span>
+                        </div>
+                        <div class="col-md-12"> <hr> </div>
+                        <div class="col-md-12 left-right" style="margin-top: 0px">
+                            <span>Like : 50 </span><span>Dislike : 50 </span><br>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    $idx++;
+                    if ($idx > 6) $idx=0;
+                ?>
+            @endfor
+        </div>
+    </div>
+
 @stop

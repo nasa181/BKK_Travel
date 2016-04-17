@@ -6,19 +6,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <!--  jQuery -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        {{--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>--}}
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
         <!-- Bootstrap Date-Picker Plugin -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -56,13 +55,22 @@
                 margin: 0;
                 padding: 0;
                 width: 100%;
-                display: table;
+                /*display: table;*/
                 font-weight: 100;
                 font-family: 'Kanit', sans-serif;
                 color: white;
                 background-color: #796c6c;
             }
-            /*---------------info_attr-page----------*/
+            a{
+                color: #2e6da4;
+            }
+            a:hover{
+                color: #5bc0de;
+            }
+            textarea{
+                resize: vertical;
+            }
+            /*---------------item_page----------*/
             .shadow-text{
                 text-shadow: 1px 1px black ;
             }
@@ -75,16 +83,41 @@
             .image-size{
                 height: 230px;
             }
-            .head-title{
-                font-size: 150%;
+            .image-size-half{
+                height: 115px;
             }
+            .head-title{
+                font-size: 180%;
+                text-align: center;
+            }
+            .solidborder{
+
+            }
+            .padding{
+                padding: 5px;
+            }
+
             }
             @media only screen and (min-width : 992px) {
+            .solidborder{
+                border: solid white 3px;
+            }
+            .padding{
+                padding: 40px 20px;
+            }
+            .outest-border{
+                margin: 10px 30px;
+            }
             .image-size{
                 height: 380px;
             }
+            .image-size-half{
+                height: 190px;
+            }
             .head-title{
-                font-size: 200%;
+                font-size: 340%;
+                text-align: left;
+
             }
             }
             .info-background {
@@ -94,10 +127,11 @@
                 -ms-filter: blur(5px);
                 filter: blur(5px);
             }
-            /*----------------------------------------*/
-            html, body {
-                height: 100%;
+            /*--------------register_page-------------*/
+            .datepicker.dropdown-menu {
+                background-color:#5e5e5e;
             }
+            /*----------item_description-box----------*/
             .head_item_description {
                 font-family: 'Kanit', sans-serif;
                 color: white;
@@ -105,10 +139,32 @@
             .item_description span,.item_description a{
                 font-family: 'Kanit', sans-serif;
                 color: white;
+
             }
             .item_description-box {
-                margin: 10px
+                margin: 10px;
+                background: black;
             }
+            /*-----------review-box-------------------*/
+            #panel{
+                display: none;
+            }
+            @media only screen{
+                .left-right{
+                    text-align: right;
+                }
+            }
+            @media only screen and (min-width : 992px) {
+                .left-right{
+                    text-align: left;
+                }
+            }
+            /*----------------------------------------*/
+
+            html, body {
+                height: 100%;
+            }
+
 
             .content {
                 text-align: center;
@@ -150,71 +206,10 @@
 
     </head>
     <body>
-
-{{--        <div class="jumbotron" >
-
-            <div class="container" >
-                <br>
-                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 400px">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
-                    </ol>
-
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-
-                        <div class="item active">
-                            <img src="/BKKTravelLogo.png" alt="Chania" width="60" height="300px">
-                            <div class="carousel-caption">
-                                <h3>Chania</h3>
-                                <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <img src="/BKKTravelLogo.png" alt="Chania" width="60" height="300px">
-                            <div class="carousel-caption">
-                                <h3>Chania</h3>
-                                <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <img src="/BKKTravelLogo.png" alt="Flower" width="60" height="300px">
-                            <div class="carousel-caption">
-                                <h3>Flowers</h3>
-                                <p>Beatiful flowers in Kolymbari, Crete.</p>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <img src="/BKKTravelLogo.png" alt="Flower" width="60" height="300px">
-                            <div class="carousel-caption">
-                                <h3>Flowers</h3>
-                                <p>Beatiful flowers in Kolymbari, Crete.</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Left and right controls -->
-                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" width="50%">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>--}}
-
-        <nav class="navbar navbar-inverse navbar-fixed-top" style="margin:0">
+    <div class="container-fluid outest-border">
+        <div style="margin-top: 70px">
+        <div class="col-xs-12">
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -234,25 +229,25 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        @if($user)
+{{--                        @if($user)
                             <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
                             <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
                         @else
                             <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
-                        @endif
+                        @endif--}}
                     </ul>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
-                        <li><a href="#">Attraction</a></li>
-                        <li><a href="#">Restaurant</a></li>
+                        <li><a href="/page_travel/list_of_travel/1">Attraction</a></li>
+                        <li><a href="/page_restaurant/list_of_restaurant/1">Restaurant</a></li>
                         <li><a href="#">Event</a></li>
-                        <li><a href="#"></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-
+        </div>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="loginModal" role="dialog">
@@ -283,7 +278,8 @@
 
 
         @yield('center_page')
-
+        <div class="row col-xs-12" style="margin-top:15px"></div>
+    </div>
         <script>
             $("input").keypress(function(event) {
                 if (event.which == 13) {

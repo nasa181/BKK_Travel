@@ -9,7 +9,7 @@
             <div style="margin: 10px 20px 10px 20px"><label>Title</label><input type="text" class="form-control" name="in_new_title" placeholder="Title.."></div>
         </div>
         <div class="row form-group">
-            <div style="margin: 10px 20px 10px 20px"><label>Description</label><textarea rows="5" class="form-control" name="in_new_description" placeholder="Please description this place.."></div>
+            <div style="margin: 10px 20px 10px 20px"><label>Description</label><textarea   rows="5" class="form-control" name="in_new_description" placeholder="Please description this place.."></div>
         </div>
         <div class="row form-group">
             <div style="margin: 10px 20px 10px 20px"><label>Tel</label><input type="text" class="form-control" name="in_new_tel" placeholder="Tel.."></div>

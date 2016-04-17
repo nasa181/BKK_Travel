@@ -1,20 +1,108 @@
 @extends('master')
 @section('center_page')
-    <div class="col-md-4 col-xs-12">
-        @foreach($attraction as $attr)
-            <div class="row">
-                <div class="top">
-                    <img src="{{$attr->photo_url}}" class="img-rounded" width=96px height=96px style="float: left">
-                    <div class="head" style="padding-right: 20px;margin: 0 0 0 104px;line-height: 20px"><a href="/page_travel/info/{{$attr->item_id}}"><span><h4>{{$attr->title}}</h4></span></a></div>
-                    <div class="text-info" style="margin: 0 0 0 104px"><span>Cost:   {{$attr->entrance_fee}}</span></div>
-                    <div class="text-info" style="margin: 0 0 0 104px"><span>Duration:   {{$attr->oc_time}}</span></div>
-                </div>
-            </div>
-        @endforeach
+    <div class="row">
+        <div class=" col-xs-12">
+            <h1 class="head-title">Attraction List</h1>
+            <hr>
+        </div>
     </div>
-    <ul class="pager">
-        <li class="previous"><a href="../page_travel/list_of_travel/($page-1)">Previous</a></li>
-        <li class="next"><a href="../page_travel/list_of_travel/($page+1)">Next</a></li>
-    </ul>
-    <a href="/page_restaurant/create_new_attraction"><<button class="btn btn-success">>Add new attraction</button></a>
+    <div class="row">
+        <div class="col-md-6">
+            <?php
+                $attraction1 = array();
+                $attraction2 = array();
+                for($i=0;$i<=intval(sizeof($attraction)/2);$i++){
+                    array_push($attraction1,$attraction[$i]);
+                }
+                for($i=intval(sizeof($attraction)/2)+1;$i<sizeof($attraction);$i++){
+                    array_push($attraction2,$attraction[$i]);
+                }
+            ?>
+            @foreach($attraction1 as $attr)
+            <?php
+                if ($attr->photo_url == "") $background = "green" ;
+                else  $background = "url('" . url($attr->photo_url) . "')";
+            ?>
+                <div class="row item_description " style="margin:10px 0px;background: green;height: 120px;background: url({{$attr->photo_url}}) center ;background-size:cover ">
+                    <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="head item_description" style=""><a href="/page_travel/info/{{$attr->item_id}}"><span><h4>{{$attr->title}}</h4></span></a></div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="text-info" style="margin: 0px"><span>Price:   {{$attr->entrance_fee}}</span></div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="text-info " style="margin: 0px"><span>Duration:   {{$attr->oc_time}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="col-md-6">
+            @foreach($attraction2 as $attr)
+                    <?php
+                    if ($attr->photo_url == "") $background = "green" ;
+                    else  $background = "url('" . url($attr->photo_url) . "')";
+                ?>
+                <div class="row item_description " style="margin:10px 0px;background: green;height: 120px;background: url({{$attr->photo_url}}) center ;background-size:cover ">
+                    <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="head item_description" style=""><a href="/page_travel/info/{{$attr->item_id}}"><span><h4>{{$attr->title}}</h4></span></a></div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="text-info" style="margin: 0px"><span>Price:   {{$attr->entrance_fee}}</span></div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="text-info " style="margin: 0px"><span>Duration:   {{$attr->oc_time}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="col-xs-12">
+            <ul class="pager" style="margin: 0px">
+                <li class="previous"><a href="/page_travel/list_of_travel/{{($page-1)}}">Previous</a></li>
+                    <span class="hidden-xs">
+                    <li><a href="/page_travel/list_of_travel/1">First</a></li>
+                        <?php
+                        for($i=$page-5;$i<$page+5;$i++){
+                            if($i<1 || $i>$last_page) continue;
+                            if ($i==$page){
+                                echo '<li><a style="background: #337ab7;color: white;" href="/page_travel/list_of_travel/';
+                                echo $i ;
+                                echo '"> ';
+                                echo $i ;
+                                echo '</a></li>';
+                            }
+                            else {
+                                echo '<li><a href="/page_travel/list_of_travel/';
+                                echo $i ;
+                                echo '"> ';
+                                echo $i ;
+                                echo '</a></li>';
+                            }
+                        }
+                        ?>
+                        <li><a href="/page_travel/list_of_travel/{{$last_page}}">Last</a></li>
+                    </span>
+                <li class="next"><a href="/page_travel/list_of_travel/{{($page+1)}}">Next</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr>
+        </div>
+    </div>
+
+    <div class="row col-xs-12 ">
+        <a href="/page_attraction/create_new_attraction"><button class="btn btn-success">Add new attraction</button></a>
+    </div>
 @stop

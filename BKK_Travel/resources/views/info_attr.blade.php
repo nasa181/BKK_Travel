@@ -7,9 +7,17 @@
                     <h1 class="head-title" style="margin-bottom: 20px">{{$item->title}}</h1>
                 </div>
             </div>
+            <?php
+                $background = "green" ;
+                if ($photo != null){
+                    if($photo->photo_url !=""){
+                        $background = "url('" . url($photo->photo_url) . "')";
+                    }
+                }
+            ?>
             <div class="row">
                 <div class="col-md-6" style="margin-bottom: 20px;">
-                    <div class="image-size"  style="border-radius:20px;background:url({{$photo->photo_url}})center; background-size: cover;">
+                    <div class="image-size"  style="border-radius:20px;background:{{$background}} center; background-size: cover;">
                     </div>
                 </div>
                 <div class="col-md-6"  style="margin-bottom: 20px;" >
@@ -57,8 +65,10 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6" style="margin-bottom: 20px;">
                     <div id="googleMap" class="image-size" style="border-radius:20px;width:auto;"></div>
+
                     <script>
                         var map;
                         var myCenter;
@@ -88,6 +98,7 @@
 
                         google.maps.event.addDomListener(window, 'load', initialize);
                     </script>
+                    <div class="text-center"> GPS location : {{$location->lat}}  {{$location->long}} </div>
                 </div>
             </div>
             <div class="row">
@@ -159,6 +170,9 @@
             ?>
             @endfor
         @endforeach
+            <div class="row col-xs-12 ">
+                <a href="/page_all/create_review"><button class="btn btn-success">Add new review</button></a>
+            </div>
         </div>
     </div>
     <script>

@@ -60,8 +60,8 @@ class web_controller extends Controller
         if($page > $num_of_page) $page = $num_of_page;
         $attraction = DB::table('attraction')
             ->join('item','attraction.link_item_id','=','item.item_id')
-            ->join('location','item.item_id','=','location.location_id')
-            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->leftjoin('location','item.item_id','=','location.location_id')
+            ->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->skip(20*($page-1))
             ->take(20)
             ->get();
@@ -74,8 +74,8 @@ class web_controller extends Controller
         if($page > $num_of_page) $page = $num_of_page;
         $restaurant = DB::table('restaurant')
             ->join('item','restaurant.link_item_id','=','item.item_id')
-            ->join('location','item.item_id','=','location.location_id')
-            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->leftjoin('location','item.item_id','=','location.location_id')
+            ->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->skip(20*($page-1))
             ->take(20)
             ->get();
@@ -96,7 +96,7 @@ class web_controller extends Controller
         $res = DB::table('restaurant')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
-        $review = DB::table('review')->where('link_item_id',$id)->take(5)->get();
+        $review = DB::table('review')->where('link_item_id',$id)->get();
         $location = DB::table('location')->where('link_item_id',$id)->first();
         return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
     }
@@ -108,7 +108,7 @@ class web_controller extends Controller
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
-        $review = DB::table('review')->where('link_item_id',$id)->take(5)->get();
+        $review = DB::table('review')->where('link_item_id',$id)->get();
         $location = DB::table('location')->where('link_item_id',$id)->first();
         return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
     }
@@ -165,7 +165,7 @@ class web_controller extends Controller
     function login(Request $request){
         $email = $request->in_email;
         $password = $request->in_password;
-        
+
         if (Auth::attempt(['email' => $email, 'password' => $password])){
             Session::put('user',Auth::user());
             return Redirect::to('/page_travel/info/3467');
@@ -244,14 +244,17 @@ class web_controller extends Controller
         $location = new Location();
         $photo = new PhotoGallery();
 //================= get uploaded picture ====================
-        //$extension = Input::file('profile_picture')->getClientOriginalExtension(); // getting image extension
-        //$fileName = time().'.'.$extension; // renameing image
-        //$path = $request->file('profile_picture')->move('img/',$fileName);// move input file to "public/img/<file_name>"
-        //$path = '/'.$path; // for adding '/' in front of the file path(for searching to the root of file)
-        //$photo->link_item_id = $id_tmp;
-        //$photo->photo_url = $path;
+        $file = Input::file('profile_picture');
+        if($file !=null) {
+            $destinationPath = 'img/';
+            $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+            Input::file('profile_picture')->move($destinationPath, $filename);
+            $photo->link_item_id = $id_tmp;
+            $photo->photo_url = '/' . $destinationPath . $filename;
+            $photo->save();
+        }
 
-        //$item->item_id = $id_tmp;
+        $item->item_id = $id_tmp;
         $item->title = $request->in_new_title;
         $item->description = $request->in_new_description;
         $item->tel = $request->in_new_tel;
@@ -278,9 +281,7 @@ class web_controller extends Controller
         $item->save();
         $location->save();
         $attraction->save();
-        $photo->save();
-
-        return redirect('/');
+        return redirect('/page_travel/info/' . $id_tmp);
 
     }
     function addRestaurant(Request $request){
@@ -297,13 +298,15 @@ class web_controller extends Controller
         $location = new Location();
         $photo = new PhotoGallery();
 //================= get uploaded picture ====================
-        $extension = Input::file('profile_picture')->getClientOriginalExtension(); // getting image extension
-        $fileName = time().'.'.$extension; // renameing image
-        $path = $request->file('profile_picture')->move('img/',$fileName);// move input file to "public/img/<file_name>"
-        $path = '/'.$path; // for adding '/' in front of the file path(for searching to the root of file)
-        $photo->link_item_id = $id_tmp;
-        $photo->photo_url = $path;
-
+        $file = Input::file('profile_picture');
+        if($file !=null) {
+            $destinationPath = 'img/';
+            $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+            Input::file('profile_picture')->move($destinationPath, $filename);
+            $photo->link_item_id = $id_tmp;
+            $photo->photo_url = '/' . $destinationPath . $filename;
+            $photo->save();
+        }
         $item->item_id = $id_tmp;
         $item->title = $request->in_new_title;
         $item->description = $request->in_new_description;
@@ -324,17 +327,15 @@ class web_controller extends Controller
         $location->sub_district = $request->in_new_sub_dis;
         $location->district = $request->in_new_district;
         $location->province = $request->in_new_province;
-        $location->post_code = $request->in_new_post_code;
+        $location->postal_code = $request->in_new_post_code;
         $location->lat = $request->in_new_lat;
-        $location->lng = $request->in_new_lng;
+        $location->long = $request->in_new_lng;
         $location->link_item_id = $id_tmp;
 
         $item->save();
         $location->save();
         $restaurant->save();
-        $photo->save();
-
-        return redirect('/');
+        return redirect('/page_restaurant/info/' . $id_tmp);
     }
     function addEvent(Request $request){
         if (Auth::check()) {

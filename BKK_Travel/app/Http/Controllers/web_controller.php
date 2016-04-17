@@ -207,7 +207,7 @@ class web_controller extends Controller
         $review->title = $request->title;
         $review->content = $request->description;
         $review->link_item_id = $request->hidden_value;
-        //$review->link_user_id = $user->user_id;
+        $review->link_user_id = 1;
         $review->save();
         $photo->save();
         $isAttracionReview = DB::table('item')->where('item_id',$request->hidden_value)->join('attraction','item.item_id','=','attraction.link_item_id')->count();

@@ -101,13 +101,10 @@ class web_controller extends Controller
         return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
     }
     function attr_info($id){
-<<<<<<< HEAD
-=======
-        $user = Auth::user();
+        /*$user = Auth::user();
         if (Auth::check()) {
             $user = Auth::user();
-        }
->>>>>>> c12d6ab3445979786123110103479dcb4d7da9a6
+        }*/
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
@@ -168,14 +165,10 @@ class web_controller extends Controller
     function login(Request $request){
         $email = $request->in_email;
         $password = $request->in_password;
-<<<<<<< HEAD
-        if(Auth::attempt(['email' => $email, 'password' => $password])){
-            return redirect();
-=======
+        
         if (Auth::attempt(['email' => $email, 'password' => $password])){
             Session::put('user',Auth::user());
             return Redirect::to('/page_travel/info/3467');
->>>>>>> c12d6ab3445979786123110103479dcb4d7da9a6
         }
         return redirect()->with('not_success',true);
     }

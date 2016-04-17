@@ -229,7 +229,11 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
 {{--                        @if($user)
+=======
+                        @if(!is_null($user))
+>>>>>>> c12d6ab3445979786123110103479dcb4d7da9a6
                             <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
                             <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
                         @else

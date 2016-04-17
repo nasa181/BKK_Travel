@@ -10,8 +10,8 @@ class Review extends Model
     protected $table = 'Review';
     protected $fillable = [];
 
-
+    protected $primaryKey = 'review_id';
     public function user(){
-        $this->belongsTo('user');
+        $this->belongsTo('User');
     }
 }

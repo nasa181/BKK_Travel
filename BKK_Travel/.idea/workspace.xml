@@ -22,20 +22,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/web_controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="200" column="96" selection-start-line="200" selection-start-column="96" selection-end-line="200" selection-end-column="96" />
+            <state relative-caret-position="186">
+              <caret line="198" column="44" selection-start-line="198" selection-start-column="44" selection-end-line="198" selection-end-column="44" />
               <folding>
-                <marker date="1460963989894" expanded="true" signature="7425:7554" placeholder="..." />
-                <marker date="1460963989894" expanded="true" signature="14962:14980" placeholder="..." />
+                <marker date="1460964556854" expanded="true" signature="7425:7554" placeholder="..." />
+                <marker date="1460964556854" expanded="true" signature="14713:14731" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UploadedFile.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UploadedFile.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/File/UploadedFile.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="639">
@@ -405,15 +405,15 @@
       <workItem from="1460907187253" duration="2739000" />
       <workItem from="1460909951367" duration="10459000" />
       <workItem from="1460959089520" duration="2472000" />
-      <workItem from="1460962570890" duration="1858000" />
+      <workItem from="1460962570890" duration="1995000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62642000" />
+    <option name="totallyTimeSpent" value="62779000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33894584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -820,22 +820,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/web_controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="200" column="96" selection-start-line="200" selection-start-column="96" selection-end-line="200" selection-end-column="96" />
-          <folding>
-            <marker date="1460963989894" expanded="true" signature="7425:7554" placeholder="..." />
-            <marker date="1460963989894" expanded="true" signature="14962:14980" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/File/UploadedFile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="639">
           <caret line="287" column="85" selection-start-line="287" selection-start-column="85" selection-end-line="287" selection-end-column="85" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/web_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="198" column="44" selection-start-line="198" selection-start-column="44" selection-end-line="198" selection-end-column="44" />
+          <folding>
+            <marker date="1460964556854" expanded="true" signature="7425:7554" placeholder="..." />
+            <marker date="1460964556854" expanded="true" signature="14713:14731" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

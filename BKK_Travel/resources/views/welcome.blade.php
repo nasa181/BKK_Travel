@@ -149,14 +149,14 @@
                 $colora = ['rgba(247,129,129,'.$op.')','rgba(245,218,129,'.$op.')','rgba(243,247,129,'.$op.')','rgba(159,247,129,'.$op.')','rgba(129,129,247,'.$op.')','rgba(190,129,247,'.$op.')'];
                 $idx =0;
             ?>
-            @foreach($review as $rev)
+            @for($i=sizeof($review)-1; $i>=0 ;$i--)
                 <?php
-                    $text1 = mb_substr($rev->content,0,350);
+                    $text1 = mb_substr($review[$i]->content,0,350);
                 ?>
                 <div class="" style="color: white;margin: 15px 0px;">
                     <div class="col-md-6 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
                         <div class="col-md-12">
-                            <h3 class="" style=""><span>{{$rev->title}}</span></h3>
+                            <h3 class="" style=""><span>{{$review[$i]->title}}</span></h3>
                         </div>
                         <div class="col-md-8">
                             <div>
@@ -173,10 +173,10 @@
                         <div class="col-md-6 left-right" style="margin-top: 0px">
                             <span>Like : 50 </span><span>Dislike : 50 </span><br>
                         </div>
-                        <div class="col-md-6 " style="height: 100px;text-align: right">
+                        <div class="col-md-6 " style="height: 110px;text-align: right">
                             <?php
-                            if ($rev->title_picture!=null){
-                                echo '<img src="'. $rev->title_picture .'" style="height: 100px">';
+                            if ($review[$i]->title_picture!=null){
+                                echo '<img src="'. $review[$i]->title_picture .'" style="height: 100px">';
                             }
                             ?>
                         </div>
@@ -186,7 +186,7 @@
                     $idx++;
                     if ($idx > 5) $idx=0;
                 ?>
-            @endforeach
+            @endfor
         </div>
     </div>
 

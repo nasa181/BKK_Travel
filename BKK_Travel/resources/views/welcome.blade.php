@@ -155,6 +155,12 @@
                 ?>
                 <div class="" style="color: white;margin: 15px 0px;">
                     <div class="col-md-6 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
+                        <div class="col-md-12" style="text-align: right;margin-top: 5px">
+                            <form id="delete_form" method="post" action="/remove_review">
+                                <input type="hidden" value="{{$review[$i]->review_id}}" name="review_id">
+                                <button type="button" class="btn-danger btn" onclick="run(this)">remove</button>
+                            </form>
+                        </div>
                         <div class="col-md-12">
                             <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{$review[$i]->title}}</span></h3> </a>
                         </div>
@@ -189,5 +195,12 @@
             @endfor
         </div>
     </div>
+    <script>
+        function run(e){
+            if (confirm("Click OK to confirm deleted?")){
+                $(e).parent().submit();
+            }
+        };
+    </script>
 
 @stop

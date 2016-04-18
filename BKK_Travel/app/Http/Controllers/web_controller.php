@@ -185,8 +185,8 @@ class web_controller extends Controller
     }*/
     function createReview($item_id){
         $title = DB::table('item')->where('item_id',$item_id)->first()->title;
-        $review_id = (DB::table('review')->count() )+1;
-        return view('review',['item_id'=>$item_id,'title'=>$title,'review_id'=>$review_id]);
+        $last_id =  DB::table('review')->skip(DB::table('review')->count()-1)->first()->review_id;
+        return view('review',['item_id'=>$item_id,'title'=>$title,'review_id'=>$last_id+1]);
     }
     function postReviewTravel(Request $request){
  /*       if (Auth::check()) {
@@ -209,6 +209,8 @@ class web_controller extends Controller
             $photo->save();
         }
         //----------------------------------------------------------//
+        $last_id =  DB::table('review')->skip(DB::table('review')->count()-1)->first()->review_id;
+        $review->review_id = $last_id+1;
         $review->title = $request->title;
         $review->content = $request->description;
         $review->link_item_id = $request->hidden_value;
@@ -219,7 +221,13 @@ class web_controller extends Controller
         if($isAttracionReview==1) return redirect('/page_travel/info/'.$request->hidden_value);  //,['user'=>$user]
         else return redirect('/page_restaurant/info/'. $request->hidden_value);
     }
-
+    function remove_review(Request $request){
+        DB::table('review')
+            ->where('review_id',$request->review_id)
+            ->delete();
+        //echo $test;
+        return back();
+    }
 
 
 

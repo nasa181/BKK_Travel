@@ -48,7 +48,7 @@ Route::post('/page_travel/add_new_event','web_controller@addEvent');
 Route::get('/page_all/create_review/{item_id}','web_controller@createReview');
 Route::post('/search','web_controller@search');
 Route::post('/page_travel/post_review','web_controller@postReviewTravel');
-
+Route::post('/remove_review','web_controller@remove_review');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

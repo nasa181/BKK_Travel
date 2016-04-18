@@ -138,6 +138,12 @@
             ?>
             <div class="row" style="color: white;margin: 15px 0px;">
                 <div class="col-md-12 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
+                    <div class="col-md-12" style="text-align: right">
+                        <form method="post" action="/remove_review">
+                            <input type="hidden" value="{{$rev->review_id}}" name="review_id">
+                            <button type="button" class="btn-danger btn" onclick="run(this)">remove</button>
+                        </form>
+                    </div>
                     <div class="col-md-12">
                         <h3 class="" style=""><span>{{$rev->title}}</span></h3>
                     </div>
@@ -187,6 +193,11 @@
         function show(e){
             $(e).parent().next().slideDown("fast");
             $(e).remove();
+        };
+        function run(e){
+            if (confirm("Click OK to confirm deleted?")){
+                $(e).parent().submit();
+            }
         };
     </script>
 @stop

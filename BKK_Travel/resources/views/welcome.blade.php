@@ -156,7 +156,7 @@
                 <div class="" style="color: white;margin: 15px 0px;">
                     <div class="col-md-6 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
                         <div class="col-md-12">
-                            <h3 class="" style=""><span>{{$review[$i]->title}}</span></h3>
+                            <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{$review[$i]->title}}</span></h3> </a>
                         </div>
                         <div class="col-md-8">
                             <div>

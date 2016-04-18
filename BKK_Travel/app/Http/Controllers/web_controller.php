@@ -53,6 +53,12 @@ class web_controller extends Controller
         return view('welcome',['restaurant'=> $restaurant,'attraction' => $attraction,'event'=> $event,'review'=>$review]);
     }
 
+    function auto_redirect($id){
+        $isAttracionReview = DB::table('item')->where('item_id',$id)->join('attraction','item.item_id','=','attraction.link_item_id')->count();
+        if($isAttracionReview) return redirect('/page_travel/info/' . $id);
+        else return redirect('/page_restaurant/info/' . $id);
+    }
+
 
 //====================================== list of item ==============================================
     function page_travel($page){

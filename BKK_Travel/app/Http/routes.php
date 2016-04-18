@@ -24,7 +24,7 @@ Route::get('/page_event/list_of_event/{page}','web_controller@page_event');
 Route::get('/page_travel/info/{id}','web_controller@attr_info');
 Route::get('/page_event/info/{id}','web_controller@event_info');
 Route::get('/page_restaurant/info/{id}','web_controller@res_info');
-
+Route::get('/item/info/{id}','web_controller@auto_redirect');
     
 
 //=========== about user (profile, login, logout, register) =========

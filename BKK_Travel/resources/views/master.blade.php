@@ -59,6 +59,25 @@
             textarea{
                 resize: vertical;
             }
+            @media only screen{
+                .bottom_bar{
+                    height:100px;
+                }
+                .hide{
+                    visibility: hidden;
+                }
+            }
+            @media only screen and (min-width : 992px) {
+                .bottom_bar{
+                    height:180px;
+                }
+                .hide{
+                    visibility: visible;
+                }
+                .desktop-hidden{
+                    display: none;
+                }
+            }
             /*-----------------Item_page-----------------*/
             .shadow-text{
                 text-shadow: 1px 1px black ;
@@ -189,7 +208,7 @@
     </head>
 
     <body>
-    <div class="container-fluid outest-border">
+    <div class="container-fluid outest-border" style="">
         <div style="margin-top: 70px">
         <div class="col-xs-12">
         <nav class="navbar navbar-inverse navbar-fixed-top" style="">
@@ -256,10 +275,41 @@
                 </div>
             </div>
         </div>
-
-
         @yield('center_page')
-        <div class="row col-xs-12" style="margin-top:15px"></div>
+    </div>
+    <div class="container-fluid" style="">
+        <div class="row hidden-xs" style="margin-top: 40px;background: #222222;">
+            <div class="col-xs-4 text-center">
+                <img src="/BKKTravelLogo.png"  class="bottom_bar" style="height:220px;">
+            </div>
+            <div class="col-xs-8 shadow-text " style="padding: 40px 40px;">
+                   <div class="row">
+                       <div class="col-xs-offset-4 col-xs-8 text-center">
+                           <p style="font-size:16px">Created by</p>
+                       </div>
+                       <div style="margin-top: 40px">
+                            <div class="col-xs-4" style="font-size:14px;">
+                                <p style="font-size:19px">BKK-Travel Inc.</p>
+                                <p>Pathumwan 10230 Thailand</p>
+                                <p>Contact us : 02-919-1188</p>
+                            </div>
+                           <div class="text-center">
+                                <div class="col-xs-4" style="font-size: 13px;">
+                                    <p style="font-size: 16px">ณัฐนัย	 อมรเทวภัทร 5631031521</p>
+                                    <p>ธนวัฒน์		เค้าฉลองเคียง 5631044721</p>
+                                </div>
+                               <div class="col-xs-4" style="font-size: 13px">
+                                   <p>ชลกานต์		กิจศิริกุล 5630118321</p>
+                                   <p>วิภวานี		วัชระเดชสกุล 5631082521</p>
+                                   <p>ณภัทร		เผ่าพงษ์ไพบูลย์ 5631024121</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid desktop-hidden" style="height: 20px">
     </div>
 
     <script>

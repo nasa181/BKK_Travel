@@ -314,9 +314,10 @@ class web_controller extends Controller
             $destinationPath = 'img/';
             $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
             Input::file('profile_picture')->move($destinationPath, $filename);
-            $photo->link_item_id = $id_tmp;
             $num_photo = (DB::table('photo_gallery')->count());
             $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo-1)->first()->photo_id ) +1;
+            $photo->link_item_id = $id_tmp;
+            $photo->photo_url = '/' . $destinationPath . $filename;
             $item->title_picture = $photo->photo_url;
             $photo->save();
         }

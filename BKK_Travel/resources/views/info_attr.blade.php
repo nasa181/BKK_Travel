@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-md-6"  style="margin-bottom: 20px;" >
-                    <div class="" style="padding: 40px 20px;border: dashed #D4EF4C;border-radius: 20px;background: rgba(212,239,76,0.2);">
+                    <div class="" style="padding: 40px 20px;border: dashed #D4EF4C;border-radius: 20px;/*background: rgba(212,239,76,0.2)*/;">
                         <div class="shadow-text">
                             <div class="row" style="">
                                 <div class="col-xs-12" style="margin-bottom: 5px"><span>Attraction type :  {{$attr->attraction_type}} </span></div>
@@ -50,7 +50,7 @@
             </div>
             <div class="row " >
                 <div class="col-md-6" style="margin-bottom: 20px;"  >
-                    <div class="" style="padding: 40px 20px;border: dashed #FF6C6C;border-radius: 20px;background: rgba(205,108,108,0.2)">
+                    <div class="" style="padding: 40px 20px;border: dashed #FF6C6C;border-radius: 20px;/*background: rgba(205,108,108,0.2*/)">
                         <div class="shadow-text">
                             <div class="row" style="margin-bottom: 5px">
                                 <div class="col-xs-12" ><span>Address : {{$location->build}}  {{$location->street_address}}  {{$location->district}}

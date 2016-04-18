@@ -82,15 +82,15 @@
       <file leaf-file-name="info_attr.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/info_attr.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-199">
-              <caret line="19" column="54" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="135" />
+            <state relative-caret-position="226">
+              <caret line="23" column="137" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="139" />
               <folding>
                 <element signature="e#719#747#0#HTML" expanded="true" />
-                <element signature="e#1118#1221#0#HTML" expanded="true" />
-                <element signature="e#2987#3015#0#HTML" expanded="true" />
-                <element signature="e#3053#3156#0#HTML" expanded="true" />
-                <element signature="e#4242#4280#0#HTML" expanded="true" />
-                <marker date="1460980685680" expanded="true" signature="9548:9561" placeholder="..." />
+                <element signature="e#794#962#0#HTML" expanded="true" />
+                <element signature="e#2991#3019#0#HTML" expanded="true" />
+                <element signature="e#3057#3164#0#HTML" expanded="true" />
+                <element signature="e#4250#4288#0#HTML" expanded="true" />
+                <marker date="1460980802788" expanded="true" signature="9556:9569" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -423,12 +423,12 @@
       <workItem from="1460962570890" duration="4712000" />
       <workItem from="1460967668375" duration="3847000" />
       <workItem from="1460971990058" duration="854000" />
-      <workItem from="1460974188186" duration="6103000" />
+      <workItem from="1460974188186" duration="6219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76300000" />
+    <option name="totallyTimeSpent" value="76416000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -856,15 +856,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/info_attr.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-199">
-          <caret line="19" column="54" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="135" />
+        <state relative-caret-position="226">
+          <caret line="23" column="137" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="139" />
           <folding>
             <element signature="e#719#747#0#HTML" expanded="true" />
-            <element signature="e#1118#1221#0#HTML" expanded="true" />
-            <element signature="e#2987#3015#0#HTML" expanded="true" />
-            <element signature="e#3053#3156#0#HTML" expanded="true" />
-            <element signature="e#4242#4280#0#HTML" expanded="true" />
-            <marker date="1460980685680" expanded="true" signature="9548:9561" placeholder="..." />
+            <element signature="e#794#962#0#HTML" expanded="true" />
+            <element signature="e#2991#3019#0#HTML" expanded="true" />
+            <element signature="e#3057#3164#0#HTML" expanded="true" />
+            <element signature="e#4250#4288#0#HTML" expanded="true" />
+            <marker date="1460980802788" expanded="true" signature="9556:9569" placeholder="..." />
           </folding>
         </state>
       </provider>

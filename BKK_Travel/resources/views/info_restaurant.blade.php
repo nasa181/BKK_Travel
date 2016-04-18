@@ -10,8 +10,8 @@
             <?php
                 $background = "green" ;
                 if ($photo != null){
-                    if($photo->photo_url !=""){
-                        $background = "url('" . url($photo->photo_url) . "')";
+                    if($item->title_picture !=""){
+                        $background = "url('" . url($item->title_picture) . "')";
                     }
                 }
             ?>

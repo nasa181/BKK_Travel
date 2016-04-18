@@ -21,8 +21,8 @@
             ?>
             @foreach($attraction1 as $attr)
             <?php
-                if ($attr->photo_url == "" || $attr->photo_url == null) $background = "green" ;
-                else  $background = "url('" . url($attr->photo_url) . "')";
+                if ($attr->title_picture == "" || $attr->title_picture == null) $background = "green" ;
+                else  $background = "url('" . url($attr->title_picture) . "')";
             ?>
                 <div class="row item_description " style="margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
                     <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
@@ -44,8 +44,8 @@
         <div class="col-md-6">
             @foreach($attraction2 as $attr)
                     <?php
-                    if ($attr->photo_url == "" || $attr->photo_url == null) $background = "green" ;
-                    else  $background = "url('" . url($attr->photo_url) . "')";
+                    if ($attr->title_picture == "" || $attr->title_picture == null) $background = "green" ;
+                    else  $background = "url('" . url($attr->title_picture) . "')";
                 ?>
                 <div class="row item_description " style="margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
                     <div class="col-xs-12" style=" text-shadow: 1px 1px black;">

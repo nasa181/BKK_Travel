@@ -27,19 +27,19 @@ class web_controller extends Controller
 
     function start_page(){
         $event = DB::table('item')
-            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            //->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('event','item.item_id','=','event.link_item_id')
             ->join('location','item.item_id','=','location.link_item_id')
             ->take(5)
             ->get();
         $attraction = DB::table('item')
-            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            //->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('attraction','item.item_id','=','attraction.link_item_id')
             ->join('location','item.item_id','=','location.link_item_id')
             ->take(5)
             ->get();
         $restaurant = DB::table('item')
-            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            //->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('restaurant','item.item_id','=','restaurant.link_item_id')
             ->join('location','item.item_id','=','location.link_item_id')
             ->take(5)
@@ -63,7 +63,7 @@ class web_controller extends Controller
         $attraction = DB::table('attraction')
             ->join('item','attraction.link_item_id','=','item.item_id')
             ->leftjoin('location','item.item_id','=','location.location_id')
-            ->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            //->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->skip(20*($page-1))
             ->take(20)
             ->get();
@@ -77,7 +77,7 @@ class web_controller extends Controller
         $restaurant = DB::table('restaurant')
             ->join('item','restaurant.link_item_id','=','item.item_id')
             ->leftjoin('location','item.item_id','=','location.location_id')
-            ->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            //->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->skip(20*($page-1))
             ->take(20)
             ->get();
@@ -238,8 +238,11 @@ class web_controller extends Controller
             $destinationPath = 'img/';
             $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
             Input::file('profile_picture')->move($destinationPath, $filename);
+            $num_photo = (DB::table('photo_gallery')->count());
+            $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo-1)->first()->photo_id ) +1;
             $photo->link_item_id = $id_tmp;
             $photo->photo_url = '/' . $destinationPath . $filename;
+            $item->title_picture = $photo->photo_url;
             $photo->save();
         }
         /*---------------------------------------------------------*/
@@ -293,7 +296,9 @@ class web_controller extends Controller
             $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
             Input::file('profile_picture')->move($destinationPath, $filename);
             $photo->link_item_id = $id_tmp;
-            $photo->photo_url = '/' . $destinationPath . $filename;
+            $num_photo = (DB::table('photo_gallery')->count());
+            $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo-1)->first()->photo_id ) +1;
+            $item->title_picture = $photo->photo_url;
             $photo->save();
         }
         /*---------------------------------------------------------*/

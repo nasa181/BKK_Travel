@@ -81,7 +81,11 @@
                             var mapProp = {
                                 center:myCenter,
                                 zoom:15,
-                                mapTypeId:google.maps.MapTypeId.ROADMAP
+                                mapTypeId:google.maps.MapTypeId.ROADMAP,
+                                draggable: false,
+                                scrollwheel: false,
+                                mapTypeControl: false,
+                                scaleControl: false,
                             };
 
                             map = new google.maps.Map(document.getElementById("googleMap"),mapProp);

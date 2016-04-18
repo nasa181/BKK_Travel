@@ -164,7 +164,7 @@
                         <div class="col-md-12">
                             <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{$review[$i]->title}}</span></h3> </a>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 height-adjust" style="">
                             <div>
                                 <div>" {!!$text1!!} "</div>
                             </div>

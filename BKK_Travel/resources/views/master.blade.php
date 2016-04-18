@@ -140,10 +140,16 @@
                 .left-right{
                     text-align: right;
                 }
+                .height-adjust{
+                    height: auto;
+                }
             }
             @media only screen and (min-width : 992px) {
                 .left-right{
                     text-align: left;
+                }
+                .height-adjust{
+                    height: 130px;
                 }
             }
             /*----------------------------------*/

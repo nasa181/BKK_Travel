@@ -17,11 +17,11 @@
             ?>
             <div class="row">
                 <div class="col-md-6" style="margin-bottom: 20px;">
-                    <div class="image-size"  style="border-radius:20px;background:{{$background}} center; background-size: cover;">
+                    <div class="image-size"  style="/*box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.45), 0 0px 30px 0 rgba(0, 0, 0, 0.15);*/border-radius:20px;background:{{$background}} center; background-size: cover;">
                     </div>
                 </div>
                 <div class="col-md-6"  style="margin-bottom: 20px;" >
-                    <div class="" style="padding: 40px 20px;border: dashed #D4EF4C;border-radius: 20px;/*background: rgba(212,239,76,0.3)*/">
+                    <div class="" style="padding: 40px 20px;border: dashed #D4EF4C;border-radius: 20px;background: rgba(212,239,76,0.2);">
                         <div class="shadow-text">
                             <div class="row" style="">
                                 <div class="col-xs-12" style="margin-bottom: 5px"><span>Attraction type :  {{$attr->attraction_type}} </span></div>
@@ -50,7 +50,7 @@
             </div>
             <div class="row " >
                 <div class="col-md-6" style="margin-bottom: 20px;"  >
-                    <div class="" style="padding: 40px 20px;border: dashed #FF6C6C;border-radius: 20px;/*background: rgba(205,108,108,0.3)*/">
+                    <div class="" style="padding: 40px 20px;border: dashed #FF6C6C;border-radius: 20px;background: rgba(205,108,108,0.2)">
                         <div class="shadow-text">
                             <div class="row" style="margin-bottom: 5px">
                                 <div class="col-xs-12" ><span>Address : {{$location->build}}  {{$location->street_address}}  {{$location->district}}
@@ -171,7 +171,7 @@
                     <div class="col-md-12">
                         <?php
                             if ($rev->title_picture!=null){
-                                echo '<img src="'. $rev->title_picture .'" style="height: 120px">';
+                                echo '<img src="'. $rev->title_picture .'" style="height: 120px;">';
                             }
                         ?>
                     </div>

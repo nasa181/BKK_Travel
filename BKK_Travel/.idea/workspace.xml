@@ -22,7 +22,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/web_controller.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="78">
@@ -79,13 +79,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="info_attr.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="info_attr.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/info_attr.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2431">
-              <caret line="143" column="48" selection-start-line="143" selection-start-column="48" selection-end-line="143" selection-end-column="48" />
+            <state relative-caret-position="-199">
+              <caret line="19" column="54" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="135" />
               <folding>
-                <marker date="1460971305021" expanded="true" signature="9472:9485" placeholder="..." />
+                <element signature="e#719#747#0#HTML" expanded="true" />
+                <element signature="e#1118#1221#0#HTML" expanded="true" />
+                <element signature="e#2987#3015#0#HTML" expanded="true" />
+                <element signature="e#3053#3156#0#HTML" expanded="true" />
+                <element signature="e#4242#4280#0#HTML" expanded="true" />
+                <marker date="1460980685680" expanded="true" signature="9548:9561" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -198,11 +203,11 @@
         <option value="$PROJECT_DIR$/resources/views/attraction.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/restaurant.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/info_attr.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/info_restaurant.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/master.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/web_controller.php" />
+        <option value="$PROJECT_DIR$/resources/views/info_attr.blade.php" />
       </list>
     </option>
   </component>
@@ -418,12 +423,12 @@
       <workItem from="1460962570890" duration="4712000" />
       <workItem from="1460967668375" duration="3847000" />
       <workItem from="1460971990058" duration="854000" />
-      <workItem from="1460974188186" duration="4926000" />
+      <workItem from="1460974188186" duration="6103000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75123000" />
+    <option name="totallyTimeSpent" value="76300000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -775,16 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/info_attr.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2431">
-          <caret line="143" column="48" selection-start-line="143" selection-start-column="48" selection-end-line="143" selection-end-column="48" />
-          <folding>
-            <marker date="1460971305021" expanded="true" signature="9472:9485" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
@@ -855,6 +850,21 @@
           <folding>
             <marker date="1460979140477" expanded="true" signature="7866:7995" placeholder="..." />
             <marker date="1460979140477" expanded="true" signature="15639:15657" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/info_attr.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-199">
+          <caret line="19" column="54" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="135" />
+          <folding>
+            <element signature="e#719#747#0#HTML" expanded="true" />
+            <element signature="e#1118#1221#0#HTML" expanded="true" />
+            <element signature="e#2987#3015#0#HTML" expanded="true" />
+            <element signature="e#3053#3156#0#HTML" expanded="true" />
+            <element signature="e#4242#4280#0#HTML" expanded="true" />
+            <marker date="1460980685680" expanded="true" signature="9548:9561" placeholder="..." />
           </folding>
         </state>
       </provider>

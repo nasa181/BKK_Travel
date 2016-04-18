@@ -170,8 +170,15 @@
                             <span>Reviewed by : ท่านผู้นั้น</span>
                         </div>
                         <div class="col-md-12"> <hr> </div>
-                        <div class="col-md-12 left-right" style="margin-top: 0px">
+                        <div class="col-md-6 left-right" style="margin-top: 0px">
                             <span>Like : 50 </span><span>Dislike : 50 </span><br>
+                        </div>
+                        <div class="col-md-6 " style="height: 100px;text-align: right">
+                            <?php
+                            if ($rev->title_picture!=null){
+                                echo '<img src="'. $rev->title_picture .'" style="height: 100px">';
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

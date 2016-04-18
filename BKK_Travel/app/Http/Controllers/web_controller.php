@@ -196,8 +196,9 @@ class web_controller extends Controller
         if($file !=null) {
             $destinationPath = 'img/';
             $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
-            Input::file('profile_picture')->move($destinationPath, $filename);
-
+            //Input::file('profile_picture')->resize(200,200)->move($destinationPath, $filename);
+            //Image::make(Input::file('profile_picture')->getRealPath())->resize(200, 200)->save(public_path('img/' . $filename));
+            Image::make(Input::file('profile_picture'))->resize(200, 200)->save('img/'.$filename);
             $photo->link_item_id = $request->hidden_value;
             $photo->photo_url = '/' . $destinationPath . $filename;
             $review->title_picture = '/' . $destinationPath . $filename;

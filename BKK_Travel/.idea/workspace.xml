@@ -22,15 +22,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/web_controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="274" column="28" selection-start-line="274" selection-start-column="28" selection-end-line="274" selection-end-column="28" />
+            <state relative-caret-position="220">
+              <caret line="200" column="96" selection-start-line="200" selection-start-column="96" selection-end-line="200" selection-end-column="96" />
               <folding>
-                <marker date="1460961327513" expanded="true" signature="7425:7554" placeholder="..." />
-                <marker date="1460961327513" expanded="true" signature="14714:14732" placeholder="..." />
+                <marker date="1460963989894" expanded="true" signature="7425:7554" placeholder="..." />
+                <marker date="1460963989894" expanded="true" signature="14962:14980" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UploadedFile.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/File/UploadedFile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="639">
+              <caret line="287" column="85" selection-start-line="287" selection-start-column="85" selection-end-line="287" selection-end-column="85" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -38,12 +48,11 @@
       <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+            <state relative-caret-position="209">
+              <caret line="160" column="44" selection-start-line="160" selection-start-column="44" selection-end-line="160" selection-end-column="44" />
               <folding>
-                <element signature="e#3667#3795#0#HTML" expanded="true" />
-                <element signature="e#5125#5268#0#HTML" expanded="true" />
-                <element signature="e#5323#5359#0#HTML" expanded="true" />
+                <element signature="e#8584#8607#0#HTML" expanded="true" />
+                <element signature="e#8769#8808#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,7 +61,7 @@
       <file leaf-file-name="attraction.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/attraction.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="799">
               <caret line="47" column="74" selection-start-line="47" selection-start-column="74" selection-end-line="47" selection-end-column="74" />
               <folding>
                 <marker date="1460960697222" expanded="true" signature="4045:4078" placeholder="..." />
@@ -64,7 +73,7 @@
       <file leaf-file-name="restaurant.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/restaurant.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="391">
               <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
               <folding>
                 <marker date="1460960719226" expanded="true" signature="4377:4410" placeholder="..." />
@@ -76,8 +85,8 @@
       <file leaf-file-name="info_attr.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/info_attr.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="72" />
+            <state relative-caret-position="209">
+              <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="166" selection-end-column="26" />
               <folding>
                 <marker date="1460960468221" expanded="true" signature="8859:8872" placeholder="..." />
               </folding>
@@ -110,16 +119,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Attraction.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Attraction.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -190,9 +189,9 @@
         <option value="$PROJECT_DIR$/app/Review.php" />
         <option value="$PROJECT_DIR$/resources/views/info_attr.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/info_restaurant.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/attraction.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/restaurant.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/web_controller.php" />
       </list>
     </option>
@@ -237,7 +236,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -337,6 +335,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,15 +405,16 @@
       <workItem from="1460907187253" duration="2739000" />
       <workItem from="1460909951367" duration="10459000" />
       <workItem from="1460959089520" duration="2472000" />
+      <workItem from="1460962570890" duration="1858000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60784000" />
+    <option name="totallyTimeSpent" value="62642000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33894584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -461,13 +461,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/filesystems.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_02_18_011753_create_attraction.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -711,7 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -779,16 +771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/info_attr.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="72" />
-          <folding>
-            <marker date="1460960468221" expanded="true" signature="8859:8872" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/info_restaurant.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -797,21 +779,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="e#3667#3795#0#HTML" expanded="true" />
-            <element signature="e#5125#5268#0#HTML" expanded="true" />
-            <element signature="e#5323#5359#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/attraction.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="799">
           <caret line="47" column="74" selection-start-line="47" selection-start-column="74" selection-end-line="47" selection-end-column="74" />
           <folding>
             <marker date="1460960697222" expanded="true" signature="4045:4078" placeholder="..." />
@@ -821,7 +791,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/restaurant.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="391">
           <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
           <folding>
             <marker date="1460960719226" expanded="true" signature="4377:4410" placeholder="..." />
@@ -829,14 +799,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/info_attr.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="166" selection-end-column="26" />
+          <folding>
+            <marker date="1460960468221" expanded="true" signature="8859:8872" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="160" column="44" selection-start-line="160" selection-start-column="44" selection-end-line="160" selection-end-column="44" />
+          <folding>
+            <element signature="e#8584#8607#0#HTML" expanded="true" />
+            <element signature="e#8769#8808#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/web_controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="274" column="28" selection-start-line="274" selection-start-column="28" selection-end-line="274" selection-end-column="28" />
+        <state relative-caret-position="220">
+          <caret line="200" column="96" selection-start-line="200" selection-start-column="96" selection-end-line="200" selection-end-column="96" />
           <folding>
-            <marker date="1460961327513" expanded="true" signature="7425:7554" placeholder="..." />
-            <marker date="1460961327513" expanded="true" signature="14714:14732" placeholder="..." />
+            <marker date="1460963989894" expanded="true" signature="7425:7554" placeholder="..." />
+            <marker date="1460963989894" expanded="true" signature="14962:14980" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/File/UploadedFile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="287" column="85" selection-start-line="287" selection-start-column="85" selection-end-line="287" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>

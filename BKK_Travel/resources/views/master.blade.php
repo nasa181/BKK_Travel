@@ -7,11 +7,12 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <!--  jQuery -->
-        {{--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>--}}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <!-- Bootstrap Date-Picker Plugin -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
@@ -19,6 +20,7 @@
         <!-- font -->
         <link href='https://fonts.googleapis.com/css?family=Kanit:500,700&subset=thai,latin' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.cross').hide();
@@ -210,45 +212,45 @@
     <body>
     <div class="container-fluid outest-border" style="">
         <div style="margin-top: 70px">
-        <div class="col-xs-12">
-        <nav class="navbar navbar-inverse navbar-fixed-top" style="">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <form class="navbar-form navbar-right" role="search" action="/search">
-                        {{--{!! csrf_field() !!}--}}
-                        <div class="form-group input-group">
-                            <input type="text" class="form-control" name="in_search" placeholder="Search..">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>
+            <div class="col-xs-12">
+                <nav class="navbar navbar-inverse navbar-fixed-top ">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
                         </div>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-{{--                        @if(!is_null($user))
-                            <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
-                            <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
-                        @else
-                            <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                            <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
-                        @endif--}}
-                    </ul>
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li><a href="/page_travel/list_of_travel/1">Attraction</a></li>
-                        <li><a href="/page_restaurant/list_of_restaurant/1">Restaurant</a></li>
-                        <li><a href="#">Event</a></li>
-                    </ul>
-                </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="/">Home</a></li>
+                                <li><a href="/page_travel/list_of_travel/1">Attraction</a></li>
+                                <li><a href="/page_restaurant/list_of_restaurant/1">Restaurant</a></li>
+                                <li><a href="#">Event</a></li>
+                            </ul>
+                            <form class="navbar-form navbar-right" role="search" action="/search">
+                                {!! csrf_field() !!}
+                                <div class="form-group input-group">
+                                    <input type="text" class="form-control" name="in_search" placeholder="Search..">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                    </span>
+                                </div>
+                            </form>
+                            <ul class="nav navbar-nav navbar-right">
+{{--                                @if(!is_null($user))
+                                    <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+                                    <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
+                                @else--}}
+                                    <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                    <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
+                                {{--@endif--}}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
-        </nav>
-        </div>
         </div>
 
         <!-- Modal -->
@@ -270,7 +272,7 @@
                                 <button type="submit" class="btn btn-default">Login</button>
                             </div>
                         </form>
-                        {{--<a href="/register_page"><button type="button" class="btn btn-default" data-dismiss="modal">Sign Up</button></a>--}}
+                        <a href="/register_page"><button type="button" class="btn btn-default" data-dismiss="modal">Sign Up</button></a>
                     </div>
                 </div>
             </div>

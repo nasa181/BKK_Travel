@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-offset-2 col-md-8 well" style="background: #337ab7;border-radius: 5px;border: dashed whitesmoke;">
             <div class=" text-center"><h2>Create review on {{$title}}</h2></div>
-            <form action="/page_travel/post_review" method="post" enctype="multipart/form-data">
+            <form action="/page_travel/post_review" method="post">
                 <input type="hidden" value = "{{$item_id}}" id="hidden_value" name="hidden_value">
                 <div class="row  col-md-offset-1 col-md-10  form-group" style="margin-bottom: 0px;text-align: right;margin-top: 15px">
                     <p>Review id : {{$review_id}}</p>

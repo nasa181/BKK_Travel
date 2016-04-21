@@ -19,27 +19,28 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManager;
 
 
 class web_controller extends Controller
 {
 
-    function start_page(){
+    public function start_page(){
         $event = DB::table('item')
-            //->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('event','item.item_id','=','event.link_item_id')
             ->join('location','item.item_id','=','location.link_item_id')
             ->take(5)
             ->get();
         $attraction = DB::table('item')
-            //->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('attraction','item.item_id','=','attraction.link_item_id')
             ->join('location','item.item_id','=','location.link_item_id')
             ->take(5)
             ->get();
         $restaurant = DB::table('item')
-            //->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('restaurant','item.item_id','=','restaurant.link_item_id')
             ->join('location','item.item_id','=','location.link_item_id')
             ->take(5)
@@ -69,7 +70,7 @@ class web_controller extends Controller
         $attraction = DB::table('attraction')
             ->join('item','attraction.link_item_id','=','item.item_id')
             ->leftjoin('location','item.item_id','=','location.location_id')
-            //->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->skip(20*($page-1))
             ->take(20)
             ->get();
@@ -83,7 +84,7 @@ class web_controller extends Controller
         $restaurant = DB::table('restaurant')
             ->join('item','restaurant.link_item_id','=','item.item_id')
             ->leftjoin('location','item.item_id','=','location.location_id')
-            //->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->skip(20*($page-1))
             ->take(20)
             ->get();
@@ -128,13 +129,16 @@ class web_controller extends Controller
 
 //====================================================== user ==========================================================
     function register_page(){
+
+        $cannot = Session::get('not_success');
+
         $user = Auth::user();
         if (Auth::check()) {
             $user = Auth::user();
             return redirect('/',['user'=>$user]);
         }
         else{
-            return view('registor',['user'=>$user]);
+            return view('registor',['user'=>$user,'cannot'=>$cannot]);
         }
 
     }
@@ -142,10 +146,10 @@ class web_controller extends Controller
         $email = $request->in_new_email;
         $password = $request->in_new_password;
 //        if($pass != $confirm_pass) return redirect('createNewUser');
-        if(Auth::attempt(array('email' => $email))) return redirect();
+        if(Auth::attempt(array('email' => $email, 'password' => $password))) return view('registor',['cannot'=>true]);
         $user = new User();
         $user->email = $email;
-        $user->password = $password;
+        $user->password = bcrypt($password);
         $user->Fname = $request->in_Fname;
         $user->Lname = $request->in_Lname;
         $user->birthday = $request->in_birthday;
@@ -153,7 +157,7 @@ class web_controller extends Controller
         $user->nationality = $request->country;
         $user->type = $request->in_type;
         $user->save();
-        return redirect();
+        return Redirect::back('/');
     }
     function login(Request $request){
         $email = $request->in_email;
@@ -163,7 +167,7 @@ class web_controller extends Controller
             Session::put('user',Auth::user());
             return Redirect::to('/page_travel/info/3467');
         }
-        return redirect()->with('not_success',true);
+        return Redirect::back();
     }
     function viewProfile(){
         if (Auth::check()) {
@@ -250,7 +254,14 @@ class web_controller extends Controller
         $item = new Item();
         $attraction = new Attraction();
         $location = new Location();
-        $photo = new PhotoGallery();
+        $photo = new PhotoGallery()
+
+        ;
+        $item->item_id = $id_tmp;
+        $item->title = $request->in_new_title;
+        $item->description = $request->in_new_description;
+        $item->tel = $request->in_new_tel;
+        $item->save();
         /*---------------------upload_picture-----------------------*/
         $file = Input::file('profile_picture');
         if($file !=null) {
@@ -258,21 +269,17 @@ class web_controller extends Controller
             $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
             Input::file('profile_picture')->move($destinationPath, $filename);
             $num_photo = (DB::table('photo_gallery')->count());
-            $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo-1)->first()->photo_id ) +1;
+//            $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo-1)->first()->photo_id ) +1;
             $photo->link_item_id = $id_tmp;
             $photo->photo_url = '/' . $destinationPath . $filename;
             $item->title_picture = $photo->photo_url;
             $photo->save();
         }
         /*---------------------------------------------------------*/
-        $item->item_id = $id_tmp;
-        $item->title = $request->in_new_title;
-        $item->description = $request->in_new_description;
-        $item->tel = $request->in_new_tel;
 
         $attraction->attraction_type = $request->in_new_type;
         $attraction->activity = $request->in_new_activity;
-        $attraction->entrance_fee = 1;
+        $attraction->entrance_fee = $request->in_new_entrancefee;
         $attraction->oc_time = $request->in_new_oc_time;
         $attraction->parking = $request->in_new_parking;
         $attraction->website_url = $request->in_new_web_url;
@@ -289,7 +296,7 @@ class web_controller extends Controller
         $location->long = $request->in_new_lng;
         $location->link_item_id = $id_tmp;
 
-        $item->save();
+
         $location->save();
         $attraction->save();
         return redirect('/page_travel/info/' . $id_tmp);
@@ -308,6 +315,13 @@ class web_controller extends Controller
         $restaurant = new Restaurant();
         $location = new Location();
         $photo = new PhotoGallery();
+
+        $item->item_id = $id_tmp;
+        $item->title = $request->in_new_title;
+        $item->description = $request->in_new_description;
+        $item->tel = $request->in_new_tel;
+        $item->save();
+        
         /*---------------------upload_picture-----------------------*/
         $file = Input::file('profile_picture');
         if($file !=null) {
@@ -322,10 +336,7 @@ class web_controller extends Controller
             $photo->save();
         }
         /*---------------------------------------------------------*/
-        $item->item_id = $id_tmp;
-        $item->title = $request->in_new_title;
-        $item->description = $request->in_new_description;
-        $item->tel = $request->in_new_tel;
+
 
         $restaurant->price_range = $request->in_new_price_range;
         $restaurant->food_type = $request->in_new_food_type;
@@ -347,7 +358,7 @@ class web_controller extends Controller
         $location->long = $request->in_new_lng;
         $location->link_item_id = $id_tmp;
 
-        $item->save();
+
         $location->save();
         $restaurant->save();
         return redirect('/page_restaurant/info/' . $id_tmp);
@@ -364,6 +375,13 @@ class web_controller extends Controller
         $event = new Event();
         $location = new Location();
         $photo = new PhotoGallery();
+
+        $item->item_id = $id_tmp;
+        $item->title = $request->in_new_title;
+        $item->description = $request->in_new_description;
+        $item->tel = $request->in_new_tel;
+        $item->save();
+
         /*---------------------upload_picture----------------------*/
         $extension = Input::file('profile_picture')->getClientOriginalExtension(); // getting image extension
         $fileName = time().'.'.$extension; // renameing image
@@ -372,10 +390,7 @@ class web_controller extends Controller
         $photo->link_item_id = $id_tmp;
         $photo->photo_url = $path;
         /*---------------------------------------------------------*/
-        $item->item_id = $id_tmp;
-        $item->title = $request->in_new_title;
-        $item->description = $request->in_new_description;
-        $item->tel = $request->in_new_tel;
+
 
         $event->start_date = $request->in_new_start_date;
         $event->end_date = $request->in_new_end_date;
@@ -396,7 +411,7 @@ class web_controller extends Controller
         $location->lng = $request->in_new_lng;
         $location->link_item_id = $id_tmp;
 
-        $item->save();
+
         $location->save();
         $event->save();
         $photo->save();

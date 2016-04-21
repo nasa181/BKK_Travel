@@ -1,9 +1,15 @@
 @extends('master')
 @section('center_page')
+    @if(isset($cannot))
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> Your email has been used.
+        </div>
+    @endif
     <div class=" row col-md-offset-3 col-md-6 well" style="background: #337ab7;border-radius: 5px;border: dashed whitesmoke;">
         <div class="row col-xs-12 text-center">
             <div class="head-title"> Create new user</div>
         </div>
+
         <form method="post" action="/register/input">
             <div class="row form-group ">
                 <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>

@@ -6,14 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+        <!--  jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <!--  jQuery -->
-        {{--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>--}}
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
         <!-- Bootstrap Date-Picker Plugin -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
         <!-- font -->
@@ -231,13 +234,13 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-{{--                        @if(!is_null($user))
-                            <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
-                            <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
-                        @else
-                            <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        {{--@if(!is_null($user))--}}
+                            {{--<li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>--}}
+                            {{--<li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>--}}
+                        {{--@else--}}
+                            <li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
-                        @endif--}}
+                        {{--@endif--}}
                     </ul>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>

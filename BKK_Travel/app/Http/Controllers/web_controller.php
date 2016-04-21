@@ -9,9 +9,9 @@ use App\Location;
 use App\PhotoGallery;
 use App\Restaurant;
 use App\Review;
+use App\User;
 use Faker\Provider\Image;
-use Illuminate\Foundation\Auth\User;
-use Illuminate\Http\Request;
+
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -19,13 +19,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManager;
 
-
+use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
+use  \Illuminate\Session\Middleware\StartSession;
 class web_controller extends Controller
 {
 
     function start_page(){
+
         $event = DB::table('item')
             //->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('event','item.item_id','=','event.link_item_id')
@@ -50,7 +54,12 @@ class web_controller extends Controller
             ->skip($count_review)
             ->take(6)
             ->get();
-        return view('welcome',['restaurant'=> $restaurant,'attraction' => $attraction,'event'=> $event,'review'=>$review]);
+        $user = array();
+        for($i=0;$i<sizeof($review);$i++){
+            $Auser = DB::table('users')->where('user_id',$review[$i]->link_user_id)->first();
+            array_push($user,$Auser);
+        };
+        return view('welcome',['restaurant'=> $restaurant,'attraction' => $attraction,'event'=> $event,'review'=>$review,'user'=>$user]);
     }
 
     function auto_redirect($id){
@@ -98,19 +107,25 @@ class web_controller extends Controller
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
         $review = DB::table('review')->where('link_item_id',$id)->get();
         $location = DB::table('location')->where('link_item_id',$id)->first();
-        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
+        $user = array();
+        foreach($review as $rev){
+            $Auser = DB::table('users')->where('user_id',$rev->link_user_id)->first();
+            array_push($user,$Auser);
+        }
+        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
     }
     function attr_info($id){
-        /*$user = Auth::user();
-        if (Auth::check()) {
-            $user = Auth::user();
-        }*/
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
         $review = DB::table('review')->where('link_item_id',$id)->get();
         $location = DB::table('location')->where('link_item_id',$id)->first();
-        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location]);
+        $user = array();
+        foreach($review as $rev){
+            $Auser = DB::table('users')->where('user_id',$rev->link_user_id)->first();
+            array_push($user,$Auser);
+        }
+        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
     }
     function event_info($id){
         $event = DB::table('event')->where('link_item_id',$id)->first();
@@ -128,24 +143,24 @@ class web_controller extends Controller
 
 //====================================================== user ==========================================================
     function register_page(){
-        $user = Auth::user();
-        if (Auth::check()) {
-            $user = Auth::user();
-            return redirect('/',['user'=>$user]);
-        }
-        else{
-            return view('registor',['user'=>$user]);
-        }
-
+            return view('registor');
     }
     function register(Request $request){
         $email = $request->in_new_email;
         $password = $request->in_new_password;
-//        if($pass != $confirm_pass) return redirect('createNewUser');
-        if(Auth::attempt(array('email' => $email))) return redirect();
+        $password2 = $request->in_new_repassword;
+        if($password!=$password2) return "The password must consistency.";
+        if(DB::table('users')->where('email',$email)->count() >=1){
+            return "This email is already exit.";
+        }
+        $last_id = 0;
+        if ( ($count = DB::table('users')->count()) != 0 ){
+            $last_id =  DB::table('users')->skip($count -1)->first()->user_id;
+        }
         $user = new User();
+        $user->user_id = $last_id+1;
         $user->email = $email;
-        $user->password = $password;
+        $user->password = sha1($password);
         $user->Fname = $request->in_Fname;
         $user->Lname = $request->in_Lname;
         $user->birthday = $request->in_birthday;
@@ -153,17 +168,27 @@ class web_controller extends Controller
         $user->nationality = $request->country;
         $user->type = $request->in_type;
         $user->save();
-        return redirect();
+        Session::put('user',[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id]);
+        return redirect('/');
+    }
+    function logout(){
+        Session::put('user',null);
+        return Redirect::to('/');
     }
     function login(Request $request){
         $email = $request->in_email;
         $password = $request->in_password;
-
-        if (Auth::attempt(['email' => $email, 'password' => $password])){
-            Session::put('user',Auth::user());
-            return Redirect::to('/page_travel/info/3467');
+        $password = sha1($password);
+        $num  = DB::table('users')->where('email',$email)->where('password',$password)->count();
+        if ($num>=1){
+            $user = DB::table('users')->where('email',$email)->where('password',$password)->first();
+            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id];
+            Session::put('user',$arr);
+            return Redirect::back();
         }
-        return redirect()->with('not_success',true);
+        else{
+            return "Wrong Email or Password.";
+        }
     }
     function viewProfile(){
         if (Auth::check()) {
@@ -192,12 +217,6 @@ class web_controller extends Controller
         return view('review',['item_id'=>$item_id,'title'=>$title,'review_id'=>$last_id+1]);
     }
     function postReviewTravel(Request $request){
- /*       if (Auth::check()) {
-            $user = Auth::user();
-        }
-        else{
-            return redirect();
-        }*/
         $review = new Review();
         $photo = new PhotoGallery();
         //-----------------------upload image-----------------------//
@@ -220,11 +239,11 @@ class web_controller extends Controller
         $review->title = $request->title;
         $review->content = $request->description;
         $review->link_item_id = $request->hidden_value;
-        $review->link_user_id = 1;
+        $review->link_user_id = $request->user_id;
         $review->save();
         $photo->save();
         $isAttracionReview = DB::table('item')->where('item_id',$request->hidden_value)->join('attraction','item.item_id','=','attraction.link_item_id')->count();
-        if($isAttracionReview==1) return redirect('/page_travel/info/'.$request->hidden_value);  //,['user'=>$user]
+        if($isAttracionReview==1) return redirect('/page_travel/info/'.$request->hidden_value);  
         else return redirect('/page_restaurant/info/'. $request->hidden_value);
     }
     function remove_review(Request $request){

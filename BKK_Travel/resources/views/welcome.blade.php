@@ -148,6 +148,7 @@
                 $op = 0.2;
                 $colora = ['rgba(247,129,129,'.$op.')','rgba(245,218,129,'.$op.')','rgba(243,247,129,'.$op.')','rgba(159,247,129,'.$op.')','rgba(129,129,247,'.$op.')','rgba(190,129,247,'.$op.')'];
                 $idx =0;
+                $k=0;
             ?>
             @for($i=sizeof($review)-1; $i>=0 ;$i--)
                 <?php
@@ -162,7 +163,7 @@
                             </form>
                         </div>
                         <div class="col-md-12">
-                            <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{$review[$i]->title}}</span></h3> </a>
+                            <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{$review[$k]->title}}</span></h3> </a>
                         </div>
                         <div class="col-md-8 height-adjust" style="">
                             <div>
@@ -173,7 +174,7 @@
                             <h4>คะแนนเฉลี่ย : 5/5</h4>
                         </div>
                         <div class="col-md-12 left-right" style="margin-top: 10px">
-                            <span>Reviewed by : ท่านผู้นั้น</span>
+                            <span>Reviewed by : <span style="font-size: 18px">{{$user[$i]->Fname}}</span></span>
                         </div>
                         <div class="col-md-12"> <hr> </div>
                         <div class="col-md-6 left-right" style="margin-top: 0px">
@@ -189,6 +190,7 @@
                     </div>
                 </div>
                 <?php
+                    $k++;
                     $idx++;
                     if ($idx > 5) $idx=0;
                 ?>

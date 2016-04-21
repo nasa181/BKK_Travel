@@ -230,7 +230,6 @@
                                 <li><a href="#">Event</a></li>
                             </ul>
                             <form class="navbar-form navbar-right" role="search" action="/search">
-                                {!! csrf_field() !!}
                                 <div class="form-group input-group">
                                     <input type="text" class="form-control" name="in_search" placeholder="Search..">
                                     <span class="input-group-btn">
@@ -239,13 +238,17 @@
                                 </div>
                             </form>
                             <ul class="nav navbar-nav navbar-right">
-{{--                                @if(!is_null($user))
-                                    <li><a href="/view_profile" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Account</a></li>
-                                    <li><a href="/logout"><span class="glyphicon"></span> Logout</a></li>
-                                @else--}}
-                                    <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                                    <li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>
-                                {{--@endif--}}
+                                        <?php
+                                            $user = Session::get('user');
+                                            if(isset($user)){
+                                                echo '<li><a href="#"><span id="profile" style="color:#ff6666">Welcome  '.$user[1].'</span></a></li>';
+                                                echo '<li><a href="/logout" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>';
+                                            }
+                                            else {
+                                                echo '<li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+                                                echo '<li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>';
+                                            }
+                                        ?>
                             </ul>
                         </div>
                     </div>
@@ -265,14 +268,13 @@
                     <div class="modal-body">
                         <form method="post" action="/login">
                             <p>Email</p>
-                            <input type="text" class="form-control" name="in_email" placeholder="Email..">
+                            <input id="email" type="text" class="form-control" name="in_email" placeholder="Email..">
                             <p>Password</p>
-                            <input type="password" class="form-control" name="in_password" placeholder="Password..">
+                            <input id="password" type="password" class="form-control" name="in_password" placeholder="Password..">
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-default">Login</button>
+                                <button id="login" type="submit" class="btn btn-default">Login</button>
                             </div>
                         </form>
-                        <a href="/register_page"><button type="button" class="btn btn-default" data-dismiss="modal">Sign Up</button></a>
                     </div>
                 </div>
             </div>
@@ -315,13 +317,31 @@
     </div>
 
     <script>
-        $("input").keypress(function(event) {
-            if (event.which == 13) {
-                event.preventDefault();
-                $("form").submit();
-            }
-        });
+        $(function(){
 
+        });
+        function logout(){
+            post('/logout',null,"get");
+        };
+        function post(path, params, method) {
+            method = method || "post"; // Set method to post by default if not specified.
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+            for(var key in params) {
+                if(params.hasOwnProperty(key)) {
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", key);
+                    hiddenField.setAttribute("value", params[key]);
+                    form.appendChild(hiddenField);
+                }
+            }
+            document.body.appendChild(form);
+            form.submit();
+        };
     </script>
 
     </body>

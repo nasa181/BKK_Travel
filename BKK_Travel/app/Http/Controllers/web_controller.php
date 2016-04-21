@@ -272,7 +272,7 @@ class web_controller extends Controller
 
         $attraction->attraction_type = $request->in_new_type;
         $attraction->activity = $request->in_new_activity;
-        $attraction->entrance_fee = in_new_entrancefee;
+        $attraction->entrance_fee = 1;
         $attraction->oc_time = $request->in_new_oc_time;
         $attraction->parking = $request->in_new_parking;
         $attraction->website_url = $request->in_new_web_url;

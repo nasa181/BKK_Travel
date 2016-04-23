@@ -307,7 +307,7 @@
     <script>
         $("#email").css('placeholder',"ess")
         @if(isset($current_user))
-
+            ทดสอบ
             $("#password").val({{$current_user[7]}});
             $("#confirm_pasword").val({{$current_user[7]}});
             $("#fname").val({{$current_user[1]}});

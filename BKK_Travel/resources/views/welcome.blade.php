@@ -66,7 +66,7 @@
             </div>
 
             @foreach($attraction as $attr)
-            <div class="row item_description " style="margin:10px 0px;background: green;height: 120px;background: url('{{$attr->photo_url}}') center ;background-size:cover ">
+            <div class="row item_description " style="overflow:hidden;margin:10px 0px;background: green;height: 120px;background: url({{$attr->title_picture}}) center ;background-size:cover ">
                 <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
                     <div class="row">
                         <div class="col-xs-12">
@@ -93,7 +93,7 @@
             </div>
 
             @foreach($restaurant as $res)
-                <div  class="row item_description" style="margin:10px 0px;background: green;height: 120px;overflow:hidden;background: url('{{$res->photo_url}}') center ;background-size:cover ">
+                <div  class="row item_description" style="overflow:hidden;margin:10px 0px;background: green;height: 120px;overflow:hidden;background: url({{$res->title_picture}}) center ;background-size:cover ">
                     <div class="col-md-12 col-xs-12" style=" text-shadow: 1px 1px black;">
                         <div class="row">
                             <div class="col-xs-12">

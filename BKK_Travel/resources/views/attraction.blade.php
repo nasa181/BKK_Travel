@@ -10,7 +10,6 @@
     <div class="row">
         <div class="col-md-6">
             <?php
-                //echo var_dump($attraction);
                 $attraction1 = array();
                 $attraction2 = array();
                 for($i=0;$i<=intval(sizeof($attraction)/2);$i++){

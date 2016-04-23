@@ -1,14 +1,6 @@
 @extends('master')
 @section('center_page')
-    <?php
-    use Illuminate\Support\Facades\Auth;
-        if (Auth::check()) {
-            print_r($user);
-        } else {
-            echo "<h5>you're using as guest , please login.</h5>";
-            echo '<div class="row"> <div class="col-xs-12"><hr></div></div>';
-        }
-    ?>
+    <?php $current_user=Session::get('user'); ?>
     {{--article-section--}}
     <div class="row" >
         <div class="col-xs-12" style="background: none">
@@ -152,41 +144,69 @@
             ?>
             @for($i=sizeof($review)-1; $i>=0 ;$i--)
                 <?php
-                    $text1 = mb_substr($review[$i]->content,0,350);
+                    $text1 = mb_substr($review[$i]->content,0,250);
                 ?>
-                <div class="" style="color: white;margin: 15px 0px;">
+                <div id="review_id{{$review[$i]->review_id}}" class="" style="color: white;margin: 15px 0px;">
                     <div class="col-md-6 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
-                        <div class="col-md-12" style="text-align: right;margin-top: 5px">
-                            <form id="delete_form" method="post" action="/remove_review">
-                                <input type="hidden" value="{{$review[$i]->review_id}}" name="review_id">
-                                <button type="button" class="btn-danger btn" onclick="run(this)">remove</button>
-                            </form>
-                        </div>
+                        @if(isset($current_user))
+                            @if($current_user[4]=="Admin")
+                            <div class="col-md-12" style="text-align: right;margin-top: 5px">
+                                <form id="delete_form" method="post" action="/remove_review">
+                                    <input type="hidden" value="{{$review[$i]->review_id}}" name="review_id">
+                                    <button type="button" class="btn-danger btn" onclick="run(this)">remove</button>
+                                </form>
+                            </div>
+                            @endif
+                        @endif
                         <div class="col-md-12">
                             <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{$review[$k]->title}}</span></h3> </a>
                         </div>
-                        <div class="col-md-8 height-adjust" style="">
-                            <div>
-                                <div>" {!!$text1!!} "</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" style="margin: 30px 0px;">
-                            <h4>คะแนนเฉลี่ย : 5/5</h4>
+                        <div class="col-md-8 height-adjust" style="text-overflow: ellipsis; word-wrap: break-word;">
+                                <p>"{!!$text1!!}..."</p>
                         </div>
                         <div class="col-md-12 left-right" style="margin-top: 10px">
                             <span>Reviewed by : <span style="font-size: 18px">{{$user[$i]->Fname}}</span></span>
                         </div>
                         <div class="col-md-12"> <hr> </div>
+                        <?php
+                        $like_count=0;$dislike_count=0;
+                        foreach($likes as $like){
+                            if($like->review_id==$review[$i]->review_id) ($like->likeOrDislike==1) ? $like_count++ : $dislike_count++ ;
+                        }
+                        ?>
                         <div class="col-md-6 left-right" style="margin-top: 0px">
-                            <span>Like : 50 </span><span>Dislike : 50 </span><br>
+                            <span>Like : {{$like_count}} </span><span>Dislike : {{$dislike_count}} </span>
                         </div>
-                        <div class="col-md-6 " style="height: 110px;text-align: right">
+                        <div class="col-md-6" style="text-align: right;font-size: 30px">
                             <?php
-                            if ($review[$i]->title_picture!=null){
-                                echo '<img src="'. $review[$i]->title_picture .'" style="height: 100px">';
+                            $colorLike = "color:white";
+                            $colorDislike ="color:white";
+                            if(isset($current_user[8])){
+                                foreach($current_user[8] as $use){
+                                    if($review[$i]->review_id == $use->review_id){
+                                        if($use->likeOrDislike==1){
+                                            $colorLike="color:#4cae4c";
+                                        }
+                                        else $colorDislike="color:#d62728";
+                                    }
+                                }
                             }
                             ?>
+                            <span id="like_button" onclick="addLike({{$review[$i]->review_id}})" id="like" class="glyphicon glyphicon-thumbs-up" style="{{$colorLike}}"></span>
+                            <span id="dislike_button" onclick="addDislike({{$review[$i]->review_id}})" id="dislike" class="glyphicon glyphicon-thumbs-down" style="{{$colorDislike}}" ></span>
                         </div>
+                        <?php
+                            if ($review[$i]->title_picture!=null){
+                                echo ('
+                                        <div class="col-md-12 " style="height: 110px;text-align: left">
+                                            <img src="'. $review[$i]->title_picture .'" style="height: 100px">
+                                        </div>
+                                    ');
+                            }
+                        ?>
+
+
+
                     </div>
                 </div>
                 <?php
@@ -197,12 +217,61 @@
             @endfor
         </div>
     </div>
+    <input type="hidden" id="login_button" href="#loginModal" data-toggle="modal" data-target="#loginModal">
     <script>
         function run(e){
             if (confirm("Click OK to confirm deleted?")){
                 $(e).parent().submit();
             }
         };
+        function addLike(e){
+            @if( isset($current_user) )
+            sessionStorage.setItem('lastReview',e);
+            post('/setLikeDislike',{likeOrDislike:1,review_id:e},'post');
+            @else
+            $('#login_button').click();
+            @endif
+        }
+        function addDislike(e){
+            @if( isset($current_user) )
+            sessionStorage.setItem('lastReview',e);
+            post('/setLikeDislike',{likeOrDislike:0,review_id:e},'post');
+            @else
+            $('#login_button').click();
+            @endif
+        }
+        if(sessionStorage.getItem('lastReview')!=null){
+            scrollToID('#review_id' +sessionStorage.getItem('lastReview')+'');
+            sessionStorage.setItem('lastReview',null);
+        }
+        function scrollToID(e){
+            $('html, body').animate({
+                scrollTop: $(e).offset().top
+            },0);
+        }
+        function post(path, params, method) {
+            method = method || "post"; // Set method to post by default if not specified.
+
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+
+            for(var key in params){
+                if(params.hasOwnProperty(key)) {
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", key);
+                    hiddenField.setAttribute("value", params[key]);
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
     </script>
 
 @stop

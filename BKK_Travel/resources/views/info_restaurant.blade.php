@@ -147,7 +147,7 @@
                             <h3 class="" style=""><span>{{$rev->title}}</span></h3>
                         </div>
                         <div class="col-md-9">
-                            <div>
+                            <div style="text-overflow: ellipsis; word-wrap: break-word;">
                                 <div>{!!$text1!!}</div>
                                 <div class="left-right"><a  id="flip" onclick="show(this)">{{$readmore}}</a></div>
                                 <div id="panel">{!!$text2!!}</div>

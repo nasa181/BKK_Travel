@@ -41,13 +41,13 @@ Route::group(['middleware' => ['web']], function () {
 
 
 //=========== about user (profile, login, logout, register) =========
-    Route::get('/view_profile','web_controller@viewProfile');
+    Route::get('/view_profile/{id}','web_controller@viewProfile');
     Route::post('/login','web_controller@login');
     Route::get('/register_page','web_controller@register_page');
     Route::post('/register/input','web_controller@register');
     Route::get('/logout','web_controller@logout');
-
-
+    Route::get('/relogin','web_controller@reLogin');
+    Route::post('/update_profile','web_controller@update_profile_page');
 //========== adding new item ===========
     Route::get('/page_restaurant/create_new_restaurant','web_controller@createNewRestaurant');
     Route::get('/page_attraction/create_new_attraction','web_controller@createNewAttraction');//
@@ -61,7 +61,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/search','web_controller@search');
     Route::post('/page_travel/post_review','web_controller@postReviewTravel');
     Route::post('/remove_review','web_controller@remove_review');
-
-
-
+//=========== Rating / like-dislike =========
+    Route::post('/updateRating','web_controller@updateRating');
+    Route::post('/setLikeDislike','web_controller@setLikeDislike');
 });

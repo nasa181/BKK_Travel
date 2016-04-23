@@ -10,6 +10,8 @@ use App\PhotoGallery;
 use App\Restaurant;
 use App\Review;
 use App\User;
+use App\Rating;
+use App\Like;
 use Faker\Provider\Image;
 
 
@@ -29,7 +31,6 @@ class web_controller extends Controller
 {
 
     function start_page(){
-
         $event = DB::table('item')
             //->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('event','item.item_id','=','event.link_item_id')
@@ -59,7 +60,10 @@ class web_controller extends Controller
             $Auser = DB::table('users')->where('user_id',$review[$i]->link_user_id)->first();
             array_push($user,$Auser);
         };
-        return view('welcome',['restaurant'=> $restaurant,'attraction' => $attraction,'event'=> $event,'review'=>$review,'user'=>$user]);
+        $likes = Like::join('review','review.review_id','=','like_relation.review_id')
+            ->select('review.review_id','likeOrDislike')
+            ->get();
+        return view('welcome',['restaurant'=> $restaurant,'attraction' => $attraction,'event'=> $event,'review'=>$review,'user'=>$user,'likes'=>$likes]);
     }
 
     function auto_redirect($id){
@@ -120,12 +124,56 @@ class web_controller extends Controller
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
         $review = DB::table('review')->where('link_item_id',$id)->get();
         $location = DB::table('location')->where('link_item_id',$id)->first();
+        $ratings = DB::table('rating_relation')->where('item_id',$id)->get();
+        $likes = Like::join('review','review.review_id','=','like_relation.review_id')
+                    ->where('link_item_id',$item->item_id)
+                    ->select('review.review_id','likeOrDislike')
+                    ->get();
+        /*find avg_rating*/
+        $avg_rating = 0.0;
+        $i=0;
+        foreach($ratings as $rat){
+            $i++;
+            $avg_rating = $avg_rating + $rat->rating;
+        }
+        if($i!=0) $avg_rating = $avg_rating/$i;
         $user = array();
         foreach($review as $rev){
             $Auser = DB::table('users')->where('user_id',$rev->link_user_id)->first();
             array_push($user,$Auser);
         }
-        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
+        return view('info_attr',['attr'=>$attr,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,
+            'user'=>$user,'avg_rating'=>$avg_rating,'rating_count'=>$i,'likes'=>$likes]);
+    }
+    function updateRating(Request $request){
+        if(Rating::where('user_id',$request->user_id)->where('item_id',$request->item_id)->exists()){
+            Rating::where('user_id',$request->user_id)->where('item_id',$request->item_id)->update(['rating'=>$request->rating]);
+        }
+        else{
+            $rating_relation = new Rating();
+            $rating_relation->user_id = $request->user_id;
+            $rating_relation->item_id = $request->item_id;
+            $rating_relation->rating = $request->rating;
+            $rating_relation->save();
+        }
+        return redirect('/relogin');
+    }
+    function setLikeDislike(Request $request){
+        $user = Session::get('user');
+        if(! isset($user) ){
+            return Redirect::back();
+        }
+        if( Like::where('user_id',$user[5])->where('review_id',$request->review_id)->exists()){
+            Like::where('user_id',$user[5])->where('review_id',$request->review_id)->update(['likeOrDislike'=>$request->likeOrDislike]);
+        }
+        else{
+            $likes = new Like();
+            $likes->user_id = $user[5];
+            $likes->review_id = $request->review_id;
+            $likes->likeOrDislike = $request->likeOrDislike;
+            $likes->save();
+        }
+        return redirect('/relogin');
     }
     function event_info($id){
         $event = DB::table('event')->where('link_item_id',$id)->first();
@@ -168,7 +216,7 @@ class web_controller extends Controller
         $user->nationality = $request->country;
         $user->type = $request->in_type;
         $user->save();
-        Session::put('user',[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id]);
+        Session::put('user',[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,null,$user->password],null);
         return redirect('/');
     }
     function logout(){
@@ -182,7 +230,17 @@ class web_controller extends Controller
         $num  = DB::table('users')->where('email',$email)->where('password',$password)->count();
         if ($num>=1){
             $user = DB::table('users')->where('email',$email)->where('password',$password)->first();
-            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id];
+            $ratings = DB::table('rating_relation')
+                ->join('users','users.user_id','=','rating_relation.user_id')
+                ->select('rating','item_id')
+                ->where('users.user_id',$user->user_id)
+                ->get();
+            $likes = DB::table('like_relation')
+                ->join('users','users.user_id','=','like_relation.user_id')
+                ->select('likeOrDislike','review_id')
+                ->where('users.user_id',$user->user_id)
+                ->get();
+            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes];
             Session::put('user',$arr);
             return Redirect::back();
         }
@@ -190,24 +248,38 @@ class web_controller extends Controller
             return "Wrong Email or Password.";
         }
     }
-    function viewProfile(){
-        if (Auth::check()) {
-            $user = Auth::user();
-            return view('profile',['user'=>$user]);
+    function reLogin(){
+        $temp = Session::get('user');
+        if($temp!=null){
+            $email = $temp[0];
+            $password = $temp[7];
+            /*$password = sha1($password);*/
+            $num  = DB::table('users')->where('email',$email)->where('password',$password)->count();
+            if ($num>=1){
+                $user = DB::table('users')->where('email',$email)->where('password',$password)->first();
+                $ratings = DB::table('rating_relation')
+                    ->join('users','users.user_id','=','rating_relation.user_id')
+                    ->select('rating','item_id')
+                    ->where('users.user_id',$user->user_id)
+                    ->get();
+                $likes = DB::table('like_relation')
+                    ->join('users','users.user_id','=','like_relation.user_id')
+                    ->select('likeOrDislike','review_id')
+                    ->where('users.user_id',$user->user_id)
+                    ->get();
+                $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes];
+                Session::put('user',$arr);
+            }
         }
-        else{
-            return redirect();
-        }
+        return Redirect::back();
     }
-    /*function createReview($id){
-        if (Auth::check()) {
-            $user = Auth::user();
-            return view('review',['id'=>$id,'user'=>$user]);
-        }
-        else{
-            return redirect();
-        }
-    }*/
+    
+    function viewProfile($id){
+        $user = User::where('user_id',$id)->first();
+        $review = Review::where('link_user_id',$id)->get();
+        return view('profile',['user'=>$user,'review'=>$review]);
+    }
+    
     function createReview($item_id){
         $title = DB::table('item')->where('item_id',$item_id)->first()->title;
         $last_id = 0;
@@ -250,12 +322,9 @@ class web_controller extends Controller
         DB::table('review')
             ->where('review_id',$request->review_id)
             ->delete();
-        //echo $test;
-        return back();
+        return Redirect::back();
     }
-
-
-
+    
 //======================================    adding new item   ====================================================
     function addAttraction(Request $request){
         //if (Auth::check()) {

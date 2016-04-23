@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <title>BKKTravel-Beta</title>
@@ -91,10 +92,10 @@
             }
             @media only screen  {
                 .image-size{
-                    height: 230px;
+                    min-height: 230px;
                 }
                 .image-size-half{
-                    height: 115px;
+                    min-height: 115px;
                 }
                 .head-title{
                     font-size: 180%;
@@ -105,6 +106,12 @@
                 }
                 .padding{
                     padding: 5px;
+                }
+                .image-size-2{
+                    min-height: 100px;
+                }
+                #address_box{
+                     padding: 10px 5px;
                 }
             }
             @media only screen and (min-width : 992px) {
@@ -118,15 +125,21 @@
                     margin: 10px 30px;
                 }
                 .image-size{
-                    height: 380px;
+                    min-height: 380px;
                 }
                 .image-size-half{
-                    height: 190px;
+                    min-height: 190px;
                 }
                 .head-title{
                     font-size: 340%;
                     text-align: left;
 
+                }
+                .image-size-2{
+                    min-height: 180px;
+                }
+                #address_box{
+                    padding: 40px 20px;
                 }
             }
             .info-background {
@@ -173,6 +186,10 @@
                     height: 130px;
                 }
             }
+            /*-------------profile-page-------------*/
+            tbody tr:hover {
+                background-color: #2e3436;
+            }
             /*----------------------------------*/
             html, body {
                 height: 100%;
@@ -204,6 +221,9 @@
                 font-family: "Times New Roman", Times, serif;
                 color: white;
 
+            }
+            .glyphicon:hover{
+                cursor: pointer;
             }
 
         </style>
@@ -238,17 +258,17 @@
                                 </div>
                             </form>
                             <ul class="nav navbar-nav navbar-right">
-                                        <?php
-                                            $user = Session::get('user');
-                                            if(isset($user)){
-                                                echo '<li><a href="#"><span id="profile" style="color:#ff6666">Welcome  '.$user[1].'</span></a></li>';
-                                                echo '<li><a href="/logout" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>';
-                                            }
-                                            else {
-                                                echo '<li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
-                                                echo '<li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>';
-                                            }
-                                        ?>
+                                <?php
+                                    $user = Session::get('user');
+                                    if(isset($user)){
+                                        echo '<li><a href="#"><span id="profile" style="color:#ff6666">Welcome  '.$user[1].'</span></a></li>';
+                                        echo '<li><a href="/logout" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>';
+                                    }
+                                    else {
+                                        echo '<li><a href="#loginModal" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+                                        echo '<li><a href="/register_page"><span class="glyphicon"></span> Sign Up</a></li>';
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>

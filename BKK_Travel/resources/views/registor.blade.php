@@ -1,29 +1,30 @@
 @extends('master')
 @section('center_page')
+    <?php $current_user=Session::get('user') ?>
     <div class=" row col-md-offset-3 col-md-6 well" style="background: #337ab7;border-radius: 5px;border: dashed whitesmoke;">
         <div class="row col-xs-12 text-center">
             <div class="head-title"> Create new user</div>
         </div>
         <form method="post" action="/register/input">
             <div class="row form-group ">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input id="email" type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Password</label><input type="text" class="form-control" name="in_new_password" placeholder="Password.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Password</label><input id="password" type="text" class="form-control" name="in_new_password" placeholder="Password.."></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Confirm Password</label><input type="text" class="form-control" name="in_new_repassword" placeholder="Confirm Password.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Confirm Password</label><input id="confirm_password" type="text" class="form-control" name="in_new_repassword" placeholder="Confirm Password.."></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>First Name</label><input type="text" class="form-control" name="in_Fname" placeholder="First Name.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>First Name</label><input id="fname" type="text" class="form-control" name="in_Fname" placeholder="First Name.."></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Last Name</label><input type="text" class="form-control" name="in_Lname" placeholder="Last Name.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Last Name</label><input id="lname" type="text" class="form-control" name="in_Lname" placeholder="Last Name.."></div>
             </div>
             <div class="row form-group"> <!-- Date input -->
                 <div class="col-md-offset-1 col-md-10 col-xs-12 ">
                     <label>Birth date</label><br>
-                    <input class="datepicker" style="border-radius: 5px;" id="date" name="in_birthday" placeholder="DD/MM/YYYY" type="text"/>
+                    <input id="birthdate" class="datepicker" style="border-radius: 5px;color:#2e3436" id="date" name="in_birthday" placeholder="DD/MM/YYYY" type="text"/>
                 </div>
             </div>
             <div class="row form-group">
@@ -302,6 +303,9 @@
         }
         date_input.datepicker(options); //initial 10/26/2015 8:20:59 PM ze plugin
     </script>
-    {{--<script src="http://api.wipmania.com/jsonp?callback=jsonpCallback"--}}
-            {{--type="text/javascript"></script>--}}
+    <script>
+        @if(isset($current_user))
+
+        @endif
+    </script>
 @stop

@@ -261,7 +261,7 @@
                                 <?php
                                     $user = Session::get('user');
                                     if(isset($user)){
-                                        echo '<li><a href="#"><span id="profile" style="color:#ff6666">Welcome  '.$user[1].'</span></a></li>';
+                                        echo '<li><a href="/register_page"><span id="profile" style="color:#ff6666">Welcome  '.$user[1].'</span></a></li>';
                                         echo '<li><a href="/logout" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>';
                                     }
                                     else {

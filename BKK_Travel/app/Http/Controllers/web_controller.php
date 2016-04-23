@@ -205,21 +205,22 @@ class web_controller extends Controller
              $filepath = '/' . $destinationPath . $filename;
         }
         //----------------------------------------------------------//
-        if(!isset($current_user)){
+        $this_id = 0;
+        if(!isset($current_user)) {
             $email = $request->in_new_email;
             $password = $request->in_new_password;
             $password2 = $request->in_new_repassword;
-            if($password!=$password2) return "The password must consistency.";
-            if(DB::table('users')->where('email',$email)->count() >=1){
+            if ($password != $password2) return "The password must consistency.";
+            if (DB::table('users')->where('email', $email)->count() >= 1) {
                 return "This email is already exit.";
             }
             $last_id = 0;
-            if ( ($count = DB::table('users')->count()) != 0 ){
-                $last_id =  DB::table('users')->skip($count -1)->first()->user_id;
+            if (($count = DB::table('users')->count()) != 0) {
+                $last_id = DB::table('users')->skip($count - 1)->first()->user_id;
             }
             $user = new User();
             $user->image = $filepath;
-            $user->user_id = $last_id+1;
+            $user->user_id = $last_id + 1;
             $user->email = $email;
             $user->password = sha1($password);
             $user->Fname = $request->in_Fname;
@@ -228,19 +229,20 @@ class web_controller extends Controller
             $user->gender = $request->sex;
             $user->nationality = $request->country;
             $user->type = $request->in_type;
+            $this_id = $user->user_id;
             $user->save();
-            redirect('/reLogin');
-            /*Session::put('user',[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,null,$user->password],null,$user->birthday,$user->nationality);*/
+            Session::put('user', [$user->email, $user->Fname, $user->Lname, $user->gender, $user->type, $user->user_id, null, $user->password, null, $user->birthday, $user->nationality, $user->image]);
         }
         else {
+            $this_id = $current_user[5];
             $password = $request->in_new_password;
             $password2 = $request->in_new_repassword;
             if ($password != $password2) return "The password must consistency.";
             User::where('email', $current_user[0])->update(['password' => sha1($password), 'Fname' => $request->in_Fname
                 , 'Lname' => $request->in_Lname, 'birthday' => $request->in_birthday, 'gender' => $request->sex, 'nationality' => $request->country,'image'=>$filepath]);
-            redirect('/reLogin');
+            Redirect::to('/reLogin');
         }
-        return redirect('/');
+        return redirect('/view_profile/'.$this_id);
     }
     function logout(){
         Session::put('user',null);
@@ -294,7 +296,7 @@ class web_controller extends Controller
                 Session::put('user',$arr);
             }
         }
-        return Redirect::back();
+        return redirect('/');
     }
     
     function viewProfile($id){

@@ -1,7 +1,7 @@
 @extends('master')
 @section('center_page')
     <?php $current_user=Session::get('user') ?>
-    <?php /*if(isset($current_user)) dd($current_user); */?>
+    <?php /*if(isset($current_user)) dd($current_user);*/ ?>
     {{--Fix Branch--}}
     <div class=" row col-md-offset-3 col-md-6 well"  style="background: #337ab7;border-radius: 5px;border: dashed whitesmoke;">
         <div class="row col-xs-12 text-center">

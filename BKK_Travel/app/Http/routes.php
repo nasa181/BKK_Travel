@@ -47,7 +47,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/register/input','web_controller@register');
     Route::get('/logout','web_controller@logout');
     Route::get('/relogin','web_controller@reLogin');
-    Route::post('/update_profile','web_controller@update_profile_page');
 //========== adding new item ===========
     Route::get('/page_restaurant/create_new_restaurant','web_controller@createNewRestaurant');
     Route::get('/page_attraction/create_new_attraction','web_controller@createNewAttraction');//

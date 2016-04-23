@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-8">
                 <div class="" style="padding: 30px;border : 0px dashed black;background: center {{$background2}} ; background-size: cover;-webkit-filter: sepia(80%);border-radius: 10px">
-                    <div class="" style="border:red 2px dashed;min-height: 440px;padding: 30px;font-size: 16px;background:rgba(0,0,0,0.2);color:black;position: relative;">
+                    <div class="" style="border:black 2px dashed;min-height: 440px;padding: 30px;font-size: 16px;background:rgba(0,0,0,0.2);color:black;position: relative;">
                         <h1>Profile</h1>
                         <p>First name : {{$user->Fname}}</p>
                         <p>Last name : {{$user->Lname}}</p>

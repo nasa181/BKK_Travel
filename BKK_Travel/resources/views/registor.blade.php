@@ -8,7 +8,7 @@
         </div>
         <form method="post" action="/register/input">
             <div class="row form-group ">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input id="email" type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input id="email"  type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
             </div>
             <div class="row form-group">
                 <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Password</label><input id="password" type="text" class="form-control" name="in_new_password" placeholder="Password.."></div>
@@ -31,10 +31,10 @@
             <div class="row form-group">
                 <div class="col-md-offset-1 col-md-10 col-xs-12">
                     <div class="radio-inline">
-                        <label><input type="radio" name="sex" value="male">Male</label>
+                        <label><input id="male" type="radio" name="sex" value="male">Male</label>
                     </div>
                     <div class="radio-inline">
-                        <label><input type="radio" name="sex" value="female">Female</label>
+                        <label><input id="female" type="radio" name="sex" value="female">Female</label>
                     </div>
                 </div>
             </div>
@@ -306,7 +306,14 @@
     </script>
     <script>
         @if(isset($current_user))
-
+            $("input#email").val('{{$current_user[0]}}');
+            $("input#fname").val('{{$current_user[1]}}');
+            $("input#lname").val('{{$current_user[2]}}');
+            $("input#birthdate").val('{{$current_user[9]}}');
+            <?php
+                if( $current_user[3] =="male" )  echo ('$("input#male").attr("checked", "true")');
+                else echo ('$("input#female").attr("checked", "true")');
+            ?>
         @endif
     </script>
 @stop

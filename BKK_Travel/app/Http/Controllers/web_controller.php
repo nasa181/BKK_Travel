@@ -240,7 +240,7 @@ class web_controller extends Controller
                 ->select('likeOrDislike','review_id')
                 ->where('users.user_id',$user->user_id)
                 ->get();
-            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes];
+            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes,$user->na];
             Session::put('user',$arr);
             return Redirect::back();
         }
@@ -360,7 +360,7 @@ class web_controller extends Controller
 
         $attraction->attraction_type = $request->in_new_type;
         $attraction->activity = $request->in_new_activity;
-        $attraction->entrance_fee = in_new_entrancefee;
+        $attraction->entrance_fee = $request->in_new_entrancefee;
         $attraction->oc_time = $request->in_new_oc_time;
         $attraction->parking = $request->in_new_parking;
         $attraction->website_url = $request->in_new_web_url;

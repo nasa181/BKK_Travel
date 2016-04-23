@@ -210,7 +210,6 @@ class web_controller extends Controller
              $filepath = '/' . $destinationPath . $filename;
         }
         //----------------------------------------------------------//
-        $this_id = 0;
         if(!isset($current_user)) {
             $email = $request->in_new_email;
             $password = $request->in_new_password;
@@ -245,7 +244,7 @@ class web_controller extends Controller
             if ($password != $password2) return "The password must consistency.";
             User::where('email', $current_user[0])->update(['password' => sha1($password), 'Fname' => $request->in_Fname
                 , 'Lname' => $request->in_Lname, 'birthday' => $request->in_birthday, 'gender' => $request->sex, 'nationality' => $request->country,'image'=>$filepath]);
-            Redirect::to('/reLogin');
+            return redirect('/relogin/profile'.$this_id);
         }
         return redirect('/view_profile/'.$this_id);
     }
@@ -278,7 +277,7 @@ class web_controller extends Controller
             return "Wrong Email or Password.";
         }
     }
-    function reLogin(){
+    function reLogin($return_path = null){
         $temp = Session::get('user');
         if($temp!=null){
             $email = $temp[0];
@@ -301,9 +300,10 @@ class web_controller extends Controller
                 Session::put('user',$arr);
             }
         }
-        return redirect('/');
+        if($return_path == null )return Redirect::back();
+        else if(substr($return_path,0,7)=="profile") return redirect('/view_profile/'.substr($return_path,7));
+        else return 'wrong path';
     }
-    
     function viewProfile($id){
         $user = User::where('user_id',$id)->first();
         $review = Review::where('link_user_id',$id)->get();

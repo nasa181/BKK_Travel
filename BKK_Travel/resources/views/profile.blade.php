@@ -1,6 +1,7 @@
 @extends('master')
 @section('center_page')
         {{--{{var_dump($user)}}--}}
+    <?php $current_user = Session::get('user');?>
     <?php
         $background2 = "none";
         $background = "green" ;
@@ -8,11 +9,15 @@
             $background = "url('" . url($user->image) . "')";
             $background2 = "url('" . url($user->image) . "')";
         }
-        $current_user = Session::get('user');
     ?>
     <div class="row padding solidborder" style="background: none;border-radius: 10px;">
 
         <div class="row">
+            @if(isset($current_user))
+            <div class= "col-md-12"style="text-align: right">
+                <div style="padding-right:30px "><a href="/register_page"><button class="btn-danger btn">edit</button></a></div>
+            </div>
+            @endif
             <div class="col-md-4 text-center">
                 <div class="" style="border: 0px dashed pink;background: transparent;border-radius: 5px;padding: 30px;">
                     <div class="" style="border:black 2px solid;min-height: 440px;background: center {{$background}} ; background-size: cover"></div>

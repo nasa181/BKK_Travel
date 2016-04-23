@@ -305,6 +305,7 @@
         date_input.datepicker(options); //initial 10/26/2015 8:20:59 PM ze plugin
     </script>
     <script>
+        document.getElementById("email").value = "My value";
         $("#email").css('placeholder',"ess")
         @if(isset($current_user))
 

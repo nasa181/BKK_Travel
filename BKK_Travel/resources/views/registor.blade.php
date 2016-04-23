@@ -1,14 +1,25 @@
 @extends('master')
 @section('center_page')
     <?php $current_user=Session::get('user') ?>
+    <?php /*if(isset($current_user)) dd($current_user); */?>
     {{--Fix Branch--}}
-    <div class=" row col-md-offset-3 col-md-6 well" style="background: #337ab7;border-radius: 5px;border: dashed whitesmoke;">
+    <div class=" row col-md-offset-3 col-md-6 well"  style="background: #337ab7;border-radius: 5px;border: dashed whitesmoke;">
         <div class="row col-xs-12 text-center">
+            @if(isset($current_user))
+            <div class="head-title"> Edit your profile</div>
+            @else
             <div class="head-title"> Create new user</div>
+            @endif
         </div>
-        <form method="post" action="/register/input">
+        <form method="post" action="/register/input" enctype="multipart/form-data">
+            <div class="row  form-group ">
+                <div class="col-md-offset-1 col-md-10 col-xs-12">
+                <label for="photo">Profile picture</label>
+                <input type="file" placeholder="Choose a photo to upload" name="profile_picture" id="photo" >
+                </div>
+            </div>
             <div class="row form-group ">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input id="email"  type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input id="email"   type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
             </div>
             <div class="row form-group">
                 <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Password</label><input id="password" type="text" class="form-control" name="in_new_password" placeholder="Password.."></div>
@@ -25,7 +36,7 @@
             <div class="row form-group"> <!-- Date input -->
                 <div class="col-md-offset-1 col-md-10 col-xs-12 ">
                     <label>Birth date</label><br>
-                    <input id="birthdate" class="datepicker" style="border-radius: 5px;color:#2e3436" id="date" name="in_birthday" placeholder="DD/MM/YYYY" type="text"/>
+                    <input id="date" class="datepicker" style="border-radius: 5px;color:#2e3436" id="date" name="in_birthday" placeholder="DD/MM/YYYY" type="text">
                 </div>
             </div>
             <div class="row form-group">
@@ -41,7 +52,7 @@
             <div class="row form-group">
                 <div class="col-md-offset-1 col-md-10">
                 <label>Country</label>
-                <select  style="color: #5e5e5e;border-radius: 5px" name="country">
+                <select  id='sel' style="color: #5e5e5e;border-radius: 5px" name="country">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
                     <option value="Algeria">Algeria</option>
@@ -307,13 +318,23 @@
     <script>
         @if(isset($current_user))
             $("input#email").val('{{$current_user[0]}}');
+            $("input#email").attr('disabled','disabled');
             $("input#fname").val('{{$current_user[1]}}');
             $("input#lname").val('{{$current_user[2]}}');
-            $("input#birthdate").val('{{$current_user[9]}}');
+            $("input#date").val('{{$current_user[9]}}');
             <?php
-                if( $current_user[3] =="male" )  echo ('$("input#male").attr("checked", "true")');
-                else echo ('$("input#female").attr("checked", "true")');
+                if( $current_user[3] =="male" )  echo ('$("input#male").attr("checked", "true");');
+                else echo ('$("input#female").attr("checked", "true");');
             ?>
+            var val = '{{$current_user[10]}}';
+            var sel = document.getElementById('sel');
+            var opts = sel.options;
+            for(var opt, j = 0; opt = opts[j]; j++) {
+                if(opt.value == val) {
+                    sel.selectedIndex = j;
+                    break;
+                }
+            }
         @endif
     </script>
 @stop

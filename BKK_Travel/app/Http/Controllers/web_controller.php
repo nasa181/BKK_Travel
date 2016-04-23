@@ -194,29 +194,52 @@ class web_controller extends Controller
             return view('registor');
     }
     function register(Request $request){
-        $email = $request->in_new_email;
-        $password = $request->in_new_password;
-        $password2 = $request->in_new_repassword;
-        if($password!=$password2) return "The password must consistency.";
-        if(DB::table('users')->where('email',$email)->count() >=1){
-            return "This email is already exit.";
+        $current_user = Session::get('user');
+        //-----------------------upload image-----------------------//
+        $file = Input::file('profile_picture');
+        $filepath = null;
+        if($file !=null) {
+            $destinationPath = 'img/';
+            $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+            Input::file('profile_picture')->move($destinationPath, $filename);
+             $filepath = '/' . $destinationPath . $filename;
         }
-        $last_id = 0;
-        if ( ($count = DB::table('users')->count()) != 0 ){
-            $last_id =  DB::table('users')->skip($count -1)->first()->user_id;
+        //----------------------------------------------------------//
+        if(!isset($current_user)){
+            $email = $request->in_new_email;
+            $password = $request->in_new_password;
+            $password2 = $request->in_new_repassword;
+            if($password!=$password2) return "The password must consistency.";
+            if(DB::table('users')->where('email',$email)->count() >=1){
+                return "This email is already exit.";
+            }
+            $last_id = 0;
+            if ( ($count = DB::table('users')->count()) != 0 ){
+                $last_id =  DB::table('users')->skip($count -1)->first()->user_id;
+            }
+            $user = new User();
+            $user->image = $filepath;
+            $user->user_id = $last_id+1;
+            $user->email = $email;
+            $user->password = sha1($password);
+            $user->Fname = $request->in_Fname;
+            $user->Lname = $request->in_Lname;
+            $user->birthday = $request->in_birthday;
+            $user->gender = $request->sex;
+            $user->nationality = $request->country;
+            $user->type = $request->in_type;
+            $user->save();
+            redirect('/reLogin');
+            /*Session::put('user',[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,null,$user->password],null,$user->birthday,$user->nationality);*/
         }
-        $user = new User();
-        $user->user_id = $last_id+1;
-        $user->email = $email;
-        $user->password = sha1($password);
-        $user->Fname = $request->in_Fname;
-        $user->Lname = $request->in_Lname;
-        $user->birthday = $request->in_birthday;
-        $user->gender = $request->sex;
-        $user->nationality = $request->country;
-        $user->type = $request->in_type;
-        $user->save();
-        Session::put('user',[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,null,$user->password],null);
+        else {
+            $password = $request->in_new_password;
+            $password2 = $request->in_new_repassword;
+            if ($password != $password2) return "The password must consistency.";
+            User::where('email', $current_user[0])->update(['password' => sha1($password), 'Fname' => $request->in_Fname
+                , 'Lname' => $request->in_Lname, 'birthday' => $request->in_birthday, 'gender' => $request->sex, 'nationality' => $request->country,'image'=>$filepath]);
+            redirect('/reLogin');
+        }
         return redirect('/');
     }
     function logout(){
@@ -240,7 +263,7 @@ class web_controller extends Controller
                 ->select('likeOrDislike','review_id')
                 ->where('users.user_id',$user->user_id)
                 ->get();
-            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes,$user->na];
+            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes,$user->birthday,$user->nationality,$user->image];
             Session::put('user',$arr);
             return Redirect::back();
         }
@@ -267,7 +290,7 @@ class web_controller extends Controller
                     ->select('likeOrDislike','review_id')
                     ->where('users.user_id',$user->user_id)
                     ->get();
-                $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes];
+                $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes,$user->birthday,$user->nationality,$user->image];
                 Session::put('user',$arr);
             }
         }
@@ -313,7 +336,6 @@ class web_controller extends Controller
         $review->link_item_id = $request->hidden_value;
         $review->link_user_id = $request->user_id;
         $review->save();
-        $photo->save();
         $isAttracionReview = DB::table('item')->where('item_id',$request->hidden_value)->join('attraction','item.item_id','=','attraction.link_item_id')->count();
         if($isAttracionReview==1) return redirect('/page_travel/info/'.$request->hidden_value);  
         else return redirect('/page_restaurant/info/'. $request->hidden_value);

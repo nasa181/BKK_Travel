@@ -18,9 +18,9 @@
             <?php
                 $background = "green" ;
                 if ($photo != null){
-                    if($item->title_picture !=""){
-                        $background = "url('" . url($item->title_picture) . "')";
-                    }
+
+                        $background = "url('" . url($photo->photo_url) . "')";
+
                 }
             ?>
             <div class="row">

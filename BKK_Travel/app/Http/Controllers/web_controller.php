@@ -216,7 +216,7 @@ class web_controller extends Controller
         $user->nationality = $request->country;
         $user->type = $request->in_type;
         $user->save();
-        Session::put('user',[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,null,$user->password],null);
+        Session::put('user',[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,null,$user->password],null,$user->birthday);
         return redirect('/');
     }
     function logout(){
@@ -240,7 +240,7 @@ class web_controller extends Controller
                 ->select('likeOrDislike','review_id')
                 ->where('users.user_id',$user->user_id)
                 ->get();
-            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes];
+            $arr=[$user->email,$user->Fname,$user->Lname,$user->gender,$user->type,$user->user_id,$ratings,$user->password,$likes,$user->birthday];
             Session::put('user',$arr);
             return Redirect::back();
         }

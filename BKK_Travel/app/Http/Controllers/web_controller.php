@@ -182,9 +182,14 @@ class web_controller extends Controller
         return view('info_event',['event'=>$event,'item'=>$item,'photo'=>$photo]);
     }
     function search(Request $request){
-        $search = $request->in_search;
-        $item = DB::table('item')->where('item_id',$search)->first();
-        return view('search_page',['item'=> $item]);
+        $keyword = $request->in_search;
+        $attraction = DB::table('item')
+            ->join('attraction','item.item_id','=','attraction.link_item_id');
+        $restaurant = DB::table('item')
+            ->join('restaurant','item.item_id','=','restaurant.link_item_id');
+        $attraction = $attraction->where('item.title','LIKE','%'.$keyword.'%')->get();//->orWhere('attraction.attraction_type','LIKE','%'.$keyword.'%')->get();
+        $restaurant = $restaurant->where('item.title','LIKE','%'.$keyword.'%')->get();//->orWhere('restaurant.food_type','LIKE','%'.$keyword.'%')->get();
+        return view('search_page',['attraction'=>$attraction,'restaurant'=>$restaurant]);
     }
 
 

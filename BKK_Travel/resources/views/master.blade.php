@@ -249,11 +249,11 @@
                                 <li><a href="/page_restaurant/list_of_restaurant/1">Restaurant</a></li>
                                 <li><a href="#">Event</a></li>
                             </ul>
-                            <form class="navbar-form navbar-right" role="search" action="/search">
+                            <form class="navbar-form navbar-right" role="search" action="/search" method="post">
                                 <div class="form-group input-group">
                                     <input type="text" class="form-control" name="in_search" placeholder="Search..">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                                     </span>
                                 </div>
                             </form>

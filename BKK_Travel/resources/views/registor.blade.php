@@ -299,7 +299,7 @@
         var container=$('.bootstrap-iso').length>0 ? $('.bootstrap-iso').parent() : "body";
         var options={
             format: 'dd/mm/yyyy',
-//            container: container,
+            container: container,
             todayHighlight: true,
             autoclose: true
         };

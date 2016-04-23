@@ -109,26 +109,24 @@
             <div class="row col-md-12">
                 <h1 style="margin-bottom: 15px">Review</h1>
             </div>
-        <?php
-        $color = ['#F78181','#F5DA81','#F3F781','#9FF781','#8181F7','#BE81F7'];
-        $op = 0.2;
-        $colora = ['rgba(247,129,129,'.$op.')','rgba(245,218,129,'.$op.')','rgba(243,247,129,'.$op.')','rgba(159,247,129,'.$op.')','rgba(129,129,247,'.$op.')','rgba(190,129,247,'.$op.')'];
-        $idx =0;
-        ?>
-        @foreach($review as $rev)
+            <?php
+            $color = ['#F78181','#F5DA81','#F3F781','#9FF781','#8181F7','#BE81F7'];
+            $op = 0.2;
+            $colora = ['rgba(247,129,129,'.$op.')','rgba(245,218,129,'.$op.')','rgba(243,247,129,'.$op.')','rgba(159,247,129,'.$op.')','rgba(129,129,247,'.$op.')','rgba(190,129,247,'.$op.')'];
+            $idx =0;
+            $k=0;
+            ?>
+            @foreach($review as $rev)
                 <?php
                 if (strlen($rev->content)< 350){
                     $text1 =$rev->content;
                     $text2 ="";
                     $readmore ="";
-
                 }
                 else if (mb_strpos($rev->content,"<br>") && mb_strpos($rev->content,"<br>")<350){
-
                     $text1 = mb_substr($rev->content,0,mb_strpos($rev->content,"<br>"));
                     $text2 = mb_substr($rev->content,mb_strpos($rev->content,"<br>")+4,10000);
                     $readmore ="Read more..";
-
                 }
                 else {
                     $space_pos = mb_strpos(mb_substr($rev->content,350,10000)," ");
@@ -137,7 +135,6 @@
                     $readmore ="Read more..";
                 }
                 ?>
-                {{--{{$rev->content}}--}}
                 <div class="row" style="color: white;margin: 15px 0px;">
                     <div class="col-md-12 shadow-text padding" style="background:{{$colora[$idx]}};border: dashed {{$color[$idx]}};border-radius: 20px;">
                         <div class="col-md-12" style="text-align: right">
@@ -157,14 +154,14 @@
                             </div>
                         </div>
                         <div class="col-md-3" style="margin: 10px 0px;">
-                            <span>รสชาติอาหาร : 5/5</span><br>
-                            <span>ความสะอาด : 5/5</span><br>
                             <span>ความสวยงาม : 5/5</span><br>
+                            <span>ความสะอาด : 5/5</span><br>
                             <span>ความคุ้มค่า : 5/5</span><br>
+                            <span>ความประทับใจ: 5/5</span><br>
                             <h4>คะแนนเฉลี่ย : 5/5</h4>
                         </div>
                         <div class="col-md-6 left-right" style="margin-top: 10px">
-                            <span>Reviewed by : ท่านผู้นั้น</span>
+                            <span>Reviewed by : <span style="font-size: 18px">{{$user[$k]->Fname}}</span></span>
                         </div>
                         <div class="col-md-6" style="margin-top: 10px;text-align: right">
                             <span>Like : 50 </span><span>Dislike : 50 </span><br>
@@ -173,7 +170,7 @@
                         <div class="col-md-12">
                             <?php
                             if ($rev->title_picture!=null){
-                                echo '<img src="'. $rev->title_picture .'" style="height: 120px">';
+                                echo '<img src="'. $rev->title_picture .'" style="height: 120px;">';
                             }
                             ?>
                         </div>
@@ -181,12 +178,28 @@
                 </div>
                 <?php
                 $idx++;
+                $k++;
                 if ($idx > 5) $idx=0;
                 ?>
-        @endforeach
-                <div class="row col-xs-12 ">
-                    <a href="/page_all/create_review/{{$item->item_id}}"><button class="btn btn-success">Add new review</button></a>
-                </div>
+            @endforeach
+            <?php
+            $user = Session::get('user');
+            if(isset($user)){
+                echo('
+                    <div class="row col-xs-12 ">
+                    <a href="/page_all/create_review/'.$item->item_id.'"><button class="btn btn-success">Add new review</button></a>
+                    </div>
+                    ')
+                ;
+            }
+            else {
+                echo('
+                   <div class="row col-xs-12 ">
+                    <a href="#loginModal" data-toggle="modal" data-target="#loginModal"><button class="btn btn-success">Sign in to Add Review</button></a>
+                    </div>
+                ');
+            }
+            ?>
         </div>
     </div>
     <script>

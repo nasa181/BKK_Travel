@@ -1,5 +1,6 @@
 @extends('master')
 @section('center_page')
+
     <div class="row">
         <div class=" col-xs-12">
             <h1 class="head-title">Attraction List</h1>

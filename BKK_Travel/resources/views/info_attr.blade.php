@@ -116,6 +116,7 @@
             $op = 0.2;
             $colora = ['rgba(247,129,129,'.$op.')','rgba(245,218,129,'.$op.')','rgba(243,247,129,'.$op.')','rgba(159,247,129,'.$op.')','rgba(129,129,247,'.$op.')','rgba(190,129,247,'.$op.')'];
             $idx =0;
+            $k=0;
         ?>
         @foreach($review as $rev)
             <?php
@@ -162,7 +163,7 @@
                         <h4>คะแนนเฉลี่ย : 5/5</h4>
                     </div>
                     <div class="col-md-6 left-right" style="margin-top: 10px">
-                        <span>Reviewed by : ท่านผู้นั้น</span>
+                        <span>Reviewed by : <span style="font-size: 18px">{{$user[$k]->Fname}}</span></span>
                     </div>
                     <div class="col-md-6" style="margin-top: 10px;text-align: right">
                         <span>Like : 50 </span><span>Dislike : 50 </span><br>
@@ -179,12 +180,28 @@
             </div>
             <?php
                 $idx++;
+                $k++;
                 if ($idx > 5) $idx=0;
             ?>
         @endforeach
-            <div class="row col-xs-12 ">
-                <a href="/page_all/create_review/{{$item->item_id}}"><button class="btn btn-success">Add new review</button></a>
-            </div>
+        <?php
+            $user = Session::get('user');
+            if(isset($user)){
+                echo('
+                    <div class="row col-xs-12 ">
+                    <a href="/page_all/create_review/'.$item->item_id.'"><button class="btn btn-success">Add new review</button></a>
+                    </div>
+                    ')
+                ;
+            }
+            else {
+                echo('
+                   <div class="row col-xs-12 ">
+                    <a href="#loginModal" data-toggle="modal" data-target="#loginModal"><button class="btn btn-success">Sign in to Add Review</button></a>
+                    </div>
+                ');
+            }
+        ?>
         </div>
     </div>
     <script>

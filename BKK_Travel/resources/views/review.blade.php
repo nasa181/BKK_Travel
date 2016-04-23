@@ -5,6 +5,19 @@
             <div class=" text-center"><h2>Create review on {{$title}}</h2></div>
             <form action="/page_travel/post_review" method="post">
                 <input type="hidden" value = "{{$item_id}}" id="hidden_value" name="hidden_value">
+                <?php
+                    $user = Session::get('user');
+                    if(isset($user)){
+                        echo ('
+                            <input type="hidden" value = "'.$user[5].'"  name="user_id">
+                        ');
+                    }
+                    else{
+                        echo ('
+                            <input type="hidden" value = ""  name="user_id">
+                        ');
+                    }
+                ?>
                 <div class="row  col-md-offset-1 col-md-10  form-group" style="margin-bottom: 0px;text-align: right;margin-top: 15px">
                     <p>Review id : {{$review_id}}</p>
                 </div>

@@ -350,7 +350,7 @@ class web_controller extends Controller
             $photo->link_item_id = $id_tmp;
             $photo->photo_url = '/' . $destinationPath . $filename;
             $item->title_picture = $photo->photo_url;
-            $photo->save();
+
         }
         /*---------------------------------------------------------*/
         $item->item_id = $id_tmp;
@@ -378,8 +378,10 @@ class web_controller extends Controller
         $location->link_item_id = $id_tmp;
 
         $item->save();
+
         $location->save();
         $attraction->save();
+        $photo->save();
         return redirect('/page_travel/info/' . $id_tmp);
 
     }
@@ -407,7 +409,7 @@ class web_controller extends Controller
             $photo->link_item_id = $id_tmp;
             $photo->photo_url = '/' . $destinationPath . $filename;
             $item->title_picture = $photo->photo_url;
-            $photo->save();
+
         }
         /*---------------------------------------------------------*/
         $item->item_id = $id_tmp;
@@ -436,8 +438,10 @@ class web_controller extends Controller
         $location->link_item_id = $id_tmp;
 
         $item->save();
+
         $location->save();
         $restaurant->save();
+        $photo->save();
         return redirect('/page_restaurant/info/' . $id_tmp);
     }
     function addEvent(Request $request){

@@ -184,9 +184,13 @@ class web_controller extends Controller
     function search(Request $request){
         $keyword = $request->in_search;
         $attraction = DB::table('item')
-            ->join('attraction','item.item_id','=','attraction.link_item_id');
+            ->join('attraction','item.item_id','=','attraction.link_item_id')
+            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->join('location','item.item_id','=','location.link_item_id');
         $restaurant = DB::table('item')
-            ->join('restaurant','item.item_id','=','restaurant.link_item_id');
+            ->join('restaurant','item.item_id','=','restaurant.link_item_id')
+            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->join('location','item.item_id','=','location.link_item_id');
         $attraction = $attraction->where('item.title','LIKE','%'.$keyword.'%')->get();//->orWhere('attraction.attraction_type','LIKE','%'.$keyword.'%')->get();
         $restaurant = $restaurant->where('item.title','LIKE','%'.$keyword.'%')->get();//->orWhere('restaurant.food_type','LIKE','%'.$keyword.'%')->get();
         return view('search_page',['attraction'=>$attraction,'restaurant'=>$restaurant]);
@@ -445,7 +449,7 @@ class web_controller extends Controller
                 $item->title = $request->in_new_title;
                 $item->description = $request->in_new_description;
                 $item->tel = $request->in_new_tel;
-                /*$item->user_id = $current_user[5];*/
+                $item->user_id = $current_user[5];
                 if($current_user[4]=='Admin') $item->isApproved = 1;
                 else $item->isApproved = 0;
 
@@ -498,6 +502,7 @@ class web_controller extends Controller
         return Redirect::back();
     }
     function addRestaurant(Request $request){
+        $current_user = Session::get('user');
         //if (Auth::check()) {
         if(true){
             $user = Auth::user();
@@ -528,7 +533,7 @@ class web_controller extends Controller
         $item->title = $request->in_new_title;
         $item->description = $request->in_new_description;
         $item->tel = $request->in_new_tel;
-
+        $item->user_id = $current_user[5];
         $restaurant->price_range = $request->in_new_price_range;
         $restaurant->food_type = $request->in_new_food_type;
         $restaurant->oc_time = $request->in_new_oc_time;
@@ -555,6 +560,7 @@ class web_controller extends Controller
         return redirect('/page_restaurant/info/' . $id_tmp);
     }
     function addEvent(Request $request){
+        $current_user = Session::get('user');
         if (Auth::check()) {
             $user = Auth::user();
         }
@@ -578,7 +584,7 @@ class web_controller extends Controller
         $item->title = $request->in_new_title;
         $item->description = $request->in_new_description;
         $item->tel = $request->in_new_tel;
-
+        $item->user_id = $current_user[5];
         $event->start_date = $request->in_new_start_date;
         $event->end_date = $request->in_new_end_date;
         $event->entrance_fee = $request->in_new_entrance_fee;

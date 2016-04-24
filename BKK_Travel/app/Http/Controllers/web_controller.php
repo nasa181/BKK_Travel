@@ -353,7 +353,20 @@ class web_controller extends Controller
             ->delete();
         return Redirect::back();
     }
-    
+    function remove_item(Request $request){
+        $current_user = Session::get('user');
+        if(isset($current_user) && $current_user[4]=="Admin"){
+            Location::where('link_item_id',$request->item_id)->delete();
+            if(Attraction::where('link_item_id',$request->item_id)->exists()){
+                Attraction::where('link_item_id',$request->item_id)->delete();
+            }
+            if(Restaurant::where('link_item_id',$request->item_id)->exists()){
+                Restaurant::where('link_item_id',$request->item_id)->delete();
+            }
+            Item::where('item_id',$request->item_id)->delete();
+        }
+        return redirect('/');
+    }
 //======================================    adding new item   ====================================================
     function addAttraction(Request $request){
         $current_user = Session::get('user');

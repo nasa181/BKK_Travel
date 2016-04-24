@@ -22,25 +22,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="web_controller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BKK_Travel/app/Http/Controllers/web_controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="271" column="92" selection-start-line="271" selection-start-column="92" selection-end-line="271" selection-end-column="92" />
+            <state relative-caret-position="156">
+              <caret line="355" column="43" selection-start-line="355" selection-start-column="43" selection-end-line="355" selection-end-column="43" />
               <folding>
                 <element signature="e#40#59#0#PHP" expanded="true" />
-                <marker date="1461475961636" expanded="true" signature="27819:27837" placeholder="..." />
+                <marker date="1461497270761" expanded="true" signature="28494:28512" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add_new_event.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/add_new_event.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -56,6 +46,28 @@
                 <marker date="1461472862243" expanded="true" signature="7523:7643" placeholder="..." />
                 <marker date="1461472862243" expanded="true" signature="7554:7642" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="master.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/master.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="91" selection-start-line="6" selection-start-column="91" selection-end-line="6" selection-end-column="91" />
+              <folding>
+                <marker date="1461482373682" expanded="true" signature="10374:10387" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BKK_Travel/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -77,60 +89,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registor.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/registor.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="info_attr.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/info_attr.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="23" column="89" selection-start-line="23" selection-start-column="89" selection-end-line="23" selection-end-column="89" />
+            <state relative-caret-position="227">
+              <caret line="421" column="22" selection-start-line="421" selection-start-column="22" selection-end-line="421" selection-end-column="22" />
               <folding>
                 <element signature="e#621#646#0#HTML" expanded="true" />
-                <element signature="e#14319#14357#0#HTML" expanded="true" />
-                <marker date="1461477467771" expanded="true" signature="1147:1319" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="1198:1301" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="5634:7377" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="5709:6004" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="5790:5962" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="6073:6180" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="6491:6506" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="6507:7295" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="6658:6669" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="7417:7842" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="7535:7551" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="7552:7768" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="9659:10553" placeholder="{...}" />
-                <marker date="1461477467771" expanded="true" signature="11551:11678" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="11777:12024" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="12048:12343" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="14555:14709" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="15256:15758" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="15323:15728" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="15399:15694" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="15467:15580" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="16334:16464" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="16750:17036" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="16821:16981" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="17056:17360" placeholder="..." />
-                <marker date="1461477467771" expanded="true" signature="17126:17326" placeholder="..." />
+                <element signature="e#945#969#0#HTML" expanded="true" />
+                <element signature="e#1051#1076#0#HTML" expanded="true" />
+                <element signature="e#1414#1441#0#HTML" expanded="true" />
+                <element signature="e#14772#14810#0#HTML" expanded="true" />
+                <marker date="1461496204032" expanded="true" signature="1600:1772" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="1651:1754" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="6087:7830" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="6162:6457" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="6243:6415" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="6526:6633" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="6944:6959" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="6960:7748" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="7111:7122" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="7870:8295" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="7988:8004" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="8005:8221" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="10112:11006" placeholder="{...}" />
+                <marker date="1461496204032" expanded="true" signature="12004:12131" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="12230:12477" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="12501:12796" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="15008:15162" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="15709:16211" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="15776:16181" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="15852:16147" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="15920:16033" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="16787:16917" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="17203:17489" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="17274:17434" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="17509:17813" placeholder="..." />
+                <marker date="1461496204032" expanded="true" signature="17579:17779" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="166" column="83" selection-start-line="166" selection-start-column="83" selection-end-line="166" selection-end-column="83" />
+            <state relative-caret-position="313">
+              <caret line="175" column="26" selection-start-line="175" selection-start-column="26" selection-end-line="175" selection-end-column="26" />
               <folding>
                 <element signature="e#8929#8964#0#HTML" expanded="true" />
                 <element signature="e#9477#9500#0#HTML" expanded="true" />
@@ -167,8 +172,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BKK_Travel/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="39" column="65" selection-start-line="39" selection-start-column="65" selection-end-line="39" selection-end-column="65" />
+            <state relative-caret-position="406">
+              <caret line="58" column="61" selection-start-line="58" selection-start-column="61" selection-end-line="58" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -190,14 +195,15 @@
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/info_restaurant.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/app/User.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/registor.blade.php" />
-        <option value="$PROJECT_DIR$/BKK_Travel/resources/views/master.blade.php" />
-        <option value="$PROJECT_DIR$/BKK_Travel/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/add_new_attraction.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/attraction.blade.php" />
-        <option value="$PROJECT_DIR$/BKK_Travel/app/Http/Controllers/web_controller.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/profile.blade.php" />
-        <option value="$PROJECT_DIR$/BKK_Travel/resources/views/info_attr.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/BKK_Travel/resources/views/master.blade.php" />
+        <option value="$PROJECT_DIR$/BKK_Travel/.env" />
+        <option value="$PROJECT_DIR$/BKK_Travel/resources/views/info_attr.blade.php" />
+        <option value="$PROJECT_DIR$/BKK_Travel/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/BKK_Travel/app/Http/Controllers/web_controller.php" />
       </list>
     </option>
   </component>
@@ -265,130 +271,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BKK_Travel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -450,12 +332,12 @@
       <workItem from="1461203111328" duration="39773000" />
       <workItem from="1461261596991" duration="722000" />
       <workItem from="1461442425470" duration="2834000" />
-      <workItem from="1461471794868" duration="6200000" />
+      <workItem from="1461471794868" duration="10496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78269000" />
+    <option name="totallyTimeSpent" value="82565000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -501,19 +383,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/BKK_Travel/vendor/laravel/framework/src/Illuminate/Auth/Events/Logout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2890">
           <caret line="170" column="25" selection-start-line="170" selection-start-column="25" selection-end-line="170" selection-end-column="30" />
           <folding>
-            <marker date="1461437169302" expanded="true" signature="10357:10370" placeholder="..." />
+            <marker date="1461482373682" expanded="true" signature="10374:10387" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -560,33 +435,36 @@
           <caret line="397" column="54" selection-start-line="397" selection-start-column="54" selection-end-line="397" selection-end-column="54" />
           <folding>
             <element signature="e#621#646#0#HTML" expanded="true" />
-            <element signature="e#14319#14357#0#HTML" expanded="true" />
-            <marker date="1461477467771" expanded="true" signature="1147:1319" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="1198:1301" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="5634:7377" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="5709:6004" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="5790:5962" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="6073:6180" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="6491:6506" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="6507:7295" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="6658:6669" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="7417:7842" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="7535:7551" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="7552:7768" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="9659:10553" placeholder="{...}" />
-            <marker date="1461477467771" expanded="true" signature="11551:11678" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="11777:12024" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="12048:12343" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="14555:14709" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="15256:15758" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="15323:15728" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="15399:15694" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="15467:15580" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="16334:16464" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="16750:17036" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="16821:16981" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="17056:17360" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="17126:17326" placeholder="..." />
+            <element signature="e#945#969#0#HTML" expanded="true" />
+            <element signature="e#1051#1076#0#HTML" expanded="true" />
+            <element signature="e#1414#1441#0#HTML" expanded="true" />
+            <element signature="e#14772#14810#0#HTML" expanded="true" />
+            <marker date="1461496204032" expanded="true" signature="1600:1772" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="1651:1754" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6087:7830" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6162:6457" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6243:6415" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6526:6633" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6944:6959" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6960:7748" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="7111:7122" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="7870:8295" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="7988:8004" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="8005:8221" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="10112:11006" placeholder="{...}" />
+            <marker date="1461496204032" expanded="true" signature="12004:12131" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="12230:12477" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="12501:12796" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15008:15162" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15709:16211" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15776:16181" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15852:16147" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15920:16033" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="16787:16917" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="17203:17489" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="17274:17434" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="17509:17813" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="17579:17779" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -597,7 +475,7 @@
           <caret line="200" column="29" selection-start-line="200" selection-start-column="29" selection-end-line="200" selection-end-column="29" />
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
-            <marker date="1461475961636" expanded="true" signature="27819:27837" placeholder="..." />
+            <marker date="1461497270761" expanded="true" signature="28494:28512" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -642,7 +520,7 @@
           <caret line="168" column="68" selection-start-line="168" selection-start-column="68" selection-end-line="168" selection-end-column="68" />
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
-            <marker date="1461475961636" expanded="true" signature="27819:27837" placeholder="..." />
+            <marker date="1461497270761" expanded="true" signature="28494:28512" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -673,7 +551,7 @@
         <state relative-caret-position="4590">
           <caret line="270" column="54" selection-start-line="270" selection-start-column="54" selection-end-line="270" selection-end-column="54" />
           <folding>
-            <marker date="1461437169302" expanded="true" signature="10357:10370" placeholder="..." />
+            <marker date="1461482373682" expanded="true" signature="10374:10387" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -828,16 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="106" />
-          <folding>
-            <marker date="1461437169302" expanded="true" signature="10357:10370" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/registor.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -867,14 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BKK_Travel/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="39" column="65" selection-start-line="39" selection-start-column="65" selection-end-line="39" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/attraction.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -893,17 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BKK_Travel/app/Http/Controllers/web_controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="271" column="92" selection-start-line="271" selection-start-column="92" selection-end-line="271" selection-end-column="92" />
-          <folding>
-            <element signature="e#40#59#0#PHP" expanded="true" />
-            <marker date="1461475961636" expanded="true" signature="27819:27837" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/profile.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -919,53 +768,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/info_attr.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="89" selection-start-line="23" selection-start-column="89" selection-end-line="23" selection-end-column="89" />
-          <folding>
-            <element signature="e#621#646#0#HTML" expanded="true" />
-            <element signature="e#14319#14357#0#HTML" expanded="true" />
-            <marker date="1461477467771" expanded="true" signature="1147:1319" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="1198:1301" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="5634:7377" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="5709:6004" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="5790:5962" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="6073:6180" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="6491:6506" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="6507:7295" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="6658:6669" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="7417:7842" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="7535:7551" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="7552:7768" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="9659:10553" placeholder="{...}" />
-            <marker date="1461477467771" expanded="true" signature="11551:11678" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="11777:12024" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="12048:12343" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="14555:14709" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="15256:15758" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="15323:15728" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="15399:15694" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="15467:15580" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="16334:16464" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="16750:17036" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="16821:16981" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="17056:17360" placeholder="..." />
-            <marker date="1461477467771" expanded="true" signature="17126:17326" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="166" column="83" selection-start-line="166" selection-start-column="83" selection-end-line="166" selection-end-column="83" />
+        <state relative-caret-position="313">
+          <caret line="175" column="26" selection-start-line="175" selection-start-column="26" selection-end-line="175" selection-end-column="26" />
           <folding>
             <element signature="e#8929#8964#0#HTML" expanded="true" />
             <element signature="e#9477#9500#0#HTML" expanded="true" />
             <element signature="e#10921#10959#0#HTML" expanded="true" />
             <marker date="1461481577820" expanded="true" signature="11098:11246" placeholder="..." />
             <marker date="1461481577820" expanded="true" signature="11194:11207" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="91" selection-start-line="6" selection-start-column="91" selection-end-line="6" selection-end-column="91" />
+          <folding>
+            <marker date="1461482373682" expanded="true" signature="10374:10387" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BKK_Travel/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/info_attr.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="421" column="22" selection-start-line="421" selection-start-column="22" selection-end-line="421" selection-end-column="22" />
+          <folding>
+            <element signature="e#621#646#0#HTML" expanded="true" />
+            <element signature="e#945#969#0#HTML" expanded="true" />
+            <element signature="e#1051#1076#0#HTML" expanded="true" />
+            <element signature="e#1414#1441#0#HTML" expanded="true" />
+            <element signature="e#14772#14810#0#HTML" expanded="true" />
+            <marker date="1461496204032" expanded="true" signature="1600:1772" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="1651:1754" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6087:7830" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6162:6457" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6243:6415" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6526:6633" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6944:6959" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="6960:7748" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="7111:7122" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="7870:8295" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="7988:8004" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="8005:8221" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="10112:11006" placeholder="{...}" />
+            <marker date="1461496204032" expanded="true" signature="12004:12131" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="12230:12477" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="12501:12796" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15008:15162" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15709:16211" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15776:16181" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15852:16147" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="15920:16033" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="16787:16917" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="17203:17489" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="17274:17434" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="17509:17813" placeholder="..." />
+            <marker date="1461496204032" expanded="true" signature="17579:17779" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BKK_Travel/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="58" column="61" selection-start-line="58" selection-start-column="61" selection-end-line="58" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BKK_Travel/app/Http/Controllers/web_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="355" column="43" selection-start-line="355" selection-start-column="43" selection-end-line="355" selection-end-column="43" />
+          <folding>
+            <element signature="e#40#59#0#PHP" expanded="true" />
+            <marker date="1461497270761" expanded="true" signature="28494:28512" placeholder="..." />
           </folding>
         </state>
       </provider>

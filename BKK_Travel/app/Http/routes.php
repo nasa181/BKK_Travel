@@ -56,6 +56,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/page_travel/add_new_restaurant','web_controller@addRestaurant');
     Route::post('/page_travel/add_new_event','web_controller@addEvent');
     Route::post('/approve','web_controller@approve');
+    Route::post('/remove_item','web_controller@remove_item');
     //--------update,edit-------------
     Route::get('/edit_attraction/{item_id}','web_controller@editAttraction');
     Route::post('/update_attraction','web_controller@updateAttraction');

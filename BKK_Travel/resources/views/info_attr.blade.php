@@ -7,7 +7,7 @@
         if(!isset($rating_count)) $rating_count=0;
     ?>
     <?php
-      if(isset($current_user)) echo var_dump($current_user);
+      /*if(isset($current_user)) echo var_dump($current_user);*/
     ?>
     <div class="row padding solidborder" style="background: none;border-radius: 10px;">
 

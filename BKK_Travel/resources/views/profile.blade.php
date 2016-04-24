@@ -13,8 +13,8 @@
     <div class="row padding solidborder" style="background: none;border-radius: 10px;">
 
         <div class="row">
-            @if(isset($current_user))
-            <div class= "col-md-12"style="text-align: right">
+            @if(isset($current_user) && $current_user[5]==$user->user_id)
+            <div class= "col-md-12"style="text-align: right;margin-bottom: 10px">
                 <div style="padding-right:30px "><a href="/register_page"><button class="btn-danger btn">edit</button></a></div>
             </div>
             @endif

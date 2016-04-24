@@ -239,7 +239,7 @@
                         <h4>คะแนนเฉลี่ย : X/5</h4>
                     </div>
                     <div class="col-md-6 left-right" style="margin-top: 10px">
-                        <span>Reviewed by : <span style="font-size: 18px">{{$user[$k]->Fname}}</span></span>
+                        <span>Reviewed by : <a  href="/view_profile/{{$user[$k]->user_id}}"><span style="font-size: 18px;color: #ec971f">{{$user[$k]->Fname}}</span></a></span>
                     </div>
                     <?php
                         $like_count=0;$dislike_count=0;

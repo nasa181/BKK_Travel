@@ -129,12 +129,14 @@
       <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="167" column="119" selection-start-line="167" selection-start-column="119" selection-end-line="167" selection-end-column="119" />
+            <state relative-caret-position="160">
+              <caret line="166" column="83" selection-start-line="166" selection-start-column="83" selection-end-line="166" selection-end-column="83" />
               <folding>
+                <element signature="e#8929#8964#0#HTML" expanded="true" />
+                <element signature="e#9477#9500#0#HTML" expanded="true" />
                 <element signature="e#10921#10959#0#HTML" expanded="true" />
-                <marker date="1461477572825" expanded="true" signature="11098:11246" placeholder="..." />
-                <marker date="1461477572825" expanded="true" signature="11194:11207" placeholder="..." />
+                <marker date="1461481577820" expanded="true" signature="11098:11246" placeholder="..." />
+                <marker date="1461481577820" expanded="true" signature="11194:11207" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -448,12 +450,12 @@
       <workItem from="1461203111328" duration="39773000" />
       <workItem from="1461261596991" duration="722000" />
       <workItem from="1461442425470" duration="2834000" />
-      <workItem from="1461471794868" duration="5580000" />
+      <workItem from="1461471794868" duration="6200000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77649000" />
+    <option name="totallyTimeSpent" value="78269000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -543,9 +545,11 @@
         <state relative-caret-position="3842">
           <caret line="226" column="1" selection-start-line="226" selection-start-column="1" selection-end-line="241" selection-end-column="9" />
           <folding>
+            <element signature="e#8929#8964#0#HTML" expanded="true" />
+            <element signature="e#9477#9500#0#HTML" expanded="true" />
             <element signature="e#10921#10959#0#HTML" expanded="true" />
-            <marker date="1461477572825" expanded="true" signature="11098:11246" placeholder="..." />
-            <marker date="1461477572825" expanded="true" signature="11194:11207" placeholder="..." />
+            <marker date="1461481577820" expanded="true" signature="11098:11246" placeholder="..." />
+            <marker date="1461481577820" expanded="true" signature="11194:11207" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -954,12 +958,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="167" column="119" selection-start-line="167" selection-start-column="119" selection-end-line="167" selection-end-column="119" />
+        <state relative-caret-position="160">
+          <caret line="166" column="83" selection-start-line="166" selection-start-column="83" selection-end-line="166" selection-end-column="83" />
           <folding>
+            <element signature="e#8929#8964#0#HTML" expanded="true" />
+            <element signature="e#9477#9500#0#HTML" expanded="true" />
             <element signature="e#10921#10959#0#HTML" expanded="true" />
-            <marker date="1461477572825" expanded="true" signature="11098:11246" placeholder="..." />
-            <marker date="1461477572825" expanded="true" signature="11194:11207" placeholder="..." />
+            <marker date="1461481577820" expanded="true" signature="11098:11246" placeholder="..." />
+            <marker date="1461481577820" expanded="true" signature="11194:11207" placeholder="..." />
           </folding>
         </state>
       </provider>

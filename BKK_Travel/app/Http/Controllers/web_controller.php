@@ -446,7 +446,8 @@ class web_controller extends Controller
                 $item->description = $request->in_new_description;
                 $item->tel = $request->in_new_tel;
                 /*$item->user_id = $current_user[5];*/
-                if($current_user[4]!='Admin') $item->isApproved = 0;
+                if($current_user[4]=='Admin') $item->isApproved = 1;
+                else $item->isApproved = 0;
 
                 $attraction->attraction_type = $request->in_new_type;
                 $attraction->activity = $request->in_new_activity;

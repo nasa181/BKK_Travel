@@ -126,13 +126,13 @@
                 if($eve->title_picture == null){
                     $background = ";background : green;";
                 }
-                else $background=";background : url(". $eve->titlepicture .") center;"
+                else $background=";background : url(". $eve->title_picture .") center;"
             ?>
             <div  class="row item_description" style="overflow:hidden;margin:10px 0px;background: green;height: 120px;overflow:hidden;{{$background}};background-size:cover ">
                 <div class="col-md-12 col-xs-12" style=" text-shadow: 1px 1px black;">
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="head item_description" style=""><a href="/page_restaurant/info/{{$eve->item_id}}"><span><h4>{{$eve->title}}</h4></span></a></div>
+                            <div class="head item_description" style=""><a href="/page_event/info/{{$eve->item_id}}"><span><h4>{{$eve->title}}</h4></span></a></div>
                         </div>
                         <div class="col-xs-12">
                             <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>

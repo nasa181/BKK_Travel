@@ -39,19 +39,31 @@
                 <div ><label>Food Type</label><input type="text" class="form-control" name="in_new_food_type" placeholder="Thai food, Japanese food,..." @if(isset($item)) value="{{$res->food_type}}" @endif></div>
             </div>
             <div class="row  col-md-offset-1 col-md-10 form-group">
-                <div ><label>Open-close Time</label><textarea rows="5" class="form-control" name="in_new_oc_time" placeholder="Mon-Fri 8AM-6PM">@if(isset($item)){{$res->oc_time}} @endif</textarea></div>
+                <div ><label>Open-close Time</label><input type="text" class="form-control" name="in_new_oc_time" placeholder="Mon-Fri 8AM-6PM" @if(isset($item))value="{{$res->oc_time}}" @endif></div>
             </div>
             <div class="row  col-md-offset-1 col-md-10 form-group">
-                <div ><label>Credit card</label><textarea rows="5" class="form-control" name="in_new_credit_card" placeholder="Accept or Not..">@if(isset($item)) {{$res->credit_card}} @endif</textarea></div>
+                <div ><label>Credit Card</label>
+                    <label class="radio-inline"><input type="radio" name="in_new_credit_card" value="Yes" checked>Yes</label>
+                    <label class="radio-inline"><input type="radio" name="in_new_credit_card" value="No" >No</label>
+                </div>
             </div>
             <div class="row  col-md-offset-1 col-md-10 form-group">
-                <div ><label>Child Convenience</label><textarea rows="5" class="form-control" name="in_new_child_appropriate" placeholder="Yes or No..">@if(isset($item)) {{$res->child_appropriate}} @endif</textarea></div>
+                <div ><label>Child Convenience</label>
+                    <label class="radio-inline"><input type="radio" name="in_new_child_appropriate" value="Yes" checked>Yes</label>
+                    <label class="radio-inline"><input type="radio" name="in_new_child_appropriate" value="No" >No</label>
+                </div>
             </div>
             <div class="row  col-md-offset-1 col-md-10 form-group">
-                <div ><label>Reservable</label><textarea rows="5" class="form-control" name="in_new_reservable" placeholder="Yes or No..">@if(isset($item)) {{$res->reservable}} @endif</textarea></div>
+                <div ><label>Reservable</label>
+                    <label class="radio-inline"><input type="radio" name="in_new_reservable" value="Yes" checked>Yes</label>
+                    <label class="radio-inline"><input type="radio" name="in_new_reservable" value="No">No</label>
+                </div>
             </div>
             <div class="row  col-md-offset-1 col-md-10 form-group">
-                <div ><label>Parking available</label><input type="text" class="form-control" name="in_new_parking" placeholder="Yes or No.."@if(isset($item)) value="{{$res->parking}}" @endif></div>
+                <div ><label>Parking</label>
+                    <label class="radio-inline"><input type="radio" name="in_new_parking" value="Yes" checked>Yes</label>
+                    <label class="radio-inline"><input type="radio" name="in_new_parking" value="No">No</label>
+                </div>
             </div>
             <div class="row col-md-offset-1 col-md-10 form-group">
                 <label>Hint</label>
@@ -59,7 +71,7 @@
             </div>
             <div class="row col-md-offset-1 col-md-10 form-group">
                 <label>Building name</label>
-                <textarea rows="1" class="form-control" name="in_new_build" placeholder="Building name"> @if(isset($item)) {{$location->build}} @endif</textarea>
+                <input type="text" class="form-control" name="in_new_build" placeholder="Building name" @if(isset($item)) value="{{$location->build}}" @endif >
             </div>
             <div class="row col-md-offset-1 col-md-10 form-group">
                 <label>Street Address</label>

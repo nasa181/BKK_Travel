@@ -396,8 +396,10 @@ class web_controller extends Controller
         $review->link_user_id = $request->user_id;
         $review->save();
         $isAttracionReview = DB::table('item')->where('item_id',$request->hidden_value)->join('attraction','item.item_id','=','attraction.link_item_id')->count();
-        if($isAttracionReview==1) return redirect('/page_travel/info/'.$request->hidden_value);  
-        else return redirect('/page_restaurant/info/'. $request->hidden_value);
+        $isRestaurantReview = DB::table('item')->where('item_id',$request->hidden_value)->join('restaurant','item.item_id','=','restaurant.link_item_id')->count();
+        if($isAttracionReview==1) return redirect('/page_travel/info/'.$request->hidden_value);
+        else if($isRestaurantReview==1) return redirect('/page_restaurant/info/'. $request->hidden_value);
+        else return redirect('/page_event/info/'. $request->hidden_value);
     }
     function remove_review(Request $request){
         DB::table('review')
@@ -412,8 +414,11 @@ class web_controller extends Controller
             if(Attraction::where('link_item_id',$request->item_id)->exists()){
                 Attraction::where('link_item_id',$request->item_id)->delete();
             }
-            if(Restaurant::where('link_item_id',$request->item_id)->exists()){
+            else if(Restaurant::where('link_item_id',$request->item_id)->exists()){
                 Restaurant::where('link_item_id',$request->item_id)->delete();
+            }
+            else if(Event::where('link_item_id',$request->item_id)->exists()){
+                Event::where('link_item_id',$request->item_id)->delete();
             }
             Item::where('item_id',$request->item_id)->delete();
         }
@@ -614,7 +619,6 @@ class web_controller extends Controller
 
             $location->hint = $request->in_new_hint;
             $location->build = $request->in_new_build;
-            $location->street_address = $request->in_new_street_address;
             $location->sub_district = $request->in_new_sub_dis;
             $location->district = $request->in_new_district;
             $location->province = $request->in_new_province;
@@ -710,88 +714,75 @@ class web_controller extends Controller
     }
     function addEvent(Request $request){
         $current_user = Session::get('user');
-        if (Auth::check()) {
-            $user = Auth::user();
+        if(!isset($current_user)){
+            return 'you must login first.';
         }
-        else{
-            return redirect();
+        else {
+            $id_tmp=0;
+            if ( ($count = Item::count()) != 0 ){
+                $id_tmp =  Item::skip($count -1)->first()->item_id;
+            }
+            $id_tmp = $id_tmp+1;
+            $item = new Item();
+            $event = new Event();
+            $location = new Location();
+            $photo = new PhotoGallery();
+            /*---------------------upload_picture-----------------------*/
+            $file = Input::file('profile_picture');
+            if ($file != null) {
+                $destinationPath = 'img/';
+                $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+                Input::file('profile_picture')->move($destinationPath, $filename);
+                $num_photo = (DB::table('photo_gallery')->count());
+                $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
+                $photo->link_item_id = $id_tmp;
+                $photo->photo_url = '/' . $destinationPath . $filename;
+                $item->title_picture = $photo->photo_url;
+                $photo->save();
+            }
+            /*---------------------------------------------------------*/
+            $item->item_id = $id_tmp;
+            $item->title = $request->in_new_title;
+            $item->description = $request->in_new_description;
+            $item->tel = $request->in_new_tel;
+            $item->user_id = $current_user[5];
+            $event->start_date = $request->in_new_start_date;
+            $event->end_date = $request->in_new_end_date;
+            $event->entrance_fee = $request->in_new_entrance_fee;
+            $event->type = $request->in_new_type;
+            $event->parking = $request->in_new_parking;
+            $event->website_url = $request->in_new_website_url;
+            $event->link_item_id = $id_tmp;
+
+            $location->hint = $request->in_new_hint;
+            $location->build = $request->in_new_build;
+            $location->street_address = $request->in_new_street_address;
+            $location->sub_district = $request->in_new_sub_dis;
+            $location->district = $request->in_new_district;
+            $location->province = $request->in_new_province;
+            $location->postal_code = $request->in_new_post_code;
+            $location->lat = $request->in_new_lat;
+            $location->long = $request->in_new_lng;
+            $location->link_item_id = $id_tmp;
+
+            $item->save();
+            $location->save();
+            $event->save();
+            return redirect('/page_event/info/' . $id_tmp);
         }
-        $id_tmp = (DB::table('item')->count())+1;
-        $item = new Item();
-        $event = new Event();
-        $location = new Location();
-        $photo = new PhotoGallery();
-        /*---------------------upload_picture----------------------*/
-        $extension = Input::file('profile_picture')->getClientOriginalExtension(); // getting image extension
-        $fileName = time().'.'.$extension; // renameing image
-        $path = $request->file('profile_picture')->move('img/',$fileName);// move input file to "public/img/<file_name>"
-        $path = '/'.$path; // for adding '/' in front of the file path(for searching to the root of file)
-        $photo->link_item_id = $id_tmp;
-        $photo->photo_url = $path;
-        /*---------------------------------------------------------*/
-        $item->item_id = $id_tmp;
-        $item->title = $request->in_new_title;
-        $item->description = $request->in_new_description;
-        $item->tel = $request->in_new_tel;
-        $item->user_id = $current_user[5];
-        $event->start_date = $request->in_new_start_date;
-        $event->end_date = $request->in_new_end_date;
-        $event->entrance_fee = $request->in_new_entrance_fee;
-        $event->type = $request->in_new_type;
-        $event->parking = $request->in_new_parking;
-        $event->website_url = $request->in_new_website_url;
-        $event->link_item_id = $id_tmp;
-
-        $location->hint = $request->in_new_hint;
-        $location->build = $request->in_new_build;
-        $location->street_address = $request->in_new_street_address;
-        $location->sub_district = $request->in_new_sub_dis;
-        $location->district = $request->in_new_district;
-        $location->province = $request->in_new_province;
-        $location->post_code = $request->in_new_post_code;
-        $location->lat = $request->in_new_lat;
-        $location->lng = $request->in_new_lng;
-        $location->link_item_id = $id_tmp;
-
-        $item->save();
-        $location->save();
-        $event->save();
-        $photo->save();
-        return redirect('/',['user'=>$user]);
-
-    }
+}
 
 
 
 //======================================   go to adding new item page   ==============================================
     function createNewAttraction(){
-        //if (Auth::check()) {
-        if(true){
-            $user = Auth::user();
-            return view('add_new_attraction',['user'=>$user]);
-        }
-        else{
-            return redirect();
-        }
+        return view('add_new_attraction');
     }
     function createNewRestaurant(){
-        //if (Auth::check()) {
-        if(true){
-            $user = Auth::user();
-            return view('add_new_restaurant',['user'=>$user]);
-        }
-        else{
-            return redirect();
-        }
+        return view('add_new_restaurant');
     }
     function createNewEvent(){
-        if (Auth::check()) {
-            $user = Auth::user();
-            return view('add_new_event',['user'=>$user]);
-        }
-        else{
-            return redirect();
-        }
+        return view('add_new_event');
     }
 
 }

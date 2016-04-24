@@ -10,66 +10,70 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php
-            $event1 = array();
-            $event2 = array();
-            for($i=0;$i<=intval(sizeof($event)/2);$i++){
-                array_push($event1,$event[$i]);
-            }
-            for($i=intval(sizeof($event)/2)+1;$i<sizeof($event);$i++){
-                array_push($event2,$event[$i]);
-            }
-            ?>
-            @foreach($event1 as $eve)
+            @if($event!=null)
                 <?php
-                if ($eve->title_picture == "" || $eve->title_picture == null) $background = "green" ;
-                else  $background = "url('" . url($eve->title_picture) . "')";
+                $event1 = array();
+                $event2 = array();
+                for($i=0;$i<intval(sizeof($event)/2);$i++){
+                    array_push($event1,$event[$i]);
+                }
+                for($i=intval(sizeof($event)/2);$i<sizeof($event);$i++){
+                    array_push($event2,$event[$i]);
+                }
                 ?>
-                <div class="row item_description " style="overflow:hidden;margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
-                    <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="head item_description" style=""><a href="/page_restaurant/info/{{$eve->item_id}}"><span><h4>{{$eve->title}}</h4></span></a></div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="text-info " style="margin: 0px"><span>{{$eve->build}}</span></div>
-                            </div>
-                            <div class="col-xs-12" >
-                                <div class="text-info " style="margin: 0px"><span>{{$eve->hint}}</span></div>
+                @foreach($event1 as $eve)
+                    <?php
+                    if ($eve->title_picture == "" || $eve->title_picture == null) $background = "green" ;
+                    else  $background = "url('" . url($eve->title_picture) . "')";
+                    ?>
+                    <div class="row item_description " style="overflow:hidden;margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
+                        <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="head item_description" style=""><a href="/page_event/info/{{$eve->item_id}}"><span><h4>{{$eve->title}}</h4></span></a></div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="text-info " style="margin: 0px"><span>{{$eve->build}}</span></div>
+                                </div>
+                                <div class="col-xs-12" >
+                                    <div class="text-info " style="margin: 0px"><span>{{$eve->hint}}</span></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endif
         </div>
         <div class="col-md-6">
-            @foreach($event2 as $eve)
-                <?php
-                if ($eve->title_picture == "" || $eve->title_picture == null) $background = "green" ;
-                else  $background = "url('" . url($eve->title_picture) . "')";
-                ?>
-                <div class="row item_description " style="margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
-                    <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="head item_description" style=""><a href="/page_restaurant/info/{{$eve->item_id}}"><span><h4>{{$eve->title}}</h4></span></a></div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="text-info " style="margin: 0px"><span>{{$eve->build}}</span></div>
-                            </div>
-                            <div class="col-xs-12" >
-                                <div class="text-info " style="margin: 0px"><span>{{$eve->hint}}</span></div>
+            @if($event!=null)
+                @foreach($event2 as $eve)
+                    <?php
+                    if ($eve->title_picture == "" || $eve->title_picture == null) $background = "green" ;
+                    else  $background = "url('" . url($eve->title_picture) . "')";
+                    ?>
+                    <div class="row item_description " style="margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
+                        <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="head item_description" style=""><a href="/page_event/info/{{$eve->item_id}}"><span><h4>{{$eve->title}}</h4></span></a></div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="text-info " style="margin: 0px"><span>{{$eve->build}}</span></div>
+                                </div>
+                                <div class="col-xs-12" >
+                                    <div class="text-info " style="margin: 0px"><span>{{$eve->hint}}</span></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endif
         </div>
     </div>
 
@@ -109,13 +113,13 @@
             <hr>
         </div>
     </div>
-    @if(isset($current_user))
+    @if(isset($current_user) && $current_user[4]=="Admin")
         <div class="row col-xs-12 ">
             <a href="/page_event/create_new_event"><button class="btn btn-success">Add new event</button></a>
         </div>
     @else
         <div class="row col-xs-12 ">
-            <a href="#loginModal" data-toggle="modal" data-target="#loginModal"><button class="btn btn-success">Login to add new event</button></a>
+            <a href="#loginModal" data-toggle="modal" data-target="#loginModal"><button class="btn btn-success">Login as Admin to add new event</button></a>
         </div>
     @endif
 @stop

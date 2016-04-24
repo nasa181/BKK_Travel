@@ -249,7 +249,7 @@
                                 <li class="active"><a href="/">Home</a></li>
                                 <li><a href="/page_travel/list_of_travel/1">Attraction</a></li>
                                 <li><a href="/page_restaurant/list_of_restaurant/1">Restaurant</a></li>
-                                <li><a href="#">Event</a></li>
+                                <li><a href="/page_event/list_of_event/1">Event</a></li>
                             </ul>
                             <form class="navbar-form navbar-right" role="search" action="/search" method="post">
                                 <div class="form-group input-group">

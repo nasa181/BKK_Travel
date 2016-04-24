@@ -102,9 +102,49 @@ class web_controller extends Controller
             ->get();
         return view('restaurant',['restaurant'=>$restaurant,'page'=>$page,'last_page'=>$num_of_page]);
     }
-
+    function page_event($page){
+        $num_of_item = DB::table('event')->count();
+        $num_of_page  = intval($num_of_item/20) +1;
+        if($page < 1)$page = 1;
+        if($page > $num_of_page) $page = $num_of_page;
+        $event = DB::table('event')
+            ->join('item','event.link_item_id','=','item.item_id')
+            ->leftjoin('location','item.item_id','=','location.location_id')
+            //->leftjoin('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
+            ->skip(20*($page-1))
+            ->take(20)
+            ->get();
+        return view('event',['event'=>$event,'page'=>$page,'last_page'=>$num_of_page]);
+    }
 
 //================================================ information =========================================================
+    function event_info($id){
+        $event = DB::table('event')->where('link_item_id',$id)->first();
+        $item = DB::table('item')->where('item_id',$id)->first();
+        $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
+        $review = DB::table('review')->where('link_item_id',$id)->get();
+        $location = DB::table('location')->where('link_item_id',$id)->first();
+        $ratings = DB::table('rating_relation')->where('item_id',$id)->get();
+        $likes = Like::join('review','review.review_id','=','like_relation.review_id')
+            ->where('link_item_id',$item->item_id)
+            ->select('review.review_id','likeOrDislike')
+            ->get();
+        /*find avg_rating*/
+        $avg_rating = 0.0;
+        $i=0;
+        foreach($ratings as $rat){
+            $i++;
+            $avg_rating = $avg_rating + $rat->rating;
+        }
+        if($i!=0) $avg_rating = $avg_rating/$i;
+        $user = array();
+        foreach($review as $rev){
+            $Auser = DB::table('users')->where('user_id',$rev->link_user_id)->first();
+            array_push($user,$Auser);
+        }
+        return view('info_event',['event'=>$event,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,
+            'user'=>$user,'avg_rating'=>$avg_rating,'rating_count'=>$i,'likes'=>$likes]);
+    }
     function res_info($id){
         $res = DB::table('restaurant')->where('link_item_id',$id)->first();
         $item = DB::table('item')->where('item_id',$id)->first();
@@ -188,12 +228,6 @@ class web_controller extends Controller
             $likes->save();
         }
         return redirect('/relogin');
-    }
-    function event_info($id){
-        $event = DB::table('event')->where('link_item_id',$id)->first();
-        $item = DB::table('item')->where('item_id',$id)->first();
-        $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
-        return view('info_event',['event'=>$event,'item'=>$item,'photo'=>$photo]);
     }
     function search(Request $request){
         $keyword = $request->in_search;

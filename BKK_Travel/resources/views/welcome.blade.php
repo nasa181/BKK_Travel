@@ -165,7 +165,7 @@
                                 <p>"{!!$text1!!}..."</p>
                         </div>
                         <div class="col-md-12 left-right" style="margin-top: 10px">
-                            <span>Reviewed by : <span style="font-size: 18px">{{$user[$i]->Fname}}</span></span>
+                            <span>Reviewed by : <a href="/view_profile/{{$user[$i]->user_id}}"><span style="color:white;font-size: 18px">{{$user[$i]->Fname}}</span></a></span>
                         </div>
                         <div class="col-md-12"> <hr> </div>
                         <?php

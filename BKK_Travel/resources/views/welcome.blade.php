@@ -195,18 +195,17 @@
                             <span id="like_button" onclick="addLike({{$review[$i]->review_id}})" id="like" class="glyphicon glyphicon-thumbs-up" style="{{$colorLike}}"></span>
                             <span id="dislike_button" onclick="addDislike({{$review[$i]->review_id}})" id="dislike" class="glyphicon glyphicon-thumbs-down" style="{{$colorDislike}}" ></span>
                         </div>
+                        <div class="col-md-12 " style="height: 110px;text-align: left">
                         <?php
                             if ($review[$i]->title_picture!=null){
                                 echo ('
-                                        <div class="col-md-12 " style="height: 110px;text-align: left">
+
                                             <img src="'. $review[$i]->title_picture .'" style="height: 100px">
-                                        </div>
+
                                     ');
                             }
                         ?>
-
-
-
+                        </div>
                     </div>
                 </div>
                 <?php

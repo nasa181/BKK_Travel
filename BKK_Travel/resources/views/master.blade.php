@@ -21,7 +21,9 @@
         <!-- font -->
         <link href='https://fonts.googleapis.com/css?family=Kanit:500,700&subset=thai,latin' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
+        <!-- toggle button-->
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.cross').hide();
@@ -261,7 +263,9 @@
                                 <?php
                                     $user = Session::get('user');
                                     if(isset($user)){
-                                        echo '<li><a href="/view_profile/'.$user[5].'"><span id="profile" style="color:#ff6666">Welcome  '.$user[1].'</span></a></li>';
+                                        $admin='';
+                                        if($user[4]=="Admin") $admin="(Admin) ";
+                                        echo '<li><a href="/view_profile/'.$user[5].'"><span id="profile" style="color:#ff6666">Welcome  '.$admin.$user[1].'</span></a></li>';
                                         echo '<li><a href="/logout" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>';
                                     }
                                     else {

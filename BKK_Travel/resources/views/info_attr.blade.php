@@ -1,6 +1,7 @@
 @extends('master')
 @section('center_page')
     <?php
+
         $current_user=Session::get('user');
         if(!isset($avg_rating)) $avg_rating=0.0;
         if(!isset($rating_count)) $rating_count=0;
@@ -9,7 +10,15 @@
       if(isset($current_user)) echo var_dump($current_user);
     ?>
     <div class="row padding solidborder" style="background: none;border-radius: 10px;">
+
         <div class="col-xs-12">
+            @if(isset($current_user)&&( $current_user[4]=="Admin"||$current_user[5]==$item->user_id ))
+            <div class="row">
+                <div class= "col-md-offset-10 col-md-2"style="text-align: right">
+                    <div><a href="/edit_attraction/{{$item->item_id}}"><button class="form-control btn-danger btn">edit</button></a></div>
+                </div>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-xs-12">
                     <h1 class="head-title" style="margin-bottom: 20px">{{$item->title}}</h1>
@@ -25,7 +34,7 @@
             ?>
             <div class="row">
                 <div class="col-md-6" style="margin-bottom: 20px;">
-                    <div class="image-size"  style="/*box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.45), 0 0px 30px 0 rgba(0, 0, 0, 0.15);*/border-radius:20px;background:{{$background}} center; background-size: cover;">
+                    <div class="image-size"  style="position:relative;/*box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.45), 0 0px 30px 0 rgba(0, 0, 0, 0.15);*/border-radius:20px;background:{{$background}} center; background-size: cover;">
                     </div>
                 </div>
                 <div class="col-md-6"  style="margin-bottom: 20px;" >
@@ -59,61 +68,74 @@
             <div id="review_idsection2" class="row" >
                 <div class="col-md-6">
                     <div class="row">
-                    <div class="col-md-12 " style="์margin-bottom: 20px;"  >
-                        <div id="address_box" class="image-size-2" style="border: dashed #FF6C6C;border-radius: 20px;/*background: rgba(205,108,108,0.2*/)">
-                            <div class="shadow-text">
-                                <div class="row" style="margin-bottom: 5px">
-                                    <div class="col-xs-12" ><span>Address : {{$location->build}}  {{$location->street_address}}  {{$location->district}}
-                                            {{$location->sub_district}} {{$location->province}} {{$location->postal_code}}</span></div>
-                                </div>
-                                <div class="row" style="">
-                                    <div class="col-xs-12" style="margin-bottom: 5px"><span>Tel : {{$item->tel}}</span></div>
-                                </div>
-                                <div class="row" style="">
-                                    <div class="col-xs-12" style="margin-bottom: 5px"><span>Website : {{$attr->website_url}}</span></div>
+                        <div class="col-md-12 " style="์margin-bottom: 20px;"  >
+                            <div id="address_box" class="image-size-2" style="border: dashed #FF6C6C;border-radius: 20px;/*background: rgba(205,108,108,0.2*/)">
+                                <div class="shadow-text">
+                                    <div class="row" style="margin-bottom: 5px">
+                                        <div class="col-xs-12" ><span>Address : {{$location->build}}  {{$location->street_address}}  {{$location->district}}
+                                                {{$location->sub_district}} {{$location->province}} {{$location->postal_code}}</span></div>
+                                    </div>
+                                    <div class="row" style="">
+                                        <div class="col-xs-12" style="margin-bottom: 5px"><span>Tel : {{$item->tel}}</span></div>
+                                    </div>
+                                    <div class="row" style="">
+                                        <div class="col-xs-12" style="margin-bottom: 5px"><span>Website : {{$attr->website_url}}</span></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12  " style="margin-bottom: 20px;"  >
-                        <div class="image-size-2 " style="border: none;padding:20px 20px;" >
-                            <div style="font-size: 30px"> Avg Rating : {{round($avg_rating,1)}}/5 <span style="font-size: 16px;margin-left: 10px">({{$rating_count}})</span> </div>
-                            <?php
-                                $rating=0;
-                                $style=['','','','',''];
-                                if(isset($current_user)){
-                                    foreach($current_user[6] as $use){
-                                        if($use->item_id == $item->item_id){
-                                            $rating = $use->rating;
-                                            break;
+                        <div class="col-md-12  " style="margin-bottom: 20px;"  >
+                            <div class="image-size-2 " style="border: none;padding:20px 20px;" >
+                                <div style="font-size: 30px"> Avg Rating : {{round($avg_rating,1)}}/5 <span style="font-size: 16px;margin-left: 10px">({{$rating_count}})</span> </div>
+                                <?php
+                                    $rating=0;
+                                    $style=['','','','',''];
+                                    if(isset($current_user)){
+                                        foreach($current_user[6] as $use){
+                                            if($use->item_id == $item->item_id){
+                                                $rating = $use->rating;
+                                                break;
+                                            }
                                         }
+                                        for ($i=0;$i<$rating;$i++){
+                                            $style[$i]='#FF3333';
+                                        }
+                                        $ratethis_text = "<span>Rate this : </span>";
+                                        if ($rating>0)  $ratethis_text = "<span>Your rating : </span>";
+                                        echo ('
+                                       <div class="shadow-text" style="font-size: 20px">
+                                        '.$ratethis_text.'
+                                        <span onclick="updateRating(1)" id="star1" style="color:white" class="glyphicon-star glyphicon" ></span>
+                                        <span onclick="updateRating(2)" id="star2" style="" class="glyphicon-star glyphicon" ></span>
+                                        <span onclick="updateRating(3)" id="star3" style="" class="glyphicon-star glyphicon" ></span>
+                                        <span onclick="updateRating(4)" id="star4" style="" class="glyphicon-star glyphicon" ></span>
+                                        <span onclick="updateRating(5)" id="star5" style="" class="glyphicon-star glyphicon" ></span>
+                                         </div>
+                                        ');
                                     }
-                                    for ($i=0;$i<$rating;$i++){
-                                        $style[$i]='#FF3333';
-                                    }
-                                    $ratethis_text = "<span>Rate this : </span>";
-                                    if ($rating>0)  $ratethis_text = "<span>Your rating : </span>";
-                                    echo ('
-                                   <div class="shadow-text" style="font-size: 20px">
-                                    '.$ratethis_text.'
-                                    <span onclick="updateRating(1)" id="star1" style="color:white" class="glyphicon-star glyphicon" ></span>
-                                    <span onclick="updateRating(2)" id="star2" style="" class="glyphicon-star glyphicon" ></span>
-                                    <span onclick="updateRating(3)" id="star3" style="" class="glyphicon-star glyphicon" ></span>
-                                    <span onclick="updateRating(4)" id="star4" style="" class="glyphicon-star glyphicon" ></span>
-                                    <span onclick="updateRating(5)" id="star5" style="" class="glyphicon-star glyphicon" ></span>
-                                     </div>
+                                else {
+                                    echo('
+                                       <div class="row col-xs-12 " style="margin-top: 10px">
+                                        <a href="#loginModal" data-toggle="modal" data-target="#loginModal"><button class="btn btn-success">Sign in to rate</button></a>
+                                        </div>
                                     ');
                                 }
-                            else {
-                                echo('
-                                   <div class="row col-xs-12 " style="margin-top: 10px">
-                                    <a href="#loginModal" data-toggle="modal" data-target="#loginModal"><button class="btn btn-success">Sign in to rate</button></a>
-                                    </div>
-                                ');
-                            }
-                            ?>
+                                ?>
+                                @if ($item==null)
+                                @elseif ( $item->isApproved == 1 )
+                                <img src="/approved.png" style=";height:100px;" >
+                                @else
+                                <img src="/waitapprove.png" style=";height:100px;" >
+                                @endif
+                                @if(isset($current_user)&&$current_user[4]=="Admin")
+                                    @if($item->isApproved)
+                                        <span style="margin-left: 40px"><input id="isApproved" data-on-style="success" type="checkbox" checked data-toggle="toggle"  data-on="Approve"  data-off="Wait Approve"></span>
+                                    @else
+                                        <span style="margin-left: 40px"><input id="isApproved"  data-on-style="success" type="checkbox"  data-toggle="toggle"  data-on="Approve"  data-off="Wait Approve"></span>
+                                    @endif
+                                @endif
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <div class="col-md-6" style="margin-bottom: 20px;">
@@ -357,13 +379,18 @@
                         console.log("out");
                     }
             );
+            $("#isApproved").change(function(){
+                console.log($(this).prop('checked'));
+                isApproved =  $(this).prop('checked') ? 1 : 0 ;
+                console.log("sent"+isApproved);
+                post('/approve',{isApproved : isApproved,item_id: "{{$item->item_id}}" });
+            });
         });
             function repaintRating(){
                 @for($i=1;$i<=5;$i++)
                     $("#star{{$i}}").css("color","{{$style[$i-1]}}");
                 @endfor
             }
-
             function updateRating(e){
                 console.log(e);
                 sessionStorage.setItem('lastReview',"section2");

@@ -356,61 +356,145 @@ class web_controller extends Controller
     
 //======================================    adding new item   ====================================================
     function addAttraction(Request $request){
-        //if (Auth::check()) {
-         if (true){
-            $user = Auth::user();
+        $current_user = Session::get('user');
+        if(!isset($current_user)){
+            return 'you must login first.';
         }
-        else{
-            return redirect();
+        else {
+            $id_tmp = (DB::table('item')->count()) + 1;
+            $item = new Item();
+            $attraction = new Attraction();
+            $location = new Location();
+            $photo = new PhotoGallery();
+            /*---------------------upload_picture-----------------------*/
+            $file = Input::file('profile_picture');
+            if ($file != null) {
+                $destinationPath = 'img/';
+                $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+                Input::file('profile_picture')->move($destinationPath, $filename);
+                $num_photo = (DB::table('photo_gallery')->count());
+                $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
+                $photo->link_item_id = $id_tmp;
+                $photo->photo_url = '/' . $destinationPath . $filename;
+                $item->title_picture = $photo->photo_url;
+                $photo->save();
+            }
+            /*---------------------------------------------------------*/
+            $item->item_id = $id_tmp;
+            $item->title = $request->in_new_title;
+            $item->description = $request->in_new_description;
+            $item->tel = $request->in_new_tel;
+            $item->user_id = $current_user[5];
+            if($current_user[4]=="Admin") $item->isApproved = 1;
+            else $item->isApproved = 0;
+
+            $attraction->attraction_type = $request->in_new_type;
+            $attraction->activity = $request->in_new_activity;
+            $attraction->entrance_fee = $request->in_new_entrancefee;
+            $attraction->oc_time = $request->in_new_oc_time;
+            $attraction->parking = $request->in_new_parking;
+            $attraction->website_url = $request->in_new_web_url;
+            $attraction->link_item_id = $id_tmp;
+
+            $location->hint = $request->in_new_hint;
+            $location->build = $request->in_new_build;
+            $location->street_address = $request->in_new_street_address;
+            $location->sub_district = $request->in_new_sub_dis;
+            $location->district = $request->in_new_district;
+            $location->province = $request->in_new_province;
+            $location->postal_code = $request->in_new_post_code;
+            $location->lat = $request->in_new_lat;
+            $location->long = $request->in_new_lng;
+            $location->link_item_id = $id_tmp;
+
+            $item->save();
+            $location->save();
+            $attraction->save();
+            return redirect('/page_travel/info/' . $id_tmp);
         }
-        $id_tmp = (DB::table('item')->count())+1;
-        $item = new Item();
-        $attraction = new Attraction();
-        $location = new Location();
-        $photo = new PhotoGallery();
-        /*---------------------upload_picture-----------------------*/
-        $file = Input::file('profile_picture');
-        if($file !=null) {
-            $destinationPath = 'img/';
-            $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
-            Input::file('profile_picture')->move($destinationPath, $filename);
-            $num_photo = (DB::table('photo_gallery')->count());
-            $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo-1)->first()->photo_id ) +1;
-            $photo->link_item_id = $id_tmp;
-            $photo->photo_url = '/' . $destinationPath . $filename;
-            $item->title_picture = $photo->photo_url;
-            $photo->save();
+    }
+    function editAttraction($item_id){
+        $item = Item::where('item_id',$item_id)->first();
+        $attraction = Attraction::where('link_item_id',$item_id)->first();
+        $location = Location::where('link_item_id',$item_id)->first();
+        return view('add_new_attraction',['item'=>$item,'attraction'=>$attraction,'location'=>$location]);
+    }
+    function updateAttraction(Request $request){
+        $current_user = Session::get('user');
+        if(isset($current_user)) {
+            $isOwner = Item::where('user_id', $current_user[5])->where('item_id', $request->item_id)->exists();
+            if ($current_user[4] == "Admin" || $isOwner) {
+                $item = Item::where('item_id', $request->item_id);
+                $attraction = Attraction::where('link_item_id', $request->item_id);
+                $location = Location::where('link_item_id', $request->item_id);
+                $photo = new PhotoGallery();
+                /*---------------------upload_picture-----------------------*/
+                $file = Input::file('profile_picture');
+                if ($file != null) {
+                    $destinationPath = 'img/';
+                    $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+                    Input::file('profile_picture')->move($destinationPath, $filename);
+                    $num_photo = (DB::table('photo_gallery')->count());
+                    $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
+                    $photo->link_item_id = $item->item_id;
+                    $photo->photo_url = '/' . $destinationPath . $filename;
+                    $item->title_picture = $photo->photo_url;
+                    $photo->save();
+                }
+                /*---------------------------------------------------------*/
+                $item->title = $request->in_new_title;
+                $item->description = $request->in_new_description;
+                $item->tel = $request->in_new_tel;
+                /*$item->user_id = $current_user[5];*/
+                if($current_user[4]!='Admin') $item->isApproved = 0;
+
+                $attraction->attraction_type = $request->in_new_type;
+                $attraction->activity = $request->in_new_activity;
+                $attraction->entrance_fee = $request->in_new_entrancefee;
+                $attraction->oc_time = $request->in_new_oc_time;
+                $attraction->parking = $request->in_new_parking;
+                $attraction->website_url = $request->in_new_web_url;
+
+                $location->hint = $request->in_new_hint;
+                $location->build = $request->in_new_build;
+                $location->street_address = $request->in_new_street_address;
+                $location->sub_district = $request->in_new_sub_dis;
+                $location->district = $request->in_new_district;
+                $location->province = $request->in_new_province;
+                $location->postal_code = $request->in_new_post_code;
+                $location->lat = $request->in_new_lat;
+                $location->long = $request->in_new_lng;
+
+                $item->update(['title' => $item->title,'description'=>$item->description,'tel'=>$item->tel,'isApproved'=>$item->isApproved]);
+                $location->update(['hint'=>$location->hint,
+                    'build'=>$location->build,
+                    'street_address'=>$location->street_address,
+                    'sub_district'=>$location->sub_district,
+                    'district' =>$location->district,
+                    'province' =>$location->province,
+                    'postal_code'=>$location->postal_code,
+                    'lat'=>$location->lat,
+                    'long'=>$location->long
+                ]);
+                $attraction->update([
+                    'attraction_type'=>$attraction->attraction_type,
+                    'activity'=>$attraction->activity,
+                'entrance_fee'=>$attraction->entrance_fee,
+                'oc_time'=>$attraction->oc_time ,
+                'parking'=>$attraction->parking ,
+                'website_url'=>$attraction->website_url
+                ]);
+                return redirect('/page_travel/info/' . $request->item_id);
+            }
         }
-        /*---------------------------------------------------------*/
-        $item->item_id = $id_tmp;
-        $item->title = $request->in_new_title;
-        $item->description = $request->in_new_description;
-        $item->tel = $request->in_new_tel;
-
-        $attraction->attraction_type = $request->in_new_type;
-        $attraction->activity = $request->in_new_activity;
-        $attraction->entrance_fee = $request->in_new_entrancefee;
-        $attraction->oc_time = $request->in_new_oc_time;
-        $attraction->parking = $request->in_new_parking;
-        $attraction->website_url = $request->in_new_web_url;
-        $attraction->link_item_id = $id_tmp;
-
-        $location->hint = $request->in_new_hint;
-        $location->build = $request->in_new_build;
-        $location->street_address = $request->in_new_street_address;
-        $location->sub_district = $request->in_new_sub_dis;
-        $location->district = $request->in_new_district;
-        $location->province = $request->in_new_province;
-        $location->postal_code = $request->in_new_post_code;
-        $location->lat = $request->in_new_lat;
-        $location->long = $request->in_new_lng;
-        $location->link_item_id = $id_tmp;
-
-        $item->save();
-        $location->save();
-        $attraction->save();
-        return redirect('/page_travel/info/' . $id_tmp);
-
+        return 'fail to authorize permission.';
+    }
+    function approve(Request $request){
+        $current_user = Session::get('user');
+        if(isset($current_user) && $current_user[4]=="Admin"){
+            Item::where('item_id',$request->item_id)->update(["isApproved"=>$request->isApproved]);
+        }
+        return Redirect::back();
     }
     function addRestaurant(Request $request){
         //if (Auth::check()) {

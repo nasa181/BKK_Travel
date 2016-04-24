@@ -1,6 +1,7 @@
 @extends('master')
 @section('center_page')
-
+    <?php $current_user = Session::get('user') ?>
+    {{--{{var_dump($attraction)}};--}}
     <div class="row">
         <div class=" col-xs-12">
             <h1 class="head-title">Attraction List</h1>
@@ -12,10 +13,10 @@
             <?php
                 $attraction1 = array();
                 $attraction2 = array();
-                for($i=0;$i<=intval(sizeof($attraction)/2);$i++){
+                for($i=0;$i<intval(sizeof($attraction)/2);$i++){
                     array_push($attraction1,$attraction[$i]);
                 }
-                for($i=intval(sizeof($attraction)/2)+1;$i<sizeof($attraction);$i++){
+                for($i=intval(sizeof($attraction)/2);$i<sizeof($attraction);$i++){
                     array_push($attraction2,$attraction[$i]);
                 }
             ?>
@@ -102,8 +103,13 @@
             <hr>
         </div>
     </div>
-
+    @if(isset($current_user))
     <div class="row col-xs-12 ">
         <a href="/page_attraction/create_new_attraction"><button class="btn btn-success">Add new attraction</button></a>
     </div>
+    @else
+    <div class="row col-xs-12 ">
+        <a href="#loginModal" data-toggle="modal" data-target="#loginModal"><button class="btn btn-success">Login to add new attraction</button></a>
+    </div>
+    @endif
 @stop

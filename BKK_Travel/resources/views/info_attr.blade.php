@@ -22,7 +22,7 @@
             @if(isset($current_user) && $current_user[4]=="Admin")
             <div class="row" style="margin-top: 10px">
                 <div class= "col-md-offset-10 col-md-2 col-xs-offset-8 col-xs-4"style="text-align: right">
-                    <div><button onclick=" post('/remove_item',{item_id : {{$item->item_id}} },'post')" class="form-control btn-danger btn">remove</button></div>
+                    <div><button onclick="remove_item()" class="form-control btn-danger btn">remove</button></div>
                 </div>
             </div>
             @endif
@@ -412,6 +412,11 @@
                     $(e).parent().submit();
                 }
             };
+            function remove_item(){
+                if (confirm("Click OK to confirm deleted?")){
+                    post('/remove_item',{item_id : {{$item->item_id}} },'post');
+                }
+            }
 
             function addLike(e){
                 @if( isset($current_user) )

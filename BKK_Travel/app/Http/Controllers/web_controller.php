@@ -111,12 +111,26 @@ class web_controller extends Controller
         $photo = DB::table('photo_gallery')->where('link_item_id',$id)->first();
         $review = DB::table('review')->where('link_item_id',$id)->get();
         $location = DB::table('location')->where('link_item_id',$id)->first();
+        $ratings = DB::table('rating_relation')->where('item_id',$id)->get();
+        $likes = Like::join('review','review.review_id','=','like_relation.review_id')
+            ->where('link_item_id',$item->item_id)
+            ->select('review.review_id','likeOrDislike')
+            ->get();
+        /*find avg_rating*/
+        $avg_rating = 0.0;
+        $i=0;
+        foreach($ratings as $rat){
+            $i++;
+            $avg_rating = $avg_rating + $rat->rating;
+        }
+        if($i!=0) $avg_rating = $avg_rating/$i;
         $user = array();
         foreach($review as $rev){
             $Auser = DB::table('users')->where('user_id',$rev->link_user_id)->first();
             array_push($user,$Auser);
         }
-        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,'user'=>$user]);
+        return view('info_restaurant',['res'=>$res,'item'=>$item,'photo'=>$photo,'review'=>$review,'location'=>$location,
+            'user'=>$user,'avg_rating'=>$avg_rating,'rating_count'=>$i,'likes'=>$likes]);
     }
     function attr_info($id){
         $attr = DB::table('attraction')->where('link_item_id',$id)->first();
@@ -373,63 +387,63 @@ class web_controller extends Controller
     }
 //======================================    adding new item   ====================================================
     function addAttraction(Request $request){
-        $current_user = Session::get('user');
-        if(!isset($current_user)){
-            return 'you must login first.';
-        }
-        else {
-            $id_tmp = (DB::table('item')->count()) + 1;
-            $item = new Item();
-            $attraction = new Attraction();
-            $location = new Location();
-            $photo = new PhotoGallery();
-            /*---------------------upload_picture-----------------------*/
-            $file = Input::file('profile_picture');
-            if ($file != null) {
-                $destinationPath = 'img/';
-                $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
-                Input::file('profile_picture')->move($destinationPath, $filename);
-                $num_photo = (DB::table('photo_gallery')->count());
-                $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
-                $photo->link_item_id = $id_tmp;
-                $photo->photo_url = '/' . $destinationPath . $filename;
-                $item->title_picture = $photo->photo_url;
-                $photo->save();
-            }
-            /*---------------------------------------------------------*/
-            $item->item_id = $id_tmp;
-            $item->title = $request->in_new_title;
-            $item->description = $request->in_new_description;
-            $item->tel = $request->in_new_tel;
-            $item->user_id = $current_user[5];
-            if($current_user[4]=="Admin") $item->isApproved = 1;
-            else $item->isApproved = 0;
-
-            $attraction->attraction_type = $request->in_new_type;
-            $attraction->activity = $request->in_new_activity;
-            $attraction->entrance_fee = $request->in_new_entrancefee;
-            $attraction->oc_time = $request->in_new_oc_time;
-            $attraction->parking = $request->in_new_parking;
-            $attraction->website_url = $request->in_new_web_url;
-            $attraction->link_item_id = $id_tmp;
-
-            $location->hint = $request->in_new_hint;
-            $location->build = $request->in_new_build;
-            $location->street_address = $request->in_new_street_address;
-            $location->sub_district = $request->in_new_sub_dis;
-            $location->district = $request->in_new_district;
-            $location->province = $request->in_new_province;
-            $location->postal_code = $request->in_new_post_code;
-            $location->lat = $request->in_new_lat;
-            $location->long = $request->in_new_lng;
-            $location->link_item_id = $id_tmp;
-
-            $item->save();
-            $location->save();
-            $attraction->save();
-            return redirect('/page_travel/info/' . $id_tmp);
-        }
+    $current_user = Session::get('user');
+    if(!isset($current_user)){
+        return 'you must login first.';
     }
+    else {
+        $id_tmp = (DB::table('item')->count()) + 1;
+        $item = new Item();
+        $attraction = new Attraction();
+        $location = new Location();
+        $photo = new PhotoGallery();
+        /*---------------------upload_picture-----------------------*/
+        $file = Input::file('profile_picture');
+        if ($file != null) {
+            $destinationPath = 'img/';
+            $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+            Input::file('profile_picture')->move($destinationPath, $filename);
+            $num_photo = (DB::table('photo_gallery')->count());
+            $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
+            $photo->link_item_id = $id_tmp;
+            $photo->photo_url = '/' . $destinationPath . $filename;
+            $item->title_picture = $photo->photo_url;
+            $photo->save();
+        }
+        /*---------------------------------------------------------*/
+        $item->item_id = $id_tmp;
+        $item->title = $request->in_new_title;
+        $item->description = $request->in_new_description;
+        $item->tel = $request->in_new_tel;
+        $item->user_id = $current_user[5];
+        if($current_user[4]=="Admin") $item->isApproved = 1;
+        else $item->isApproved = 0;
+
+        $attraction->attraction_type = $request->in_new_type;
+        $attraction->activity = $request->in_new_activity;
+        $attraction->entrance_fee = $request->in_new_entrancefee;
+        $attraction->oc_time = $request->in_new_oc_time;
+        $attraction->parking = $request->in_new_parking;
+        $attraction->website_url = $request->in_new_web_url;
+        $attraction->link_item_id = $id_tmp;
+
+        $location->hint = $request->in_new_hint;
+        $location->build = $request->in_new_build;
+        $location->street_address = $request->in_new_street_address;
+        $location->sub_district = $request->in_new_sub_dis;
+        $location->district = $request->in_new_district;
+        $location->province = $request->in_new_province;
+        $location->postal_code = $request->in_new_post_code;
+        $location->lat = $request->in_new_lat;
+        $location->long = $request->in_new_lng;
+        $location->link_item_id = $id_tmp;
+
+        $item->save();
+        $location->save();
+        $attraction->save();
+        return redirect('/page_travel/info/' . $id_tmp);
+    }
+}
     function editAttraction($item_id){
         $item = Item::where('item_id',$item_id)->first();
         $attraction = Attraction::where('link_item_id',$item_id)->first();
@@ -516,61 +530,141 @@ class web_controller extends Controller
     }
     function addRestaurant(Request $request){
         $current_user = Session::get('user');
-        //if (Auth::check()) {
-        if(true){
-            $user = Auth::user();
+        if(!isset($current_user)){
+            return 'you must login first.';
         }
-        else{
-            return redirect();
-        }
-        $id_tmp = (DB::table('item')->count())+1;
-        $item = new Item();
-        $restaurant = new Restaurant();
-        $location = new Location();
-        $photo = new PhotoGallery();
-        /*---------------------upload_picture-----------------------*/
-        $file = Input::file('profile_picture');
-        if($file !=null) {
-            $destinationPath = 'img/';
-            $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
-            Input::file('profile_picture')->move($destinationPath, $filename);
-            $num_photo = (DB::table('photo_gallery')->count());
-            $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo-1)->first()->photo_id ) +1;
-            $photo->link_item_id = $id_tmp;
-            $photo->photo_url = '/' . $destinationPath . $filename;
-            $item->title_picture = $photo->photo_url;
-            $photo->save();
-        }
-        /*---------------------------------------------------------*/
-        $item->item_id = $id_tmp;
-        $item->title = $request->in_new_title;
-        $item->description = $request->in_new_description;
-        $item->tel = $request->in_new_tel;
-        $item->user_id = $current_user[5];
-        $restaurant->price_range = $request->in_new_price_range;
-        $restaurant->food_type = $request->in_new_food_type;
-        $restaurant->oc_time = $request->in_new_oc_time;
-        $restaurant->credit_card = $request->in_new_credit_card;
-        $restaurant->child_appropriate = $request->in_new_child_appropriate;
-        $restaurant->reservable = $request->in_new_reservable;
-        $restaurant->parking = $request->in_new_parking;
-        $restaurant->link_item_id = $id_tmp;
+        else {
+            $id_tmp = (DB::table('item')->count()) + 1;
+            $item = new Item();
+            $restaurant = new Restaurant();
+            $location = new Location();
+            $photo = new PhotoGallery();
+            /*---------------------upload_picture-----------------------*/
+            $file = Input::file('profile_picture');
+            if ($file != null) {
+                $destinationPath = 'img/';
+                $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+                Input::file('profile_picture')->move($destinationPath, $filename);
+                $num_photo = (DB::table('photo_gallery')->count());
+                $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
+                $photo->link_item_id = $id_tmp;
+                $photo->photo_url = '/' . $destinationPath . $filename;
+                $item->title_picture = $photo->photo_url;
+                $photo->save();
+            }
+            /*---------------------------------------------------------*/
+            $item->item_id = $id_tmp;
+            $item->title = $request->in_new_title;
+            $item->description = $request->in_new_description;
+            $item->tel = $request->in_new_tel;
+            $item->user_id = $current_user[5];
+            if($current_user[4]=="Admin") $item->isApproved = 1;
+            else $item->isApproved = 0;
 
-        $location->hint = $request->in_new_hint;
-        $location->build = $request->in_new_build;
-        $location->street_address = $request->in_new_street_address;
-        $location->sub_district = $request->in_new_sub_dis;
-        $location->district = $request->in_new_district;
-        $location->province = $request->in_new_province;
-        $location->postal_code = $request->in_new_post_code;
-        $location->lat = $request->in_new_lat;
-        $location->long = $request->in_new_lng;
-        $location->link_item_id = $id_tmp;
+            $restaurant->price_range = $request->in_new_price_range;
+            $restaurant->food_type = $request->in_new_food_type;
+            $restaurant->oc_time = $request->in_new_oc_time;
+            $restaurant->credit_card = $request->in_new_credit_card;
+            $restaurant->child_appropriate = $request->in_new_child_appropriate;
+            $restaurant->reservable = $request->in_new_reservable;
+            $restaurant->parking = $request->in_new_parking;
+            $restaurant->link_item_id = $id_tmp;
 
-        $item->save();
-        $location->save();
-        $restaurant->save();
-        return redirect('/page_restaurant/info/' . $id_tmp);
+            $location->hint = $request->in_new_hint;
+            $location->build = $request->in_new_build;
+            $location->street_address = $request->in_new_street_address;
+            $location->sub_district = $request->in_new_sub_dis;
+            $location->district = $request->in_new_district;
+            $location->province = $request->in_new_province;
+            $location->postal_code = $request->in_new_post_code;
+            $location->lat = $request->in_new_lat;
+            $location->long = $request->in_new_lng;
+            $location->link_item_id = $id_tmp;
+
+            $item->save();
+            $location->save();
+            $restaurant->save();
+            return redirect('/page_restaurant/info/' . $id_tmp);
+        }
+    }
+    function editRestaurant($item_id){
+        $item = Item::where('item_id',$item_id)->first();
+        $res= Restaurant::where('link_item_id',$item_id)->first();
+        $location = Location::where('link_item_id',$item_id)->first();
+        return view('add_new_restaurant',['item'=>$item,'res'=>$res,'location'=>$location]);
+    }
+    function updateRestaurant(Request $request){
+        $current_user = Session::get('user');
+        if(isset($current_user)) {
+            $isOwner = Item::where('user_id', $current_user[5])->where('item_id', $request->item_id)->exists();
+            if ($current_user[4] == "Admin" || $isOwner) {
+                $item = Item::where('item_id', $request->item_id);
+                $restaurant = Restaurant::where('link_item_id', $request->item_id);
+                $location = Location::where('link_item_id', $request->item_id);
+                $photo = new PhotoGallery();
+                /*---------------------upload_picture-----------------------*/
+                $file = Input::file('profile_picture');
+                if ($file != null) {
+                    $destinationPath = 'img/';
+                    $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
+                    Input::file('profile_picture')->move($destinationPath, $filename);
+                    $num_photo = (DB::table('photo_gallery')->count());
+                    $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
+                    $photo->link_item_id = $item->item_id;
+                    $photo->photo_url = '/' . $destinationPath . $filename;
+                    $item->title_picture = $photo->photo_url;
+                    $photo->save();
+                }
+                /*---------------------------------------------------------*/
+                $item->title = $request->in_new_title;
+                $item->description = $request->in_new_description;
+                $item->tel = $request->in_new_tel;
+                $item->user_id = $current_user[5];
+                if($current_user[4]=='Admin') $item->isApproved = 1;
+                else $item->isApproved = 0;
+
+                $restaurant->price_range = $request->in_new_price_range;
+                $restaurant->food_type = $request->in_new_food_type;
+                $restaurant->oc_time = $request->in_new_oc_time;
+                $restaurant->credit_card = $request->in_new_credit_card;
+                $restaurant->child_appropriate = $request->in_new_child_appropriate;
+                $restaurant->reservable = $request->in_new_reservable;
+                $restaurant->parking = $request->in_new_parking;
+
+                $location->hint = $request->in_new_hint;
+                $location->build = $request->in_new_build;
+                $location->street_address = $request->in_new_street_address;
+                $location->sub_district = $request->in_new_sub_dis;
+                $location->district = $request->in_new_district;
+                $location->province = $request->in_new_province;
+                $location->postal_code = $request->in_new_post_code;
+                $location->lat = $request->in_new_lat;
+                $location->long = $request->in_new_lng;
+
+                $item->update(['title' => $item->title,'description'=>$item->description,'tel'=>$item->tel,'isApproved'=>$item->isApproved]);
+                $location->update(['hint'=>$location->hint,
+                    'build'=>$location->build,
+                    'street_address'=>$location->street_address,
+                    'sub_district'=>$location->sub_district,
+                    'district' =>$location->district,
+                    'province' =>$location->province,
+                    'postal_code'=>$location->postal_code,
+                    'lat'=>$location->lat,
+                    'long'=>$location->long
+                ]);
+                $restaurant->update([
+                    'price_range' => $request->in_new_price_range,
+                    'food_type' => $request->in_new_food_type,
+                    'oc_time' => $request->in_new_oc_time,
+                    'credit_card' => $request->in_new_credit_card,
+                    'child_appropriate' => $request->in_new_child_appropriate,
+                    'reservable' => $request->in_new_reservable,
+                    'parking' => $request->in_new_parking
+                ]);
+                return redirect('/page_restaurant/info/' . $request->item_id);
+            }
+        }
+        return 'fail to authorize permission.';
     }
     function addEvent(Request $request){
         $current_user = Session::get('user');

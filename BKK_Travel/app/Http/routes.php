@@ -60,6 +60,8 @@ Route::group(['middleware' => ['web']], function () {
     //--------update,edit-------------
     Route::get('/edit_attraction/{item_id}','web_controller@editAttraction');
     Route::post('/update_attraction','web_controller@updateAttraction');
+    Route::get('/edit_restaurant/{item_id}','web_controller@editRestaurant');
+    Route::post('/update_restaurant','web_controller@updateRestaurant');
 //========== review ==========
     Route::get('/page_all/create_review/{item_id}','web_controller@createReview');
     Route::post('/search','web_controller@search');

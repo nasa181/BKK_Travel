@@ -94,17 +94,17 @@
 
                     <script>
                         var map;
-                        @if(!isset($item))
-                            var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-                        @else
-                            var myCenter=new google.maps.LatLng({{$location->lat}}, {{$location->long}});
-                        @endif
+                                @if(isset($item))
+                        var myCenter=new google.maps.LatLng( {{$location->lat}} ,{{$location->long}});
+                                @else
+                        var myCenter=new google.maps.LatLng( 13.743521264976438 ,100.54059982209014);
+                                @endif
                         var marker;
                         function initialize()
                         {
                             var mapProp = {
                                 center:myCenter,
-                                zoom:5,
+                                zoom:15,
                                 mapTypeId:google.maps.MapTypeId.ROADMAP
                             };
 

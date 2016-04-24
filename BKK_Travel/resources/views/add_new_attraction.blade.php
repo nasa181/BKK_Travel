@@ -1,8 +1,6 @@
 @extends('master')
 @section('center_page')
     <?php
-/*        var_dump($item);
-        var_dump($attraction);*/
         if(isset($item)) $path="/update_attraction";
         else $path="/page_travel/add_new_attraction";
     ?>
@@ -23,12 +21,12 @@
                     <input type="file" placeholder="Choose a photo to upload" name="profile_picture" id="photo" >
                 </div>
                 <div class="row col-md-offset-1 col-md-10  form-group">
-                <label>Title</label>
-                <input type="text" class="form-control" name="in_new_title" placeholder="Title.." @if(isset($item)) value="{{$item->title}}" @endif>
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="in_new_title" placeholder="Title.." @if(isset($item)) value="{{$item->title}}" @endif>
                 </div>
                 <div class="row col-md-offset-1 col-md-10  form-group">
                     <label>Description</label>
-                    <textarea  rows="5" class="form-control" name="in_new_description" placeholder="Please description this place..">@if(isset($item)) {{$item->description}} @endif</textarea>
+                    <textarea  rows="5" class="form-control" name="in_new_description" placeholder="Please description this place.."> @if(isset($item)) {{$item->description}} @endif</textarea>
                 </div>
                 <div class="row col-md-offset-1 col-md-10  form-group">
                     <label>Tel</label>
@@ -52,7 +50,7 @@
                 </div>
                 <div class="row  col-md-offset-1 col-md-10 form-group">
                     <div ><label>Parking</label>
-                        <label class="radio-inline"><input type="radio" name="in_new_parking" value="Yes">Yes</label>
+                        <label class="radio-inline"><input type="radio" name="in_new_parking" value="Yes" checked>Yes</label>
                         <label class="radio-inline"><input type="radio" name="in_new_parking" value="No">No</label>
                     </div>
                 </div>

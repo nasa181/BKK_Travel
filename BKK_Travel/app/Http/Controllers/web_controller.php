@@ -233,14 +233,13 @@ class web_controller extends Controller
         $keyword = $request->in_search;
         $attraction = DB::table('item')
             ->join('attraction','item.item_id','=','attraction.link_item_id')
-            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('location','item.item_id','=','location.link_item_id');
         $restaurant = DB::table('item')
             ->join('restaurant','item.item_id','=','restaurant.link_item_id')
-            ->join('photo_gallery','item.item_id','=','photo_gallery.link_item_id')
             ->join('location','item.item_id','=','location.link_item_id');
-        $attraction = $attraction->where('item.title','LIKE','%'.$keyword.'%')->get();//->orWhere('attraction.attraction_type','LIKE','%'.$keyword.'%')->get();
-        $restaurant = $restaurant->where('item.title','LIKE','%'.$keyword.'%')->get();//->orWhere('restaurant.food_type','LIKE','%'.$keyword.'%')->get();
+        $attraction = $attraction->where('item.title','LIKE','%'.$keyword.'%')->distinct()->get();//->orWhere('attraction.attraction_type','LIKE','%'.$keyword.'%')->get();
+        $restaurant = $restaurant->where('item.title','LIKE','%'.$keyword.'%')->distinct()->get();//->orWhere('restaurant.food_type','LIKE','%'.$keyword.'%')->get();
+
         return view('search_page',['attraction'=>$attraction,'restaurant'=>$restaurant]);
     }
 
@@ -294,6 +293,7 @@ class web_controller extends Controller
             $password = $request->in_new_password;
             $password2 = $request->in_new_repassword;
             if ($password != $password2) return "The password must consistency.";
+            if($file==null) $filepath= $current_user[11];
             User::where('email', $current_user[0])->update(['password' => sha1($password), 'Fname' => $request->in_Fname
                 , 'Lname' => $request->in_Lname, 'birthday' => $request->in_birthday, 'gender' => $request->sex, 'nationality' => $request->country,'image'=>$filepath]);
             return redirect('/relogin/profile'.$this_id);
@@ -488,6 +488,7 @@ class web_controller extends Controller
     }
 }
     function editAttraction($item_id){
+
         $item = Item::where('item_id',$item_id)->first();
         $attraction = Attraction::where('link_item_id',$item_id)->first();
         $location = Location::where('link_item_id',$item_id)->first();
@@ -505,12 +506,13 @@ class web_controller extends Controller
                 /*---------------------upload_picture-----------------------*/
                 $file = Input::file('profile_picture');
                 if ($file != null) {
+
                     $destinationPath = 'img/';
                     $filename = md5(microtime() . $file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
                     Input::file('profile_picture')->move($destinationPath, $filename);
                     $num_photo = (DB::table('photo_gallery')->count());
                     $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
-                    $photo->link_item_id = $item->item_id;
+                    $photo->link_item_id = $request->item_id;
                     $photo->photo_url = '/' . $destinationPath . $filename;
                     $item->title_picture = $photo->photo_url;
                     $photo->save();
@@ -540,7 +542,9 @@ class web_controller extends Controller
                 $location->lat = $request->in_new_lat;
                 $location->long = $request->in_new_lng;
 
-                $item->update(['title' => $item->title,'description'=>$item->description,'tel'=>$item->tel,'isApproved'=>$item->isApproved]);
+                $item->update(['title' => $item->title,'description'=>$item->description,'tel'=>$item->tel,'isApproved'=>$item->isApproved,
+                    'title_picture'=>$item->title_picture
+                ]);
                 $location->update(['hint'=>$location->hint,
                     'build'=>$location->build,
                     'street_address'=>$location->street_address,
@@ -656,7 +660,7 @@ class web_controller extends Controller
                     Input::file('profile_picture')->move($destinationPath, $filename);
                     $num_photo = (DB::table('photo_gallery')->count());
                     $photo->photo_id = (DB::table('photo_gallery')->skip($num_photo - 1)->first()->photo_id) + 1;
-                    $photo->link_item_id = $item->item_id;
+                    $photo->link_item_id = $request->item_id;
                     $photo->photo_url = '/' . $destinationPath . $filename;
                     $item->title_picture = $photo->photo_url;
                     $photo->save();
@@ -687,7 +691,8 @@ class web_controller extends Controller
                 $location->lat = $request->in_new_lat;
                 $location->long = $request->in_new_lng;
 
-                $item->update(['title' => $item->title,'description'=>$item->description,'tel'=>$item->tel,'isApproved'=>$item->isApproved]);
+                $item->update(['title' => $item->title,'description'=>$item->description,'tel'=>$item->tel,'isApproved'=>$item->isApproved,
+                    'title_picture'=>$item->title_picture]);
                 $location->update(['hint'=>$location->hint,
                     'build'=>$location->build,
                     'street_address'=>$location->street_address,

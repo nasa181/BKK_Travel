@@ -138,10 +138,10 @@
                             <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>
                         </div>
                         <div class="col-xs-12">
-                            <div class="text-info " style="margin: 0px"><span>{{$eve->build}}</span></div>
+                            <div class="text-info " style="margin: 0px"><span>{{$eve->entrance_fee}}</span></div>
                         </div>
                         <div class="col-xs-12" >
-                            <div class="text-info " style="margin: 0px"><span>{{$eve->hint}}</span></div>
+                            <div class="text-info " style="margin: 0px"><span>{{$eve->type}}</span></div>
                         </div>
                     </div>
                 </div>

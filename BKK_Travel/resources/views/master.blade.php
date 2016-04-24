@@ -296,6 +296,7 @@
                             <p>Password</p>
                             <input id="password" type="password" class="form-control" name="in_password" placeholder="Password..">
                             <div class="modal-footer">
+                                <a href="#"><div  class="btn btn-default">Forget Password</div></a>
                                 <button id="login" type="submit" class="btn btn-default">Login</button>
                             </div>
                         </form>

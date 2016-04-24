@@ -392,7 +392,11 @@ class web_controller extends Controller
         return 'you must login first.';
     }
     else {
-        $id_tmp = (DB::table('item')->count()) + 1;
+        $id_tmp=0;
+        if ( ($count = Item::count()) != 0 ){
+            $id_tmp =  Item::skip($count -1)->first()->item_id;
+        }
+        $id_tmp = $id_tmp + 1;
         $item = new Item();
         $attraction = new Attraction();
         $location = new Location();
@@ -534,7 +538,11 @@ class web_controller extends Controller
             return 'you must login first.';
         }
         else {
-            $id_tmp = (DB::table('item')->count()) + 1;
+            $id_tmp=0;
+            if ( ($count = Item::count()) != 0 ){
+                $id_tmp =  Item::skip($count -1)->first()->item_id;
+            }
+            $id_tmp = $id_tmp+1;
             $item = new Item();
             $restaurant = new Restaurant();
             $location = new Location();

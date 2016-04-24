@@ -22,10 +22,10 @@
                 <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Email</label><input id="email"   type="text" class="form-control" name="in_new_email" placeholder="Email.."></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Password</label><input id="password" type="text" class="form-control" name="in_new_password" placeholder="Password.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Password</label><input id="password" type="password" class="form-control" name="in_new_password" placeholder="Password.."></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Confirm Password</label><input id="confirm_password" type="text" class="form-control" name="in_new_repassword" placeholder="Confirm Password.."></div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12"><label>Confirm Password</label><input id="confirm_password" type="password" class="form-control" name="in_new_repassword" placeholder="Confirm Password.."></div>
             </div>
             <div class="row form-group">
                 <div class="col-md-offset-1 col-md-10 col-xs-12"><label>First Name</label><input id="fname" type="text" class="form-control" name="in_Fname" placeholder="First Name.."></div>

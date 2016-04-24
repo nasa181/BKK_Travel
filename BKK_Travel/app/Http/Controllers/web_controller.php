@@ -68,8 +68,10 @@ class web_controller extends Controller
 
     function auto_redirect($id){
         $isAttracionReview = DB::table('item')->where('item_id',$id)->join('attraction','item.item_id','=','attraction.link_item_id')->count();
-        if($isAttracionReview) return redirect('/page_travel/info/' . $id);
-        else return redirect('/page_restaurant/info/' . $id);
+        $isResReview = DB::table('item')->where('item_id',$id)->join('restaurant','item.item_id','=','restaurant.link_item_id')->count();
+        if($isAttracionReview ==1) return redirect('/page_travel/info/' . $id);
+        else if($isResReview== 1) return redirect('/page_restaurant/info/' . $id);
+        else return redirect('/page_event/info/' . $id);
     }
 
 

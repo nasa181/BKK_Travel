@@ -26,11 +26,12 @@
                     if ($eve->title_picture == "" || $eve->title_picture == null) $background = "green" ;
                     else  $background = "url('" . url($eve->title_picture) . "')";
                     ?>
+                    <a href="/page_event/info/{{$eve->item_id}}">
                     <div class="row item_description " style="overflow:hidden;margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
                         <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="head item_description" style=""><a href="/page_event/info/{{$eve->item_id}}"><span><h4>{{$eve->title}}</h4></span></a></div>
+                                    <div class="head item_description" style=""><span><h4>{{$eve->title}}</h4></span></div>
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>
@@ -44,6 +45,7 @@
                             </div>
                         </div>
                     </div>
+                    </a>
                 @endforeach
             @endif
         </div>
@@ -54,11 +56,12 @@
                     if ($eve->title_picture == "" || $eve->title_picture == null) $background = "green" ;
                     else  $background = "url('" . url($eve->title_picture) . "')";
                     ?>
+                    <a href="/page_event/info/{{$eve->item_id}}">
                     <div class="row item_description " style="margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
                         <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="head item_description" style=""><a href="/page_event/info/{{$eve->item_id}}"><span><h4>{{$eve->title}}</h4></span></a></div>
+                                    <div class="head item_description" style=""><span><h4>{{$eve->title}}</h4></span></div>
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>
@@ -72,6 +75,7 @@
                             </div>
                         </div>
                     </div>
+                    </a>
                 @endforeach
             @endif
         </div>

@@ -34,20 +34,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_new_attraction.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/add_new_attraction.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-              <folding>
-                <marker date="1461531456069" expanded="true" signature="7187:7760" placeholder="{...}" />
-                <marker date="1461531456069" expanded="true" signature="7612:7732" placeholder="..." />
-                <marker date="1461531456069" expanded="true" signature="7643:7731" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="attraction.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/attraction.blade.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -135,21 +121,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="53" column="233" selection-start-line="53" selection-start-column="233" selection-end-line="53" selection-end-column="233" />
+            <state relative-caret-position="340">
+              <caret line="62" column="34" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
               <folding>
                 <element signature="e#793#948#0#HTML" expanded="true" />
                 <element signature="e#997#1033#0#HTML" expanded="true" />
                 <element signature="e#1752#1914#0#HTML" expanded="true" />
                 <element signature="e#1967#2003#0#HTML" expanded="true" />
+                <element signature="e#2948#3128#0#HTML" expanded="true" />
                 <element signature="e#3868#4067#0#HTML" expanded="true" />
                 <element signature="e#4116#4152#0#HTML" expanded="true" />
                 <element signature="e#12108#12128#0#HTML" expanded="true" />
                 <marker date="1461570702313" expanded="true" signature="14781:14929" placeholder="..." />
                 <marker date="1461570702313" expanded="true" signature="14877:14890" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search_page.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/search_page.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+              <folding>
+                <element signature="e#1952#1977#0#HTML" expanded="true" />
+                <element signature="e#3201#3220#0#HTML" expanded="true" />
+                <element signature="e#3411#3431#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -187,7 +188,6 @@
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/info_event.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/add_new_event.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/add_new_restaurant.blade.php" />
-        <option value="$PROJECT_DIR$/BKK_Travel/resources/views/search_page.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/add_new_attraction.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/app/Http/Controllers/web_controller.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/restaurant.blade.php" />
@@ -196,6 +196,7 @@
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/master.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/info_attr.blade.php" />
         <option value="$PROJECT_DIR$/BKK_Travel/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/BKK_Travel/resources/views/search_page.blade.php" />
       </list>
     </option>
   </component>
@@ -386,12 +387,12 @@
       <workItem from="1461500058333" duration="24905000" />
       <workItem from="1461533166509" duration="1057000" />
       <workItem from="1461562029155" duration="2991000" />
-      <workItem from="1461569710875" duration="987000" />
+      <workItem from="1461569710875" duration="1266000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112633000" />
+    <option name="totallyTimeSpent" value="112912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -711,13 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/search_page.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/add_new_restaurant.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
@@ -832,18 +826,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="53" column="233" selection-start-line="53" selection-start-column="233" selection-end-line="53" selection-end-column="233" />
+        <state relative-caret-position="340">
+          <caret line="62" column="34" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
           <folding>
             <element signature="e#793#948#0#HTML" expanded="true" />
             <element signature="e#997#1033#0#HTML" expanded="true" />
             <element signature="e#1752#1914#0#HTML" expanded="true" />
             <element signature="e#1967#2003#0#HTML" expanded="true" />
+            <element signature="e#2948#3128#0#HTML" expanded="true" />
             <element signature="e#3868#4067#0#HTML" expanded="true" />
             <element signature="e#4116#4152#0#HTML" expanded="true" />
             <element signature="e#12108#12128#0#HTML" expanded="true" />
             <marker date="1461570702313" expanded="true" signature="14781:14929" placeholder="..." />
             <marker date="1461570702313" expanded="true" signature="14877:14890" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BKK_Travel/resources/views/search_page.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+          <folding>
+            <element signature="e#1952#1977#0#HTML" expanded="true" />
+            <element signature="e#3201#3220#0#HTML" expanded="true" />
+            <element signature="e#3411#3431#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

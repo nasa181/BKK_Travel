@@ -45,6 +45,7 @@
                 </div>
                 <div class="col-md-6"  style="margin-bottom: 20px;" >
                     <div class="" style="padding: 40px 20px;border: dashed #D4EF4C;border-radius: 20px;/*background: rgba(212,239,76,0.2)*/;">
+                        <div class="text-right" style="float:right"><button onclick="" class="btn btn-warning">Report</button></div>
                         <div class="shadow-text">
                             <div class="row" style="">
                                 <div class="col-xs-12" style="margin-bottom: 5px"><span>Start Date :  {{$event->start_date}} </span></div>

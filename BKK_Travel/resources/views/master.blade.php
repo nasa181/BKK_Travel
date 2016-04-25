@@ -304,8 +304,29 @@
                             <p>Password</p>
                             <input id="password" type="password" class="form-control" name="in_password" placeholder="Password..">
                             <div class="modal-footer">
-                                <a href="#"><div  class="btn btn-default">Forget Password</div></a>
+                                <a href="#" ><div href="#forgetModal" data-toggle="modal" data-target="#forgetModal" data-dismiss="modal" class="btn btn-default">Forget Password</div></a>
                                 <button id="login" type="submit" class="btn btn-default">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="forgetModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: cornflowerblue">
+                        <button type="button" class="close" data-dismiss="modal" style="color: #ffffff">&times;</button>
+                        <h2 class="modal-title" style="color: #ffffff">Forget Password</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/forgetpassword">
+                            <p style="color: #000;">Enter your E-mail</p>
+                            <input id="email" type="text" class="form-control" name="in_email" placeholder="email@example.com">
+                            
+                            <div class="modal-footer">
+                                <button id="login" type="submit" class="btn btn-default">Send me password</button>
                             </div>
                         </form>
                     </div>

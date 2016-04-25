@@ -172,7 +172,7 @@
                     <option value="Kyrgyzstan">Kyrgyzstan</option>
                     <option value="Lao">Lao People's Democratic Republic</option>
                     <option value="Latvia">Latvia</option>
-                    <option value="Lebanon" selected>Lebanon</option>
+                    <option value="Lebanon">Lebanon</option>
                     <option value="Lesotho">Lesotho</option>
                     <option value="Liberia">Liberia</option>
                     <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
@@ -315,6 +315,9 @@
         }
         date_input.datepicker(options); //initial 10/26/2015 8:20:59 PM ze plugin
     </script>
+    
+    <script src="http://api.wipmania.com/jsonp?callback=jsonpCallback"
+        type="text/javascript"></script>
     <script>
         @if(isset($current_user))
             $("input#email").val('{{$current_user[0]}}');

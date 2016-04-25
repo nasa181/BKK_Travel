@@ -47,6 +47,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/register/input','web_controller@register');
     Route::get('/logout','web_controller@logout');
     Route::get('/relogin/{return_path?}','web_controller@reLogin');
+    Route::get('/user/ranking','web_controller@ranking');
 
 //========== adding new item ===========
     Route::get('/page_restaurant/create_new_restaurant','web_controller@createNewRestaurant');
@@ -70,4 +71,6 @@ Route::group(['middleware' => ['web']], function () {
 //=========== Rating / like-dislike =========
     Route::post('/updateRating','web_controller@updateRating');
     Route::post('/setLikeDislike','web_controller@setLikeDislike');
+//================================================================
+
 });

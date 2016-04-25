@@ -55,11 +55,16 @@
             </div>
         @endforeach
     </div>
+    @if($restaurant == null && $attraction == null)
+        <h2 style="color: red;">Search not found</h2>
+
+    @endif
     <div class="row">
         <div class="col-xs-12">
             <hr>
         </div>
     </div>
+    <span>How about sharing your new experience?</span><h3 style="color: blue">Let's add new item</h3>
     @if(isset($current_user))
             <div class="row col-xs-12 ">
                 <a href="/page_attraction/create_new_attraction"><button class="btn btn-success">Add new attraction</button></a>

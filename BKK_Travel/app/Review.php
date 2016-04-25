@@ -12,6 +12,7 @@ class Review extends Model
 
     protected $primaryKey = 'review_id';
     public function user(){
-        $this->belongsTo('User');
+        return $this->belongsTo('App\User');
+
     }
 }

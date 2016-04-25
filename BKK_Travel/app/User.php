@@ -31,7 +31,7 @@ class User extends Authenticatable
         return $this->password;
     }
     public function review(){
-        $this->hasOne('Review');
+        return $this->hasMany('App\Review');
     }
 
 }

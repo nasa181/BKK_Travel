@@ -792,4 +792,22 @@ class web_controller extends Controller
         return view('add_new_event');
     }
 
+    function ranking(){
+        $review = DB::table('users')->join('review','review.link_user_id','=','users.user_id')->get();
+        $review_collection = array();
+        foreach($review as $idx){
+            array_push($review_collection,$idx->user_id);
+        }
+        $review_collection = array_count_values($review_collection);
+        arsort($review_collection);
+        $users = array();
+        foreach($review_collection as $collection => $num_of_review){
+            $tmp = DB::table('users')->where('user_id',$collection)->get();
+            array_push($tmp,$num_of_review);
+            array_push($users,$tmp);
+        }
+        return view('ranking',['users'=>$users]);
+
+    }
+
 }

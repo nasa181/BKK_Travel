@@ -228,6 +228,12 @@
             .glyphicon:hover{
                 cursor: pointer;
             }
+            .navbar-brand,
+            .navbar-nav li a {
+                line-height: 60px;
+                height: 60px;
+                padding-top: 0;
+            }
 
         </style>
     </head>
@@ -246,8 +252,8 @@
                             </button>
                         </div>
                         <div class="collapse navbar-collapse" id="myNavbar">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="/">Home</a></li>
+                            <ul class="nav navbar-nav" style="">
+                                <li><a href="/"><img src="/BKKTravelLogo.png" style="height: 60px"></a></li>
                                 <li><a href="/page_travel/list_of_travel/1">Attraction</a></li>
                                 <li><a href="/page_restaurant/list_of_restaurant/1">Restaurant</a></li>
                                 <li><a href="/page_event/list_of_event/1">Event</a></li>

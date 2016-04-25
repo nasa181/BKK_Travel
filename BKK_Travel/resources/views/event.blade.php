@@ -14,10 +14,12 @@
                 <?php
                 $event1 = array();
                 $event2 = array();
-                for($i=0;$i<intval(sizeof($event)/2);$i++){
+                if(sizeof($event)%2==0) $mid = intval(sizeof($event)/2);
+                else  $mid = intval(sizeof($event)/2)+1;
+                for($i=0;$i<$mid;$i++){
                     array_push($event1,$event[$i]);
                 }
-                for($i=intval(sizeof($event)/2);$i<sizeof($event);$i++){
+                for($i=$mid;$i<sizeof($event);$i++){
                     array_push($event2,$event[$i]);
                 }
                 ?>

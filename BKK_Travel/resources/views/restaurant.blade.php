@@ -1,6 +1,5 @@
 @extends('master')
 @section('center_page')
-
     <div class="row">
         <div class=" col-xs-12">
             <h1 class="head-title">Restaurant List</h1>
@@ -12,10 +11,12 @@
             <?php
                 $restaurant1 = array();
                 $restaurant2 = array();
-                for($i=0;$i<sizeof($restaurant)/2;$i++){
+                if(sizeof($restaurant)%2==0) $mid = intval(sizeof($restaurant)/2);
+                else  $mid = intval(sizeof($restaurant)/2)+1;
+                for($i=0;$i<$mid;$i++){
                     array_push($restaurant1,$restaurant[$i]);
                 }
-                for($i=sizeof($restaurant)/2;$i<sizeof($restaurant);$i++){
+                for($i=$mid;$i<sizeof($restaurant);$i++){
                     array_push($restaurant2,$restaurant[$i]);
                 }
             ?>

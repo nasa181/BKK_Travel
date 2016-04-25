@@ -13,10 +13,12 @@
             <?php
                 $attraction1 = array();
                 $attraction2 = array();
-                for($i=0;$i< intval(sizeof($attraction)/2);$i++){
+                if(sizeof($attraction)%2==0) $mid = intval(sizeof($attraction)/2);
+                else  $mid = intval(sizeof($attraction)/2)+1;
+                for($i=0;$i< $mid;$i++){
                     array_push($attraction1,$attraction[$i]);
                 }
-                for($i=intval(sizeof($attraction)/2);$i<sizeof($attraction);$i++){
+                for($i=$mid;$i<sizeof($attraction);$i++){
                     array_push($attraction2,$attraction[$i]);
                 }
             ?>

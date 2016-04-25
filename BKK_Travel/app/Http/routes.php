@@ -48,6 +48,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/logout','web_controller@logout');
     Route::get('/relogin/{return_path?}','web_controller@reLogin');
     Route::get('/user/ranking','web_controller@ranking');
+    Route::get('/forgetpassword', 'web_controller@forgetpassword');
 
 //========== adding new item ===========
     Route::get('/page_restaurant/create_new_restaurant','web_controller@createNewRestaurant');

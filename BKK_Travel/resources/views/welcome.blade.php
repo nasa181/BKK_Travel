@@ -16,29 +16,58 @@
             <div class="row">
                 {{--left-article--}}
                 <div class="col-md-6 col-xs-12">
-                    @for($i=0;$i<2;$i++)
-                    <div class="row item_description " style="margin:10px 0px;height: 120px;background: url('http://thailanddrone.com/wp-content/uploads/wppa/44/5.jpg?ver=10')  bottom ;background-size:cover;background-attachment: fixed ">
+                    @for($i=0;$i<1;$i++)
+                    <a href="#">
+                    <div class="row item_description " style="margin:10px 0px;height: 120px;background: url('/ร้านอาหารเลอสยาม-เอ็มเคโกลด์-011.jpg')  center ;background-size:cover;background-attachment: local ">
                         <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="head item_description" style=""><a href="#"><span><h4>เส้นทางไหว้พระ 9 วัดรอบกรุง</h4></span></a></div>
+                                    <div class="head item_description" style=""><span><h4>พาชิมอาหารรอบกรุง</h4></span></div>
                                 </div>
                                 <div class="col-xs-12">
-                                    <div class="text-info" style="text-align: right;margin: 55px 0px 0px 0px"><span>บทความท่องเที่ยว</span></div>
+                                    <div class="text-info" style="text-align: right;margin: 55px 0px 0px 0px"><span>บทความร้านอาหาร</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </a>
+                    <a href="#">
+                        <div class="row item_description " style="margin:10px 0px;height: 120px;background: url('http://202.129.59.73/free/cal12/c0412p04x.jpg')  center;background-size:cover;background-attachment: local ">
+                            <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="head item_description" style=""><span><h4>สถานที่เล่นน้ำสงกรานต์ 2559</h4></span></div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="text-info" style="text-align: right;margin: 55px 0px 0px 0px"><span>บทความท่องเที่ยว</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                     @endfor
                 </div>
                 {{--right-article--}}
                 <div class="col-md-6 col-xs-12">
-                    @for($i=0;$i<2;$i++)
-                    <div class="row item_description " style="margin:10px 0px;background: green;height: 120px;background: url('http://thailanddrone.com/wp-content/uploads/wppa/44/5.jpg?ver=10') bottom ;background-size:cover;background-attachment: fixed ">
+                    @for($i=0;$i<1;$i++)
+                    <a href="#">
+                    <div class="row item_description " style="margin:10px 0px;background: green;height: 120px;background: url('https://images5.alphacoders.com/407/407909.jpg') center;background-size:cover;background-attachment: fixed ">
                         <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="head item_description" style=""><a href="#"><span><h4>เส้นทางไหว้พระ 9 วัดรอบกรุง</h4></span></a></div>
+                                    <div class="head item_description" style=""><span><h4>รีวิวโรงแรม ไอคอนสยาม</h4></span></div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="text-info" style="text-align: right;margin: 55px 0px 0px 0px"><span>สปอนเซอร์</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row item_description " style="margin:10px 0px;background: green;height: 120px;background: url('http://thailanddrone.com/wp-content/uploads/wppa/44/5.jpg?ver=10') bottom ;background-size:cover;background-attachment: local ">
+                        <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="head item_description" style=""><span><h4>เส้นทางไหว้พระ 9 วัดรอบกรุง</h4></span></div>
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="text-info" style="text-align: right;margin: 55px 0px 0px 0px"><span>บทความท่องเที่ยว</span></div>
@@ -46,6 +75,7 @@
                             </div>
                         </div>
                     </div>
+                    </a>
                     @endfor
                 </div>
             </div>

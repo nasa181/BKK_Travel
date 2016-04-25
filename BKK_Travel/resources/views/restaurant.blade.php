@@ -53,11 +53,12 @@
                     if ($res->title_picture == "" || $res->title_picture == null) $background = "green" ;
                     else  $background = "url('" . url($res->title_picture) . "')";
                 ?>
+                <a href="/page_restaurant/info/{{$res->item_id}}">
                 <div  class="row item_description" style="margin:10px 0px;height: 120px;overflow:hidden;background: {{$background}} center ;background-size:cover;">
                     <div class="col-md-12 col-xs-12" style=" text-shadow: 1px 1px black;">
                         <div class="row">
                             <div class="col-xs-12" >
-                                <div class="head_item_description" style=""><a href="/page_restaurant/info/{{$res->item_id}}"><span><h4>{{$res->title}}</h4></span></a></div>
+                                <div class="head_item_description" style=""><span><h4>{{$res->title}}</h4></span></div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="text-info" style="margin: 0px"><span>{{$res->food_type}}</span></div>
@@ -71,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             @endforeach
         </div>
     </div>

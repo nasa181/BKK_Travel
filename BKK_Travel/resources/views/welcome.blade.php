@@ -191,7 +191,7 @@
                             @endif
                         @endif
                         <div class="col-md-12" style="">
-                            <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{$review[$i]->title}}</span></h3> </a>
+                            <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{mb_substr($review[$i]->title,0,45)}}</span></h3> </a>
                         </div>
                         <div class="col-md-8 height-adjust" style="text-overflow: ellipsis; word-wrap: break-word;">
                                 <p>"{!!$text1!!}..."</p>

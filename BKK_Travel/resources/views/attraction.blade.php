@@ -13,7 +13,7 @@
             <?php
                 $attraction1 = array();
                 $attraction2 = array();
-                for($i=0;$i<intval(sizeof($attraction)/2);$i++){
+                for($i=0;$i< intval(sizeof($attraction)/2);$i++){
                     array_push($attraction1,$attraction[$i]);
                 }
                 for($i=intval(sizeof($attraction)/2);$i<sizeof($attraction);$i++){
@@ -25,11 +25,12 @@
                 if ($attr->title_picture == "" || $attr->title_picture == null) $background = "green" ;
                 else  $background = "url('" . url($attr->title_picture) . "')";
             ?>
+                <a href="/page_travel/info/{{$attr->item_id}}">
                 <div class="row item_description " style="overflow:hidden;margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
                     <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="head item_description" style=""><a href="/page_travel/info/{{$attr->item_id}}"><span><h4>{{$attr->title}}</h4></span></a></div>
+                                <div class="head item_description" style=""><span><h4>{{$attr->title}}</h4></span></div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="text-info" style="margin: 0px"><span>Price:   {{$attr->entrance_fee}}</span></div>
@@ -40,6 +41,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             @endforeach
         </div>
         <div class="col-md-6">
@@ -48,11 +50,12 @@
                     if ($attr->title_picture == "" || $attr->title_picture == null) $background = "green" ;
                     else  $background = "url('" . url($attr->title_picture) . "')";
                 ?>
+                <a href="/page_travel/info/{{$attr->item_id}}">
                 <div class="row item_description " style="margin:10px 0px;height: 120px;background: {{$background}} center ;background-size:cover ">
                     <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="head item_description" style=""><a href="/page_travel/info/{{$attr->item_id}}"><span><h4>{{$attr->title}}</h4></span></a></div>
+                                <div class="head item_description" style=""><span><h4>{{$attr->title}}</h4></span></div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="text-info" style="margin: 0px"><span>Price:   {{$attr->entrance_fee}}</span></div>
@@ -63,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             @endforeach
         </div>
     </div>

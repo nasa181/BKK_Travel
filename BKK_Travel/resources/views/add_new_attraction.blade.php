@@ -1,8 +1,6 @@
 @extends('master')
 @section('center_page')
     <?php
-/*        var_dump($item);
-        var_dump($attraction);*/
         if(isset($item)) $path="/update_attraction";
         else $path="/page_travel/add_new_attraction";
     ?>
@@ -23,12 +21,12 @@
                     <input type="file" placeholder="Choose a photo to upload" name="profile_picture" id="photo" >
                 </div>
                 <div class="row col-md-offset-1 col-md-10  form-group">
-                <label>Title</label>
-                <input type="text" class="form-control" name="in_new_title" placeholder="Title.." @if(isset($item)) value="{{$item->title}}" @endif>
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="in_new_title" placeholder="Title.." @if(isset($item)) value="{{$item->title}}" @endif>
                 </div>
                 <div class="row col-md-offset-1 col-md-10  form-group">
                     <label>Description</label>
-                    <textarea  rows="5" class="form-control" name="in_new_description" placeholder="Please description this place..">@if(isset($item)) {{$item->description}} @endif</textarea>
+                    <textarea  rows="5" class="form-control" name="in_new_description" placeholder="Please description this place.."> @if(isset($item)) {{$item->description}} @endif</textarea>
                 </div>
                 <div class="row col-md-offset-1 col-md-10  form-group">
                     <label>Tel</label>
@@ -44,15 +42,17 @@
                 </div>
                 <div class="row col-md-offset-1 col-md-10 form-group">
                     <label>Entrance Fee</label>
-                    <input type="text" class="form-control" name="in_new_entrancefee" placeholder="Fee.." @if(isset($item)) value="{{$attraction->entrance_fee}}" @endif>
+                    <input type="text" class="form-control" name="in_new_entrancefee" placeholder="100-200 Baht" @if(isset($item)) value="{{$attraction->entrance_fee}}" @endif>
                 </div>
                 <div class="row col-md-offset-1 col-md-10 form-group">
                     <label>Open-close Time</label>
                     <textarea rows="1" class="form-control" name="in_new_oc_time" placeholder="Mon-Fri 8AM-6PM" >@if(isset($item)) {{$attraction->oc_time}} @endif</textarea>
                 </div>
-                <div class="row col-md-offset-1 col-md-10 form-group">
-                    <label>Parking available</label>
-                    <input type="text" class="form-control" name="in_new_parking" placeholder="Yes or No.." @if(isset($item)) value="{{$attraction->parking}}" @endif>
+                <div class="row  col-md-offset-1 col-md-10 form-group">
+                    <div ><label>Parking</label>
+                        <label class="radio-inline"><input type="radio" name="in_new_parking" value="Yes" checked>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="in_new_parking" value="No">No</label>
+                    </div>
                 </div>
                 <div class="row col-md-offset-1 col-md-10 form-group">
                     <label>Web site url</label>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="row col-md-offset-1 col-md-10 form-group">
                     <label>Building name</label>
-                    <textarea rows="1" class="form-control" name="in_new_build" placeholder="Building name"> @if(isset($item)) {{$location->build}} @endif</textarea>
+                    <input type="text" class="form-control" name="in_new_build" placeholder="Building name" @if(isset($item)) value="{{$location->build}}" @endif>
                 </div>
                 <div class="row col-md-offset-1 col-md-10 form-group">
                     <label>Street Address</label>
@@ -94,17 +94,17 @@
 
                     <script>
                         var map;
-                        @if(!isset($item))
-                            var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-                        @else
-                            var myCenter=new google.maps.LatLng({{$location->lat}}, {{$location->long}});
-                        @endif
+                                @if(isset($item))
+                        var myCenter=new google.maps.LatLng( {{$location->lat}} ,{{$location->long}});
+                                @else
+                        var myCenter=new google.maps.LatLng( 13.743521264976438 ,100.54059982209014);
+                                @endif
                         var marker;
                         function initialize()
                         {
                             var mapProp = {
                                 center:myCenter,
-                                zoom:5,
+                                zoom:15,
                                 mapTypeId:google.maps.MapTypeId.ROADMAP
                             };
 

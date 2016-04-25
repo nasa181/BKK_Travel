@@ -66,21 +66,23 @@
             </div>
 
             @foreach($attraction as $attr)
-            <div class="row item_description " style="overflow:hidden;margin:10px 0px;background: green;height: 120px;background: url({{$attr->title_picture}}) center ;background-size:cover ">
-                <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
-                    <div class="row">
-                        <div class="col-xs-12">
-                                <div class="head item_description" style=""><a href="/page_travel/info/{{$attr->item_id}}"><span><h4>{{$attr->title}}</h4></span></a></div>
-                        </div>
-                        <div class="col-xs-12">
-                                <div class="text-info" style="margin: 0px"><span>Price:   {{$attr->entrance_fee}}</span></div>
-                        </div>
-                        <div class="col-xs-12">
-                                <div class="text-info " style="margin: 0px"><span>Duration:   {{$attr->oc_time}}</span></div>
+            <a href="/page_travel/info/{{$attr->item_id}}">
+                <div class="row item_description " style="overflow:hidden;margin:10px 0px;background: green;height: 120px;background: url({{$attr->title_picture}}) center ;background-size:cover ">
+                    <div class="col-xs-12" style=" text-shadow: 1px 1px black;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                    <div class="head item_description" style=""><span><h4>{{$attr->title}}</h4></span></div>
+                            </div>
+                            <div class="col-xs-12">
+                                    <div class="text-info" style="margin: 0px"><span>Price:   {{$attr->entrance_fee}}</span></div>
+                            </div>
+                            <div class="col-xs-12">
+                                    <div class="text-info " style="margin: 0px"><span>Duration:   {{$attr->oc_time}}</span></div>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
+            </a>
             @endforeach
         </div>
 
@@ -93,11 +95,12 @@
             </div>
 
             @foreach($restaurant as $res)
+                <a href="/page_restaurant/info/{{$res->item_id}}">
                 <div  class="row item_description" style="overflow:hidden;margin:10px 0px;background: green;height: 120px;overflow:hidden;background: url({{$res->title_picture}}) center ;background-size:cover ">
                     <div class="col-md-12 col-xs-12" style=" text-shadow: 1px 1px black;">
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="head item_description" style=""><a href="/page_restaurant/info/{{$res->item_id}}"><span><h4>{{$res->title}}</h4></span></a></div>
+                                <div class="head item_description" style=""><span><h4>{{$res->title}}</h4></span></div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="text-info" style="margin: 0px"><span>{{$res->food_type}}</span></div>
@@ -111,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             @endforeach
         </div>
 
@@ -118,9 +122,37 @@
         <div class="col-md-4 col-xs-12" style="background: none">
             <div class="row">
                 <div class=" col-md-12 col-xs-12 ">
-                    <a class="head_item_description " href="#"><h1>EVENT</h1></a>
+                    <a class="head_item_description " href="/page_event/list_of_event/1"><h1>EVENT</h1></a>
                 </div>
             </div>
+        @foreach($event as $eve)
+            <?php
+                if($eve->title_picture == null){
+                    $background = ";background : green;";
+                }
+                else $background=";background : url(". $eve->title_picture .") center;"
+            ?>
+            <a href="/page_event/info/{{$eve->item_id}}">
+            <div  class="row item_description" style="overflow:hidden;margin:10px 0px;background: green;height: 120px;overflow:hidden;{{$background}};background-size:cover ">
+                <div class="col-md-12 col-xs-12" style=" text-shadow: 1px 1px black;">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="head item_description" style=""><span><h4>{{$eve->title}}</h4></span></div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="text-info" style="margin: 0px"><span>{{$eve->start_date}} to {{$eve->end_date}}</span></div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="text-info " style="margin: 0px"><span>{{$eve->entrance_fee}}</span></div>
+                        </div>
+                        <div class="col-xs-12" >
+                            <div class="text-info " style="margin: 0px"><span>{{$eve->type}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        @endforeach
         </div>
     </div>
 
@@ -158,7 +190,7 @@
                             </div>
                             @endif
                         @endif
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="">
                             <a href="/item/info/{{$review[$i]->link_item_id}}" > <h3 class="" style="color:white;"><span>{{$review[$i]->title}}</span></h3> </a>
                         </div>
                         <div class="col-md-8 height-adjust" style="text-overflow: ellipsis; word-wrap: break-word;">

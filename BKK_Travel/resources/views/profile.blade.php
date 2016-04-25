@@ -68,7 +68,11 @@
                         <td>{{$rev->created_at}}</td>
                         @if(isset($current_user))
                             @if($current_user[5]==$rev->link_user_id)
-                                    <td><span><button class="btn btn-danger" onclick="removev({{$rev->review_id}})">Remove</button></span></td>
+                                    <td>
+                                        <span style="margin-right: 10px"><button class="btn btn-danger" onclick="removev({{$rev->review_id}})">Remove</button></span>
+                                        <span><button class="btn btn-warning">Edit</button></span>
+                                    </td>
+
                             @endif
                         @endif
                     </tr>

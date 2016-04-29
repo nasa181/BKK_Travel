@@ -19,6 +19,4 @@
             </div>
         @endforeach
     @endif
-
-
 @stop

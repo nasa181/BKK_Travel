@@ -254,6 +254,7 @@
                         <div class="collapse navbar-collapse" id="myNavbar">
                             <ul class="nav navbar-nav" style="">
                                 <li><a href="/"><img src="/BKKTravelLogo.png" style="height: 60px"></a></li>
+                                <li><a href="/page_article/list_of_article/1">Article</a></li>
                                 <li><a href="/page_travel/list_of_travel/1">Attraction</a></li>
                                 <li><a href="/page_restaurant/list_of_restaurant/1">Restaurant</a></li>
                                 <li><a href="/page_event/list_of_event/1">Event</a></li>

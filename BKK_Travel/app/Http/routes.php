@@ -74,4 +74,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/setLikeDislike','web_controller@setLikeDislike');
 //================================================================
 
+// ========== Article ==============
+    Route::get('/page_article/list_of_article/{page}','web_controller@page_article');
+    Route::get('/page_article/info/{id}','web_controller@art_info');
+    // Route::post('/page_travel/add_new_article','web_controller@addArticle');
+    // Route::get('/page_article/create_new_article','web_controller@createNewArticle');
+
 });

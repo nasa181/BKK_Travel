@@ -810,4 +810,29 @@ class web_controller extends Controller
 
     }
 
+// ======================= Article Controller ========================    
+    function page_article($page) {
+        $num_of_article =  DB::table('article')->count();
+        $num_of_page = intval($num_of_article/20) + 1;
+        if($page < 1) $page = 1;
+        else if ($page > $num_of_page) $page = $num_of_page;
+        $article = DB::table('article')
+            ->skip(20*($page - 1))
+            ->take(20)
+            ->get();
+        return view('article', ['article'=>$article, 'page'=>$page, 'last_page'=>$num_of_page]);
+    }
+
+    function art_info($id) {
+        $art = DB::table('article')->where('article_id',$id)->first();
+        return view('info_article',['art'=>$art]);
+    }
+
+    // function remove_article(Request $request){
+    //     DB::table('article')
+    //         ->where('article_id',$request->article_id)
+    //         ->delete();
+    //     return Redirect::back();
+    // }
+
 }
